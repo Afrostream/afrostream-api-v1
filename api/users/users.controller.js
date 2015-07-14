@@ -32,7 +32,7 @@ exports.createUser = function (req, res, next) {
 		email:          'john08@doe.com',
 		password:       'somepass',
 		connection:     CONNECTION,
-		email_verified: false
+		email_verified: true
 	};
 
 	api.createUser(newUser, function (err, userInfo) {
