@@ -29,7 +29,7 @@ exports.createUser = function (req, res, next) {
 	console.log('*** creating an auth0 user account ***');
 
 	var newUser = {
-		email:          'john08@doe.com',
+		email:          'john09@doe.com',
 		password:       'somepass',
 		connection:     CONNECTION,
 		email_verified: true
