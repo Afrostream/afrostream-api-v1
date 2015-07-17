@@ -11,5 +11,7 @@ var router = express.Router();
 //router.post('/', auth.hasRole('admin'), controller.createSubscription);
 router.get('/:email', controller.getSubscriptionByEmail);
 
+router.post('', controller.createSubscription);
+
 
 module.exports = router;

@@ -18,35 +18,83 @@ var api = new Auth0({
 	clientSecret: config.auth0.clientSecret
 });
 
-console.log('*** api object ***');
-console.log(api);
-console.log('*** end of api object ***');
-
 /**
- * create an user account, without payment details
+ * create an Auth0 user account
+ *
+ * @param object req the request being made
+ * @param object res the response
  */
-exports.createUser = function (req, res, next) {
-	console.log('*** creating an auth0 user account ***');
+exports.createUser = function (req, res) {
+
+	console.log('*** trying to create a user ***');
+	console.log(req);
+	console.log('*** end of request params ***');
+
+	if ( (typeof req === 'undefined') || (typeof req.body === 'undefined')
+		|| (typeof req.body.email === 'undefined') || (typeof req.body.password === 'undefined')
+		|| (typeof req.body.subscriptionStatus === 'undefined')) {
+
+		console.log('*** error: malformed request when getting a user ***');
+		res.send(400, 'It appears that the request is malformed');
+		return;
+	}
 
 	var newUser = {
-		email:          'john09@doe.com',
-		password:       'somepass',
-		connection:     CONNECTION,
-		email_verified: true
+		email: req.body.email,
+		password: req.body.password,
+		subscriptionStatus: req.body.subscriptionStatus,
+		connection: CONNECTION,
+		email_verified: false
 	};
 
 	api.createUser(newUser, function (err, userInfo) {
 
-		console.log('** trying to create user ***');
 		if (err) {
-			console.log('Error creating user: ');
+			console.log('*** Error creating user: ***');
 			console.log(err);
 			res.send(500, err);
 			return;
 		}
 		else {
-			console.log('*** message from server when trying to create user ***');
-			console.log(userInfo);
+			userInfo.status = 'ok';
+			res.send(200, userInfo);
+		}
+
+	});
+
+};
+
+/**
+ * get an Auth0 user account, by email
+ *
+ * @param object req the request being made
+ * @param object res the response
+ */
+exports.getUser = function (req, res) {
+
+	if ( (typeof req === 'undefined') || (typeof req.params === 'undefined')
+		|| (typeof req.params.email === 'undefined') ) {
+
+		console.log('*** error: malformed request when getting a user ***');
+		res.send(400, 'It appears that the request is malformed');
+		return;
+	}
+	console.log(req.params);
+	console.log('*** end of the request query body ***');
+
+
+	var searchCriteria = 'email: "' + req.params.email + '"';
+
+	api.getUserBySearch(searchCriteria, function (err, userInfo) {
+
+		if (err) {
+			console.log('Error creating user: ');
+			//console.log(err);
+			res.send(500, err);
+			return;
+		}
+		else {
+
 			userInfo.status = 'ok';
 			res.send(200, userInfo);
 		}

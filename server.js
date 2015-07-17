@@ -17,6 +17,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var config = require('./config/environment');
+var allowOriginUrl = config.allowOrigin.url;
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -26,11 +27,21 @@ if (config.seedDB) {
 	require('./config/seed');
 }
 
+var allowCrossDomain = function(req, res, next) {
+
+	res.header('Access-Control-Allow-Origin', allowOriginUrl);
+	//res.header('Access-Control-Allow-Origin', 'http://localhost:9001');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
+
+	next();
+}
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(allowCrossDomain);
 app.use(cors());
 
 //app.use(express.bodyParser());

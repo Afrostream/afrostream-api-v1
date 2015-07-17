@@ -12,4 +12,13 @@ var router = express.Router();
 
 router.post('/signup', controller.createUser);
 
+try {
+
+	router.get('/:email', controller.getUser);
+} catch (err) {
+	console.log('error with the request: ' + err.message);
+}
+
+//router.post('/login', controller.loginUser);
+
 module.exports = router;
