@@ -24,7 +24,7 @@ mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Populate DB with sample data
 if (config.seedDB) {
-	require('./config/seed');
+	//require('./config/seed');
 }
 
 var allowCrossDomain = function(req, res, next) {
