@@ -19,7 +19,7 @@ module.exports = {
 		apiKey: '67dbb29f0dbe4e219bc247a3b5387652'
 	},
 	allowOrigin: {
-		url: 'http://localhost:9000'
+		url: 'http://localhost:3000'
 	},
 	// MongoDB connection options
 	mongo: {
