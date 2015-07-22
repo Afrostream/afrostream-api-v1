@@ -3,6 +3,8 @@
 var Subscription = require('./subscriptions.model');
 var passport = require('passport');
 var config = require('../../config/environment');
+var MongooseClient = require('../../helpers/mongooseClient');
+var EmailClient = require('../../helpers/emailClient');
 var jwt = require('jsonwebtoken');
 
 var recurlySubdomain = config.recurly.subdomain;
@@ -189,6 +191,21 @@ exports.createSubscription = function (req, res) {
 					status: 200,
 					success: 'Updated Successfully'
 				};
+
+				var client = MongooseClient(req.body);
+				client.saveGiftDetails();
+
+				if (req.body['is_gift'] === '1') {
+
+
+					var emailer = EmailClient(req.body, invoiceNumber);
+					emailer.sendReceiverEmail();
+					emailer.sendGiverEmail();
+				} else {
+
+					var emailer = EmailClient(req.body, invoiceNumber);
+					emailer.sendStandardEmail();
+				}
 			}
 
 			res.send(JSON.stringify(returnResponse));
