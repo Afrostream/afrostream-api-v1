@@ -30,7 +30,7 @@
     "forever": "^0.15.1"
   },
   "scripts": {
-    "start": "node server",
+    "start": "node server.js",
     "start-dev": "pm2 start pm2/config.json",
     "stop-dev": "pm2 stop pm2/config.json"
   }
