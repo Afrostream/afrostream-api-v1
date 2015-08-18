@@ -21,13 +21,13 @@ module.exports = {
     'mongodb://localhost/afrostream'
   },
   auth0: {
-    domain: process.env.AUTH0_URI || 'afrostream.eu.auth0.com',
-    clientId: process.env.AUTH0_CLIENT || 'BtSdIqKqfIse0H1dqlpHFJgKIkUG0NpE',
+    domain: process.env.AUTH0_DOMAIN || 'afrostream.eu.auth0.com',
+    clientId: process.env.AUTH0_CLIENT_ID || 'BtSdIqKqfIse0H1dqlpHFJgKIkUG0NpE',
     clientSecret: process.env.AUTH0_SECRET || 'KYmL01KW5HczO-XKpltlVUONRCXtynJQ0nFqiGNOsjN9c3RsBAnr5_T-rnnc7DYY'
   },
   recurly: {
-    subdomain: process.env.AUTH0_SUB_DOMAIN || 'johnarch',
-    apiKey: process.env.AUTH0_API_KEY || '67dbb29f0dbe4e219bc247a3b5387652'
+    subdomain: process.env.RECURLY_SUB_DOMAIN || 'johnarch',
+    apiKey: process.env.RECURLY_API_KEY || '67dbb29f0dbe4e219bc247a3b5387652'
   },
   allowOrigin: {
     url: 'https://afrostream.tv'
