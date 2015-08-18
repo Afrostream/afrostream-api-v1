@@ -28,7 +28,7 @@ Afrostream.prototype.getToken = function (done) {
     });
 };
 
-Afrostream.prototype.categorys = function (options, done) {
+Afrostream.prototype.category = function (options, done) {
   var self = this;
   var selectRoute = 'categorys';
   if (options.id !== undefined) {
@@ -67,7 +67,7 @@ Afrostream.prototype.menu = function (options, done) {
   });
 };
 
-Afrostream.prototype.movies = function (options, done) {
+Afrostream.prototype.movie = function (options, done) {
   var self = this;
   var selectRoute = 'movies';
   if (options.id !== undefined) {
