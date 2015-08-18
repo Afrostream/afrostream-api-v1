@@ -1,6 +1,8 @@
 {
   "name": "afrostream-api-v1",
   "main": "server.js",
+  "version": "1.0.0",
+  "description": "Universal Afrostream Front Api",
   "dependencies": {
     "async": "^1.4.2",
     "auth0": "~0.6.3",
@@ -22,7 +24,7 @@
     "nodemailer-sendgrid-transport": "0.2.0",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "purest": "git@github.com:Afrostream/purest.git#1.1.5"
+    "purest": "^2.0.0"
   },
   "devDependencies": {
     "forever": "^0.15.1"
