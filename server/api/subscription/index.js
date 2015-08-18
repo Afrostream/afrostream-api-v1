@@ -1,10 +1,8 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./subscriptions.controller.js');
+var controller = require('./subscription.controller.js');
 //var auth = require('../../auth/auth.service');
-console.log('*** arriving in subscriptions ***');
-
 var router = express.Router();
 
 //subscriptions

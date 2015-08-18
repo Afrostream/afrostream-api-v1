@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./users.controller.js');
+var controller = require('./user.controller.js');
 //var auth = require('../../auth/auth.service');
 
 var router = express.Router();
@@ -14,9 +14,9 @@ router.post('/signup', controller.createUser);
 
 try {
 
-	router.get('/:email', controller.getUser);
+  router.get('/:email', controller.getUser);
 } catch (err) {
-	console.log('error with the request: ' + err.message);
+  console.log('error with the request: ' + err.message);
 }
 
 //router.post('/login', controller.loginUser);
