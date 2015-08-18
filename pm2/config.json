@@ -1,0 +1,24 @@
+{
+  "apps": [
+    {
+      "name": "afrostream-api-v1-app",
+      "script": "server.js",
+      "args": [
+      ],
+      "watch": true,
+      "ignore_watch": [
+        "[\\/\\\\]\\./",
+        "node_modules"
+      ],
+      "node_args": "--harmony",
+      "merge_logs": true,
+      "cwd": "/",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": 3000,
+        "AFROSTREAM_API_KEY": "ab183363-2f9b-4cdb-b124-346fa3bfc7cb",
+        "AFROSTREAM_API_SECRET": "455e6886-67e6-49fe-aca5-1248441bb493"
+      }
+    }
+  ]
+}

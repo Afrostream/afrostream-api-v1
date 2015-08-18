@@ -2,13 +2,13 @@
   "name": "afrostream-api-v1",
   "main": "server.js",
   "dependencies": {
+    "async": "^1.4.2",
     "auth0": "~0.6.3",
+    "body-parser": "~1.0.1",
     "cors": "^2.3.1",
     "dotenv": "^0.2.8",
     "express": "~4.0.0",
     "express-jwt": "0.2.1",
-    "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1",
     "jsonwebtoken": "^0.3.0",
     "lodash": "~2.4.1",
     "mongoose": "~3.8.8",
@@ -16,11 +16,20 @@
     "mongoose-paginator": "^0.2.3",
     "mongoose-schema-extend": "^0.1.7",
     "mongoose-search-plugin": "^0.1.2",
+    "node-recurly-updated": "2.1.5",
+    "node-uuid": "1.4.3",
     "nodemailer": "1.4.0",
     "nodemailer-sendgrid-transport": "0.2.0",
-    "node-recurly-updated": "2.1.5",
-    "node-uuid" : "1.4.3",
     "passport": "~0.2.0",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "purest": "git@github.com:Afrostream/purest.git#1.1.5"
+  },
+  "devDependencies": {
+    "forever": "^0.15.1"
+  },
+  "scripts": {
+    "start": "node server",
+    "start-dev": "pm2 start pm2/config.json",
+    "stop-dev": "pm2 stop pm2/config.json"
   }
 }
