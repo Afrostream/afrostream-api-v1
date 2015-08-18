@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "afrostream-api-v1-app",
-      "script": "server.js",
+      "script": "server/app.js",
       "args": [
       ],
       "watch": true,

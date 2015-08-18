@@ -1,9 +1,16 @@
 {
   "name": "afrostream-api-v1",
-  "main": "server.js",
+  "main": "server/app.js",
   "version": "1.0.0",
   "description": "Universal Afrostream Front Api",
   "dependencies": {
+    "babel-core": "^5.6.4",
+    "compression": "~1.0.1",
+    "morgan": "~1.0.0",
+    "serve-favicon": "~2.0.1",
+    "errorhandler": "~1.0.0",
+    "method-override": "~1.0.0",
+    "cookie-parser": "~1.0.1",
     "async": "^1.4.2",
     "auth0": "~0.6.3",
     "body-parser": "~1.0.1",
@@ -23,15 +30,20 @@
     "nodemailer": "1.4.0",
     "nodemailer-sendgrid-transport": "0.2.0",
     "passport": "~0.2.0",
+    "jade": "~1.2.0",
     "passport-local": "~0.1.6",
     "purest": "^2.0.0"
   },
   "devDependencies": {
     "forever": "^0.15.1"
   },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server",
     "start-dev": "pm2 start pm2/config.json",
     "stop-dev": "pm2 stop pm2/config.json"
-  }
+  },
+  "private": true
 }

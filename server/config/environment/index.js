@@ -26,7 +26,7 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: process.env.API_SECRET || 'afrostream-secret'
+    session: process.env.SESSION_SECRET || 'afrostream-secret'
   },
 
   // List of user roles

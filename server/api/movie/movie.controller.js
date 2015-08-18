@@ -1,6 +1,6 @@
 'use strict';
 
-var purest = require('../../components/purest');
+var purest = require('../../components/purest/index');
 
 exports.index = function (req, res) {
   purest.Afrostream.movie({}, function (err, data) {

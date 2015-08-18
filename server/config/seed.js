@@ -5,7 +5,7 @@
 
 'use strict';
 
-var Subscription = require('../api/subscriptions/subscriptions.model');
+var Subscription = require('./subscriptions/subscriptions.model');
 
 
 Subscription.find({}).remove(function() {

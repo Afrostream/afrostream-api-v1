@@ -1,8 +1,8 @@
 'use strict';
 
-var Subscription = require('./subscriptions.model');
+var Subscription = require('./subscriptions.model.js');
 var passport = require('passport');
-var config = require('../../config/environment');
+var config = require('../../config/environment/index');
 var MongooseClient = require('../../helpers/mongooseClient');
 var EmailClient = require('../../helpers/emailClient');
 var jwt = require('jsonwebtoken');
