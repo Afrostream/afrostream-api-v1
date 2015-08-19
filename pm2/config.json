@@ -15,7 +15,7 @@
       "cwd": "server",
       "env": {
         "NODE_ENV": "development",
-        "PORT": 3000,
+        "PORT": 3002,
         "AFROSTREAM_API_KEY": "ab183363-2f9b-4cdb-b124-346fa3bfc7cb",
         "AFROSTREAM_API_SECRET": "455e6886-67e6-49fe-aca5-1248441bb493"
       }
