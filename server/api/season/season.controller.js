@@ -10,7 +10,7 @@ exports.index = function (req, res) {
 };
 
 exports.show = function (req, res) {
-  purest.Afrostream.getData('seasons', {id: req.params.id}, function (err, data) {
+  purest.Afrostream.getData('seasons/{0}', {id: req.params.id}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });

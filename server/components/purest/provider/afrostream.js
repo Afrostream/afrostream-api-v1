@@ -2,7 +2,6 @@ var Purest = require('purest')
   , async = require('async')
   , _ = require('lodash');
 
-
 function Afrostream() {
   this.client = new Purest({
     provider: 'afrostream',
@@ -28,11 +27,25 @@ Afrostream.prototype.getToken = function (done) {
     });
 };
 
+Afrostream.prototype.substitute = function () {
+  var theString = arguments[0];
+  // start with the second argument (i = 1)
+  for (var i = 1; i < arguments.length; i++) {
+    // "gm" = RegEx options for Global search (more than one instance)
+    // and for Multiline search
+    var regEx = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+    theString = theString.replace(regEx, arguments[i]);
+  }
+
+  return theString;
+};
+
+
 Afrostream.prototype.getData = function (type, options, done) {
   var self = this;
   var selectRoute = type;
   if (options.id !== undefined) {
-    selectRoute = type + '/' + options.id;
+    selectRoute = this.substitute(type, options.id);
   }
   async.waterfall([
     function (done) {
