@@ -28,11 +28,11 @@ Afrostream.prototype.getToken = function (done) {
     });
 };
 
-Afrostream.prototype.category = function (options, done) {
+Afrostream.prototype.getData = function (type, options, done) {
   var self = this;
-  var selectRoute = 'categorys';
+  var selectRoute = type;
   if (options.id !== undefined) {
-    selectRoute = 'categorys/' + options.id;
+    selectRoute = type + '/' + options.id;
   }
   async.waterfall([
     function (done) {
@@ -53,43 +53,18 @@ Afrostream.prototype.category = function (options, done) {
     done(null, result);
   });
 };
+
 
 Afrostream.prototype.menu = function (options, done) {
   var self = this;
   async.waterfall([
     function (done) {
-      self.categorys({}, done);
+      self.getData('categorys', {}, done);
     }
   ], function (err, result) {
     if (err) return done(err);
     var data = _.map(result, _.partialRight(_.pick, ['_id', 'label', 'slug']));
     done(null, data);
-  });
-};
-
-Afrostream.prototype.movie = function (options, done) {
-  var self = this;
-  var selectRoute = 'movies';
-  if (options.id !== undefined) {
-    selectRoute = 'movies/' + options.id;
-  }
-  async.waterfall([
-    function (done) {
-      self.getToken(done);
-    },
-    function (result, done) {
-      self.client
-        .query()
-        .select(selectRoute)
-        .auth(result.access_token)
-        .request(function (err, data, body) {
-          if (err) return done(err);
-          done(null, body);
-        })
-    }
-  ], function (err, result) {
-    if (err) return done(err);
-    done(null, result);
   });
 };
 
