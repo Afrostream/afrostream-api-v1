@@ -45,8 +45,8 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "start-dev": "pm2 start pm2/config.json",
-    "stop-dev": "pm2 stop pm2/config.json"
+    "dev": "pm2 start pm2/config.json",
+    "stop": "pm2 stop pm2/config.json"
   },
   "private": true
 }
