@@ -72,7 +72,7 @@ Afrostream.prototype.menu = function (options, done) {
   var self = this;
   async.waterfall([
     function (done) {
-      self.getData('categorys', {}, done);
+      self.getData('categorys/menu', {}, done);
     }
   ], function (err, result) {
     if (err) return done(err);

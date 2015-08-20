@@ -23,7 +23,8 @@ module.exports = {
   },
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/afrostreamadmin-dev'
+    //uri: 'mongodb://localhost/afrostreamadmin-dev'
+    uri: 'mongodb://afrostream:afr0str3am@ds047712.mongolab.com:47712/heroku_nd0hbtmt'
   },
   seedDB: true
 };

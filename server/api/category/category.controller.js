@@ -24,7 +24,7 @@ exports.spots = function (req, res) {
 };
 
 exports.mea = function (req, res) {
-  purest.Afrostream.getData('categorys', {}, function (err, data) {
+  purest.Afrostream.getData('categorys/meas', {}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
