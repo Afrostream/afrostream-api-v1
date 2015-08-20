@@ -8,7 +8,7 @@
     "ALLOW_URL": "*",
     "SESSION_SECRET": "afrostream-secret",
     "AFROSTREAM_API_KEY": "ab183363-2f9b-4cdb-b124-346fa3bfc7cb",
-    "AFROSTREAM_API_SECRET": "455e6886-67e6-49fe-aca5-1248441bb493"
+    "AFROSTREAM_API_SECRET": "455e6886-67e6-49fe-aca5-1248441bb493",
     "API_CLIENT_END_POINT": "http://afrostream-api-v1-staging.herokuapp.com",
     "AUTH0_CLIENT_ID": "BtSdIqKqfIse0H1dqlpHFJgKIkUG0NpE",
     "AUTH0_SECRET": "KYmL01KW5HczO-XKpltlVUONRCXtynJQ0nFqiGNOsjN9c3RsBAnr5_T-rnnc7DYY",
