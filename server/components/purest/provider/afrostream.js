@@ -19,8 +19,8 @@ Afrostream.prototype.getToken = function (done) {
     .post('token')
     .form({
       grant_type: 'client_credentials',
-      client_id: this.client.key,
-      client_secret: this.client.secret
+      client_id: self.client.key,
+      client_secret: self.client.secret
     })
     .request(function (err, data, body) {
       self.tokenData = body;
