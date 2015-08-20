@@ -29,6 +29,10 @@ module.exports = {
     subdomain: process.env.RECURLY_SUB_DOMAIN,
     apiKey: process.env.RECURLY_API_KEY
   },
+  afrostream: {
+    apiSecret: process.env.AFROSTREAM_API_SECRET,
+    apiKey: process.env.AFROSTREAM_API_KEY
+  },
   allowOrigin: {
     url: process.env.ALLOW_URL
   }

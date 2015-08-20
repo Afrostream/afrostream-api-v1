@@ -1,13 +1,14 @@
 var Purest = require('purest')
   , async = require('async')
-  , _ = require('lodash');
+  , _ = require('lodash')
+  , config = require('../../../config/environment');
 
 function Afrostream() {
   this.client = new Purest({
     provider: 'afrostream',
     token: '[ACCESS_TOKEN]',
-    key: process.env.AFROSTREAM_API_KEY,
-    secret: process.env.AFROSTREAM_API_SECRET,
+    key: config.afrostream.apiKey,
+    secret: config.afrostream.apiSecret,
     config: require('../config/afrostream.provider.json')
   });
 }
@@ -18,8 +19,8 @@ Afrostream.prototype.getToken = function (done) {
     .post('token')
     .form({
       grant_type: 'client_credentials',
-      client_id: 'ab183363-2f9b-4cdb-b124-346fa3bfc7cb',
-      client_secret: '455e6886-67e6-49fe-aca5-1248441bb493'
+      client_id: this.client.key,
+      client_secret: this.client.secret
     })
     .request(function (err, data, body) {
       self.tokenData = body;
