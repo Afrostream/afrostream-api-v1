@@ -153,15 +153,24 @@ exports.createSubscription = function (req, res) {
       var invoiceApiUrl;
       var invoiceArray;
       var invoiceNumber;
+      var accountApiUrl;
+      var accountArray;
+      var accountCode;
 
       if ((typeof response != 'undefined') && (typeof response.data != 'undefined')
         && (typeof response.data.subscription != 'undefined')
         && (typeof response.data.subscription.invoice != 'undefined')
-        && (typeof response.data.subscription.invoice.$ != 'undefined')) {
+        && (typeof response.data.subscription.invoice.$ != 'undefined')
+        && (typeof response.data.subscription.account != 'undefined')
+        && (typeof response.data.subscription.account.$ != 'undefined')) {
 
         invoiceApiUrl = response.data.subscription.invoice.$.href;
         invoiceArray = invoiceApiUrl.split('/invoices/');
         invoiceNumber = invoiceArray[1];
+
+        accountApiUrl = response.data.subscription.account.$.href;
+        accountArray = accountApiUrl.split('/accounts/');
+        accountCode = accountArray[1];
 
         var invoiceNumber;
         var postponeDate;
@@ -192,7 +201,7 @@ exports.createSubscription = function (req, res) {
           success: 'Updated Successfully'
         };
 
-        var client = MongooseClient(req.body);
+        var client = MongooseClient(req.body, accountCode);
         client.saveGiftDetails();
 
         if (req.body['is_gift'] === '1') {
