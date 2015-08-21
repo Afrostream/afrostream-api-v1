@@ -30,5 +30,5 @@ module.exports = {
     //uri: 'mongodb://localhost/afrostreamadmin-dev'
     uri: 'mongodb://afrostream:afr0str3am@ds047712.mongolab.com:47712/heroku_nd0hbtmt'
   },
-  seedDB: true
+  seedDB: false
 };
