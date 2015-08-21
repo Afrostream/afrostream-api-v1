@@ -1,26 +1,52 @@
 {
   "name": "afrostream-api-v1",
-  "main": "server.js",
+  "main": "server/app.js",
+  "version": "1.0.0",
+  "description": "Universal Afrostream Front Api",
   "dependencies": {
+    "babel-core": "^5.6.4",
+    "compression": "~1.0.1",
+    "morgan": "~1.0.0",
+    "serve-favicon": "~2.0.1",
+    "errorhandler": "~1.0.0",
+    "method-override": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "async": "^1.4.2",
     "auth0": "~0.6.3",
+    "body-parser": "~1.0.1",
     "cors": "^2.3.1",
     "dotenv": "^0.2.8",
     "express": "~4.0.0",
     "express-jwt": "0.2.1",
-    "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1",
     "jsonwebtoken": "^0.3.0",
+    "express-session": "^1.0.4",
     "lodash": "~2.4.1",
     "mongoose": "~3.8.8",
+    "mongoose-bird": "~0.0.1",
     "mongoose-cache": "^0.1.2",
     "mongoose-paginator": "^0.2.3",
     "mongoose-schema-extend": "^0.1.7",
     "mongoose-search-plugin": "^0.1.2",
+    "node-recurly-updated": "2.1.5",
+    "node-uuid": "1.4.3",
     "nodemailer": "1.4.0",
     "nodemailer-sendgrid-transport": "0.2.0",
-    "node-recurly-updated": "2.1.5",
-    "node-uuid" : "1.4.3",
     "passport": "~0.2.0",
-    "passport-local": "~0.1.6"
-  }
+    "jade": "~1.2.0",
+    "passport-local": "~0.1.6",
+    "purest": "^2.0.0"
+  },
+  "devDependencies": {
+    "pm2": "^0.14.7",
+    "connect-livereload": "^0.5.3"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "pm2 start pm2/config.json",
+    "stop": "pm2 stop pm2/config.json"
+  },
+  "private": true
 }

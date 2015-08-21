@@ -1,0 +1,33 @@
+{
+  "afrostream": {
+    "__provider": {
+      "oauth2": true,
+      "refresh": "https://afrostream-backend.herokuapp.com/auth/oauth2",
+      "docs": "https://afrostream-backend.herokuapp.com/doc"
+    },
+    "https://afrostream-backend.herokuapp.com": {
+      "__domain": {
+        "auth": {
+          "qs": {
+            "access_token": "[0]"
+          }
+        }
+      },
+      "api/category/{endpoint}": {
+        "__path": {
+          "alias": "categoryInfo"
+        }
+      },
+      "api/{endpoint}": {
+        "__path": {
+          "alias": "__default"
+        }
+      },
+      "auth/oauth2/{endpoint}": {
+        "__path": {
+          "alias": "oauth"
+        }
+      }
+    }
+  }
+}
