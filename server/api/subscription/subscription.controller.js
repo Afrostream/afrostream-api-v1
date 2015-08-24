@@ -48,6 +48,37 @@ exports.getSubscriptionByEmail = function (req, res) {
 };
 
 /**
+ * Get billing info by account code
+ *
+ * @param {Object} req the request being made
+ * @param {Object} res the result
+ *
+ * @return {Object} res the result being returned
+ */
+exports.getBillingInfo = function (req, res) {
+
+  var accountCode = req.params.accountCode;
+
+  console.log('*** here is the account code ***');
+  console.log(accountCode);
+
+  recurly.billingInfo.get(accountCode, function (err, response) {
+
+
+    // If an API error occurs, parse the error message
+    if (err) {
+
+      console.log('*** error getting billing info - message ***');
+      console.log(err);
+      console.log('*** end of error getting billing info - message ***');
+    } else {
+
+      res.send(JSON.stringify(response));
+    }
+  });
+};
+
+/**
  * create a subscription in recurly
  *
  * @param {Object} req the request being made
