@@ -68,6 +68,32 @@ Afrostream.prototype.getData = function (type, options, done) {
   });
 };
 
+Afrostream.prototype.getVideo = function (type, options, done) {
+  var self = this;
+  var selectRoute = type;
+  if (options.id !== undefined) {
+    selectRoute = this.substitute(type, options.id);
+  }
+  async.waterfall([
+    function (done) {
+      self.getToken(done);
+    },
+    function (result, done) {
+      self.client
+        .query()
+        .select(selectRoute)
+        .auth(result.access_token)
+        .request(function (err, data, body) {
+          if (err) return done(err);
+          done(null, data, body);
+        })
+    }
+  ], function (err, result, body) {
+    if (err) return done(err);
+    done(null, result, body);
+  });
+};
+
 
 Afrostream.prototype.menu = function (options, done) {
   var self = this;
