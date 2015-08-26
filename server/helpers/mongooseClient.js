@@ -10,7 +10,7 @@ var http = require ('http');             // For serving a basic web page.
 var mongoose = require ("mongoose"); // The reason for this demo.
 
 
-function MongooseClient (subscriptionRequest) {
+function MongooseClient (subscriptionRequest, accountCode) {
 
 	var self = {
 
@@ -27,7 +27,7 @@ function MongooseClient (subscriptionRequest) {
 
 		subscription: subscriptionRequest,
 
-		accountCode: null,
+		accountCode: accountCode,
 
 		/**
 		 * save the details of this gift being given
@@ -63,7 +63,8 @@ function MongooseClient (subscriptionRequest) {
 				giftFirstName: String,
 				giftLastName: String,
 				giftEmail: String,
-				recurlyToken: String
+				recurlyToken: String,
+				accountCode: String
 			});
 			console.log(self.subscription);
 			var SubscriptionModel = db.model('Subscriptions', subscriptionSchema);
@@ -86,7 +87,8 @@ function MongooseClient (subscriptionRequest) {
 				giftFirstName: self.subscription['gift_first_name'],
 				giftLastName: self.subscription['gift_last_name'],
 				giftEmail: self.subscription['gift_email'],
-				recurlyToken: self.subscription['recurly-token']
+				recurlyToken: self.subscription['recurly-token'],
+				accountCode: self.accountCode
 			});
 
 			// Saving it to the database.

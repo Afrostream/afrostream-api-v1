@@ -11,5 +11,7 @@ router.get('/:email', controller.getSubscriptionByEmail);
 
 router.post('', controller.createSubscription);
 
+router.get('/billing/:accountCode', controller.getBillingInfo);
+
 
 module.exports = router;
