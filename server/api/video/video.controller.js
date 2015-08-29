@@ -4,14 +4,14 @@ var purest = require('../../components/purest/index');
 var express = require('express');
 
 exports.index = function (req, res) {
-  purest.Afrostream.getData('videos', {}, function (err, data) {
+  purest.Afrostream.getSecureData(req,'videos', {}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
 };
 
 exports.show = function (req, res) {
-  purest.Afrostream.getData('videos/{0}', {id: req.params.id}, function (err, data) {
+  purest.Afrostream.getSecureData(req,'videos/{0}', {id: req.params.id}, function (err, data) {
     if (err) return handleError(res, err);
     //data.sources = _.forEach(data.sources, function (source) {
     // _.partialRight(source.src, '//api.afrostream.tv/')
