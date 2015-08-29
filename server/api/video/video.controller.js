@@ -1,9 +1,7 @@
 'use strict';
 
 var purest = require('../../components/purest/index');
-var _ = require('lodash');
 var express = require('express');
-var app = express(); // the main app
 
 exports.index = function (req, res) {
   purest.Afrostream.getData('videos', {}, function (err, data) {

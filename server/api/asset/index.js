@@ -2,11 +2,11 @@
 
 var express = require('express');
 var controller = require('./asset.controller.js');
+var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
-router.get('/', controller.index);
-router.get('/:id', controller.show);
-router.get('/:id/:token/*', controller.showToken);
+router.get('/', auth.isAuthenticated(), controller.index);
+router.get('/:id/:token/*', auth.isAuthenticated(), controller.show);
 
 module.exports = router;

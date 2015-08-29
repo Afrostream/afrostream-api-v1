@@ -13,11 +13,6 @@
           }
         }
       },
-      "api/category/{endpoint}": {
-        "__path": {
-          "alias": "categoryInfo"
-        }
-      },
       "api/{endpoint}": {
         "__path": {
           "alias": "__default"
@@ -26,6 +21,11 @@
       "auth/oauth2/{endpoint}": {
         "__path": {
           "alias": "oauth"
+        }
+      },
+      "api/{endpoint}": {
+        "__path": {
+          "alias": "api"
         }
       }
     }

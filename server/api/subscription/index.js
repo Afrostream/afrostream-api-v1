@@ -2,16 +2,10 @@
 
 var express = require('express');
 var controller = require('./subscription.controller.js');
-//var auth = require('../../auth/auth.service');
+var auth = require('../../auth/auth.service');
 var router = express.Router();
 
-//subscriptions
-//router.post('/', auth.hasRole('admin'), controller.createSubscription);
-router.get('/:email', controller.getSubscriptionByEmail);
-
-router.post('', controller.createSubscription);
-
-router.get('/billing/:accountCode', controller.getBillingInfo);
-
+router.get('/', auth.isAuthenticated(), controller.show);
+router.post('/', auth.isAuthenticated(), controller.create);
 
 module.exports = router;
