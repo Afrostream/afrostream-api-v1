@@ -5,7 +5,7 @@
       "refresh": "https://afrostream-backend.herokuapp.com/auth/oauth2",
       "docs": "https://afrostream-backend.herokuapp.com/doc"
     },
-    "http://localhost:9000": {
+    "https://afrostream-backend.herokuapp.com": {
       "__domain": {
         "auth": {
           "qs": {
