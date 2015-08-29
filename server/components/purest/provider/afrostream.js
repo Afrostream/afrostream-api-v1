@@ -1,5 +1,6 @@
 var Purest = require('purest')
   , async = require('async')
+  , request = require('request')
   , _ = require('lodash')
   , config = require('../../../config/environment');
 
@@ -15,12 +16,34 @@ function Afrostream() {
 
 Afrostream.prototype.getToken = function (done) {
   var self = this;
+  if (!self.tokenData || self.tokenData.expires_in > new Date().getTime() + 200) {
+    self.client.query('oauth')
+      .post('token')
+      .form({
+        grant_type: 'client_credentials',
+        client_id: self.client.key,
+        client_secret: self.client.secret
+      })
+      .request(function (err, data, body) {
+        self.tokenData = body;
+        done(null, body);
+      });
+  }
+  else {
+    done(null, self.tokenData);
+  }
+};
+
+Afrostream.prototype.logUser = function (username, password, done) {
+  var self = this;
   self.client.query('oauth')
     .post('token')
     .form({
-      grant_type: 'client_credentials',
+      grant_type: 'password',
       client_id: self.client.key,
-      client_secret: self.client.secret
+      client_secret: self.client.secret,
+      username: username,
+      password: password
     })
     .request(function (err, data, body) {
       self.tokenData = body;
@@ -40,7 +63,6 @@ Afrostream.prototype.substitute = function () {
 
   return theString;
 };
-
 
 Afrostream.prototype.getData = function (type, options, done) {
   var self = this;
@@ -64,11 +86,11 @@ Afrostream.prototype.getData = function (type, options, done) {
     }
   ], function (err, result) {
     if (err) return done(err);
-    done(null, result);
+    done(null, result, result);
   });
 };
 
-Afrostream.prototype.getVideo = function (type, options, done) {
+Afrostream.prototype.postData = function (type, options, done) {
   var self = this;
   var selectRoute = type;
   if (options.id !== undefined) {
@@ -80,20 +102,66 @@ Afrostream.prototype.getVideo = function (type, options, done) {
     },
     function (result, done) {
       self.client
-        .query()
-        .select(selectRoute)
-        .auth(result.access_token)
+        .query('api')
+        .post(selectRoute)
+        .form(options)
         .request(function (err, data, body) {
           if (err) return done(err);
-          done(null, data, body);
+          done(null, body);
         })
     }
-  ], function (err, result, body) {
+  ], function (err, result) {
     if (err) return done(err);
-    done(null, result, body);
+    done(null, result, result);
   });
 };
 
+Afrostream.prototype.getSecureData = function (req, type, options, done) {
+  var self = this;
+  var selectRoute = type;
+  if (options.id !== undefined) {
+    selectRoute = this.substitute(type, options.id);
+  }
+  async.waterfall([
+    function (done) {
+      self.client
+        .query()
+        .select(selectRoute)
+        .auth(req.query.afro_token)
+        .request(function (err, data, body) {
+          if (err) return done(err);
+          done(null, body);
+        })
+    }
+  ], function (err, result) {
+    if (err) return done(err);
+    done(null, result, result);
+  });
+};
+
+Afrostream.prototype.postSecureData = function (type, options, done) {
+  var self = this;
+  var selectRoute = type;
+  options.access_token = options.afro_token;
+  async.waterfall([
+      function (done) {
+        self.client
+          .query('api')
+          .post(selectRoute)
+          .json(options)
+          .request(function (err, data, body) {
+            console.log(err, body, data.headers);
+            if (err) return done(err);
+            done(null, body);
+          });
+      }
+    ],
+    function (err, result) {
+      if (err) return done(err);
+      done(null, result, result);
+    })
+  ;
+};
 
 Afrostream.prototype.menu = function (options, done) {
   var self = this;
