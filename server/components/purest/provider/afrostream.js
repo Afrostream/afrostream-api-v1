@@ -122,22 +122,26 @@ Afrostream.prototype.getSecureData = function (req, type, options, done) {
   if (options.id !== undefined) {
     selectRoute = this.substitute(type, options.id);
   }
-  console.log(req.query.afro_token)
-  async.waterfall([
-    function (done) {
-      self.client
-        .query('api')
-        .select(selectRoute)
-        .auth(req.query.afro_token)
-        .request(function (err, data, body) {
-          if (err) return done(err);
-          done(null, body);
-        })
-    }
-  ], function (err, result) {
-    if (err) return done(err);
-    done(null, result, result);
-  });
+  if (req.query.afro_token) {
+    async.waterfall([
+      function (done) {
+        self.client
+          .query('api')
+          .select(selectRoute)
+          .auth(req.query.afro_token)
+          .request(function (err, data, body) {
+            if (err) return done(err);
+            done(null, body);
+          })
+      }
+    ], function (err, result) {
+      if (err) return done(err);
+      done(null, result, result);
+    });
+  }
+  else {
+    return this.getData(type, options, done);
+  }
 };
 
 Afrostream.prototype.postSecureData = function (type, options, done) {
