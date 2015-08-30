@@ -16,7 +16,12 @@ function Afrostream() {
 
 Afrostream.prototype.getToken = function (done) {
   var self = this;
-  if (!self.tokenData || self.tokenData.expires_in > new Date().getTime() + 200) {
+  var now = new Date().getTime();
+  var tokenExpire = now;
+  if (self.tokenData) {
+    tokenExpire = new Date(self.tokenData.expires_in).getTime();
+  }
+  if (!self.tokenData || tokenExpire > now) {
     self.client.query('oauth')
       .post('token')
       .form({
