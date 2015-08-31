@@ -6,6 +6,7 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/billing', auth.isAuthenticated(), controller.billing);
+router.get('/me', auth.isAuthenticated(), controller.me);
 router.post('/', auth.isAuthenticated(), controller.create);
 
 module.exports = router;
