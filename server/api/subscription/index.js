@@ -5,7 +5,7 @@ var controller = require('./subscription.controller.js');
 var auth = require('../../auth/auth.service');
 var router = express.Router();
 
-router.get('/', auth.isAuthenticated(), controller.show);
+router.get('/billing', auth.isAuthenticated(), controller.billing);
 router.post('/', auth.isAuthenticated(), controller.create);
 
 module.exports = router;

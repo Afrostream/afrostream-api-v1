@@ -2,9 +2,9 @@
 
 var purest = require('../../components/purest/index');
 
-exports.show = function (req, res) {
+exports.billing = function (req, res) {
 
-  purest.Afrostream.getSecureData(req, 'subscriptions/me', function (err, data) {
+  purest.Afrostream.getSecureData(req, 'subscriptions/billing', function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
