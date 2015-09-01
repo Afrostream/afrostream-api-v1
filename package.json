@@ -46,9 +46,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "node server/app.js",
-    "dev": "pm2 start pm2/config.json",
-    "stop": "pm2 stop pm2/config.json"
+    "start": "node lib/pm2"
   },
   "private": true
 }
