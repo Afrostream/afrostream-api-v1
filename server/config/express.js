@@ -38,7 +38,7 @@ module.exports = function (app) {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(allowCrossDomain);
-
+  app.use(express.static(path.join(config.root, 'server', 'static')));
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'server', 'favicon.ico')));
     app.use(morgan('dev'));
