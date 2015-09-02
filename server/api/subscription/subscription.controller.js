@@ -9,6 +9,13 @@ exports.me = function (req, res) {
   });
 };
 
+exports.all = function (req, res) {
+  purest.Afrostream.getSecureData(req, 'subscriptions/all', {}, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
+};
+
 exports.billing = function (req, res) {
   purest.Afrostream.getSecureData(req, 'subscriptions/billing', {}, function (err, data) {
     if (err) return handleError(res, err);
