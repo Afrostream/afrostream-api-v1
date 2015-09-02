@@ -3,21 +3,21 @@
 var purest = require('../../components/purest/index');
 
 exports.me = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/me', function (err, data) {
+  purest.Afrostream.getSecureData(req, 'subscriptions/me', {}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
 };
 
 exports.billing = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/billing', function (err, data) {
+  purest.Afrostream.getSecureData(req, 'subscriptions/billing', {}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
 };
 
 exports.create = function (req, res) {
-  purest.Afrostream.postSecureData('subscriptions', req.body, function (err, data) {
+  purest.Afrostream.postSecureData('subscriptions', req.body, {}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
