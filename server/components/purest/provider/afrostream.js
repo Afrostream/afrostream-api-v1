@@ -1,6 +1,5 @@
 var Purest = require('purest')
   , async = require('async')
-  , request = require('request')
   , _ = require('lodash')
   , config = require('../../../config/environment');
 
