@@ -14,8 +14,8 @@
     "AUTH0_SECRET": "KYmL01KW5HczO-XKpltlVUONRCXtynJQ0nFqiGNOsjN9c3RsBAnr5_T-rnnc7DYY",
     "AUTH0_DOMAIN": "afrostream.eu.auth0.com",
     "AUTH0_CALLBACK_URL": "afrostream.herokuapp.com/callback",
-    "RECURLY_SUB_DOMAIN": "",
-    "RECURLY_API_KEY": ""
+    "RECURLY_SUB_DOMAIN": "##",
+    "RECURLY_API_KEY": "##"
   },
   "addons": []
 }
