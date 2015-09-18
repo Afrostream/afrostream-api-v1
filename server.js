@@ -1,16 +1,16 @@
 'use strict';
 
-const pm2 = require('pm2');
+var pm2 = require('pm2');
 
-const MACHINE_NAME = process.env.WEB_MACHINE_NAME || 'hk1';
-const PRIVATE_KEY = process.env.KEY_METRICS_PRIVATE_KEY || 'qigcd3tiue2el5k';   // Keymetrics Private key
-const PUBLIC_KEY = process.env.KEY_METRICS_PUBLIC_KEY || 'ns4xyu6prfqcarv';   // Keymetrics Public  key
-const instances = process.env.WEB_CONCURRENCY || -1; // Set by Heroku or -1 to scale to max cpu core -1
-const maxMemory = process.env.WEB_MEMORY || 512;
+var MACHINE_NAME = process.env.WEB_MACHINE_NAME || 'hk1';
+var PRIVATE_KEY = process.env.KEY_METRICS_PRIVATE_KEY || 'qigcd3tiue2el5k';   // Keymetrics Private key
+var PUBLIC_KEY = process.env.KEY_METRICS_PUBLIC_KEY || 'ns4xyu6prfqcarv';   // Keymetrics Public  key
+var instances = process.env.WEB_CONCURRENCY || -1; // Set by Heroku or -1 to scale to max cpu core -1
+var maxMemory = process.env.WEB_MEMORY || 512;
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const pm2_conf = {
+var pm2_conf = {
   apps: [
     {
       name: "afrostream-api-v1",
