@@ -16,12 +16,8 @@ function Afrostream() {
 
 Afrostream.prototype.getToken = function (done) {
   var self = this;
-  var now = new Date().getTime();
-  var tokenExpire = now;
-  if (self.tokenData) {
-    tokenExpire = new Date(self.tokenData.expires_in).getTime();
-  }
-  if (!self.tokenData || tokenExpire < now) {
+
+  if (!self.isTokenDataValid()) {
     self.client.query('oauth')
       .post('token')
       .form({
@@ -30,13 +26,39 @@ Afrostream.prototype.getToken = function (done) {
         client_secret: self.client.secret
       })
       .request(function (err, data, body) {
-        self.tokenData = body;
-        done(null, body);
+        self.setTokenData(body);
+        done(null, self.getTokenData());
       });
   }
   else {
-    done(null, self.tokenData);
+    done(null, self.getTokenData());
   }
+};
+
+Afrostream.prototype.getTokenData = function () {
+  return this.tokenData;
+};
+
+/**
+ * This function save tokenData inside this.tokenData
+ * This function generate tokenData.expires_at (ISOString date)
+ * @param tokenData Object
+ */
+Afrostream.prototype.setTokenData = function (tokenData) {
+  if (String(tokenData.expires_in).match(/^\d+$/)) {
+    // expires_in is a timespan in seconds
+    tokenData.expires_at = new Date(Date.now() + 1000 * tokenData.expires_in).toISOString();
+  } else {
+    // expires_in is undefined or an iso string date
+    tokenData.expires_at = tokenData.expires_in;
+  }
+  this.tokenData = tokenData;
+};
+
+Afrostream.prototype.isTokenDataValid = function () {
+  var tokenData = this.getTokenData();
+
+  return tokenData && new Date(tokenData.expires_at).getTime() < Date.now();
 };
 
 Afrostream.prototype.logUser = function (username, password, done) {
@@ -51,8 +73,8 @@ Afrostream.prototype.logUser = function (username, password, done) {
       password: password
     })
     .request(function (err, data, body) {
-      self.tokenData = body;
-      done(null, body);
+      self.setTokenData(body);
+      done(null, self.getTokenData());
     });
 };
 
