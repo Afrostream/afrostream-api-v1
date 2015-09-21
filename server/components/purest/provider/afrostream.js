@@ -26,8 +26,12 @@ Afrostream.prototype.getToken = function (done) {
         client_secret: self.client.secret
       })
       .request(function (err, data, body) {
-        self.setTokenData(body);
-        done(null, self.getTokenData());
+        if (err) {
+          done(err);
+        } else {
+          self.setTokenData(body);
+          done(null, self.getTokenData());
+        }
       });
   }
   else {
@@ -73,8 +77,12 @@ Afrostream.prototype.logUser = function (username, password, done) {
       password: password
     })
     .request(function (err, data, body) {
-      self.setTokenData(body);
-      done(null, self.getTokenData());
+      if (err) {
+        done(err);
+      } else {
+        self.setTokenData(body);
+        done(null, self.getTokenData());
+      }
     });
 };
 
