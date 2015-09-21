@@ -55,10 +55,14 @@ Afrostream.prototype.setTokenData = function (tokenData) {
   this.tokenData = tokenData;
 };
 
+/**
+ * The token is valid if its expiration time is in the future
+ * @returns {boolean}
+ */
 Afrostream.prototype.isTokenDataValid = function () {
   var tokenData = this.getTokenData();
 
-  return tokenData && new Date(tokenData.expires_at).getTime() < Date.now();
+  return tokenData && new Date(tokenData.expires_at).getTime() > Date.now();
 };
 
 Afrostream.prototype.logUser = function (username, password, done) {
