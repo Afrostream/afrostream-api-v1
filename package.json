@@ -37,7 +37,7 @@
     "connect-livereload": "^0.5.3"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "0.12.x"
   },
   "scripts": {
     "start": "node lib/pm2",
