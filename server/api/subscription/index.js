@@ -2,7 +2,7 @@
 
 var express = require('express');
 var controller = require('./subscription.controller.js');
-var auth = require('../../auth/auth.service');
+var auth = require('../../auth/service.js');
 var router = express.Router();
 
 router.get('/billing', auth.isAuthenticated(), controller.billing);

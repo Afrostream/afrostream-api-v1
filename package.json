@@ -1,12 +1,11 @@
 {
   "name": "afrostream-api-v1",
-  "main": "server/app.js",
+  "main": "server.js",
   "version": "1.0.0",
   "description": "Universal Afrostream Front Api",
   "dependencies": {
     "async": "^1.4.2",
     "auth0": "~0.6.3",
-    "babel-core": "^5.6.4",
     "body-parser": "~1.0.1",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
@@ -40,7 +39,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "node lib/pm2",
+    "start": "node server.js",
     "dev": "pm2-dev run server/index.js"
   },
   "private": true

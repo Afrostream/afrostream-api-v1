@@ -30,5 +30,35 @@ module.exports = {
     //uri: 'mongodb://localhost/afrostreamadmin-dev'
     uri: 'mongodb://afrostream:afr0str3am@ds047712.mongolab.com:47712/heroku_nd0hbtmt'
   },
-  seedDB: false
+  seedDB: false,
+  purest: {
+    providers: {
+      afrostream: {
+        '__provider': {
+          oauth2: true,
+          refresh: "http://localhost:9000/auth/oauth2",
+          docs: "http://localhost:9000/doc"
+        },
+        'http://localhost:9000': {
+          '__domain': {
+            auth: {
+              qs: {
+                access_token: "[0]"
+              }
+            }
+          },
+          'auth/oauth2/{endpoint}': {
+            "__path": {
+              "alias": "oauth"
+            }
+          },
+          'api/{endpoint}': {
+            "__path": {
+              "alias": "api"
+            }
+          }
+        }
+      }
+    }
+  }
 };

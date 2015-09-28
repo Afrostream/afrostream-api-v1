@@ -1,8 +1,7 @@
 var Purest = require('purest')
   , async = require('async')
-  , request = require('request')
   , _ = require('lodash')
-  , config = require('../../../config/environment');
+  , config = rootRequire('/server/config/environment');
 
 function Afrostream() {
   this.client = new Purest({
@@ -10,7 +9,7 @@ function Afrostream() {
     token: '[ACCESS_TOKEN]',
     key: config.afrostream.apiKey,
     secret: config.afrostream.apiSecret,
-    config: require('../config/afrostream.provider.json')
+    config: config.purest.providers
   });
 }
 
