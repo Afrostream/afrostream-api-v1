@@ -11,11 +11,6 @@ var express = require('express');
 var config = require('./config/environment/index');
 // Connect to MongoDB
 
-// Populate databases with sample data
-if (config.seedDB) {
-  require('./config/seed');
-}
-
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
