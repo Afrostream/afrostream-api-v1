@@ -24,7 +24,7 @@ exports.billing = function (req, res) {
 };
 
 exports.cancel = function (req, res) {
-  purest.Afrostream.getSecureData('subscriptions/cancel', {}, function (err, data) {
+  purest.Afrostream.getSecureData(req, 'subscriptions/cancel', {}, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
