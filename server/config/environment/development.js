@@ -5,7 +5,6 @@
 module.exports = {
 
   // auth0 details for connecting to dev environment
-
   auth0: {
     //domain: 'johnarch.auth0.com',
     //clientId: 'hMshepR8jkfbsgjUBxZ2o06M9euIneRD',
@@ -24,11 +23,5 @@ module.exports = {
   afrostream: {
     apiSecret: '3dc3cae6-9c79-487a-9e0f-712be857dcee',
     apiKey: '8c261045-89a3-44bb-af38-65a847269605'
-  },
-  // MongoDB connection options
-  mongo: {
-    //uri: 'mongodb://localhost/afrostreamadmin-dev'
-    uri: 'mongodb://afrostream:afr0str3am@ds047712.mongolab.com:47712/heroku_nd0hbtmt'
-  },
-  seedDB: false
+  }
 };
