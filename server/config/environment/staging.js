@@ -25,10 +25,10 @@ module.exports = {
       afrostream: {
         '__provider': {
           oauth2: true,
-          refresh: "https://afrostream-backend.herokuapp.com/auth/oauth2",
-          docs: "https://afrostream-backend.herokuapp.com/doc"
+          refresh: "https://afr-back-end-staging.herokuapp.com/auth/oauth2",
+          docs: "https://afr-back-end-staging.herokuapp.com/doc"
         },
-        'https://afrostream-backend.herokuapp.com': {
+        'https://afr-back-end-staging.herokuapp.com/': {
           '__domain': {
             auth: {
               qs: {
