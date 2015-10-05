@@ -14,7 +14,7 @@ module.exports = {
     apiKey: '67dbb29f0dbe4e219bc247a3b5387652'
   },
   allowOrigin: {
-    url: 'http://localhost:3000'
+    url: process.env.ALLOW_URL
   },
   afrostream: {
     apiSecret: process.env.AFROSTREAM_API_SECRET,
