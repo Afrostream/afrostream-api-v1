@@ -10,7 +10,7 @@ function Afrostream() {
     token: '[ACCESS_TOKEN]',
     key: config.afrostream.apiKey,
     secret: config.afrostream.apiSecret,
-    config: require('../config/afrostream.provider.json')
+    config: config.purest.providers
   });
 }
 

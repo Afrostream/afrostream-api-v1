@@ -23,5 +23,35 @@ module.exports = {
   afrostream: {
     apiSecret: '3dc3cae6-9c79-487a-9e0f-712be857dcee',
     apiKey: '8c261045-89a3-44bb-af38-65a847269605'
+  },
+  purest: {
+    providers: {
+      afrostream: {
+        '__provider': {
+          oauth2: true,
+          refresh: "http://localhost:9000/auth/oauth2",
+          docs: "http://localhost:9000/doc"
+        },
+        'http://localhost:9000': {
+          '__domain': {
+            auth: {
+              qs: {
+                'access_token': "[0]"
+              }
+            }
+          },
+          'auth/oauth2/{endpoint}': {
+            '__path': {
+              'alias': "oauth"
+            }
+          },
+          'api/{endpoint}': {
+            '__path': {
+              'alias': "api"
+            }
+          }
+        }
+      }
+    }
   }
 };
