@@ -28,7 +28,7 @@ module.exports = {
           refresh: "https://afr-back-end-staging.herokuapp.com/auth/oauth2",
           docs: "https://afr-back-end-staging.herokuapp.com/doc"
         },
-        'https://afr-back-end-staging.herokuapp.com/': {
+        'https://afr-back-end-staging.herokuapp.com': {
           '__domain': {
             auth: {
               qs: {
