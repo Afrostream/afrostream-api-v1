@@ -103,7 +103,7 @@ Afrostream.prototype.substitute = function () {
   return theString;
 };
 
-Afrostream.prototype.getData = function (type, options, done) {
+Afrostream.prototype.getData = function (req, type, options, done) {
   var self = this;
   var selectRoute = type;
   if (options.id !== undefined) {
@@ -116,6 +116,7 @@ Afrostream.prototype.getData = function (type, options, done) {
     function (result, done) {
       self.client
         .query('api')
+        .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
         .select(selectRoute)
         .auth(result.access_token)
         .request(function (err, data, body) {
@@ -129,7 +130,7 @@ Afrostream.prototype.getData = function (type, options, done) {
   });
 };
 
-Afrostream.prototype.postData = function (type, options, done) {
+Afrostream.prototype.postData = function (req, type, options, done) {
   var self = this;
   var selectRoute = type;
   if (options.id !== undefined) {
@@ -142,6 +143,7 @@ Afrostream.prototype.postData = function (type, options, done) {
     function (result, done) {
       self.client
         .query('api')
+        .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
         .post(selectRoute)
         .form(options)
         .request(function (err, data, body) {
@@ -166,6 +168,7 @@ Afrostream.prototype.getSecureData = function (req, type, options, done) {
       function (done) {
         self.client
           .query('api')
+          .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
           .select(selectRoute)
           .auth(req.query.afro_token)
           .request(function (err, data, body) {
@@ -179,7 +182,7 @@ Afrostream.prototype.getSecureData = function (req, type, options, done) {
     });
   }
   else {
-    return this.getData(type, options, done);
+    return this.getData(req, type, options, done);
   }
 };
 
@@ -191,6 +194,7 @@ Afrostream.prototype.postSecureData = function (type, options, done) {
       function (done) {
         self.client
           .query('api')
+          .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
           .post(selectRoute)
           .json(options)
           .request(function (err, data, body) {
