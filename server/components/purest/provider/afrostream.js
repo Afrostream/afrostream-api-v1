@@ -14,6 +14,23 @@ function Afrostream() {
   });
 }
 
+function optionXFwdFor(req) {
+  //
+  // FIXME: unsecure, we trust heroku here...
+  //  it's like 'localy' enabling expressjs 'trust proxy' option.
+  //
+  var xFwdFor = req.get("x-forwarded-for") || req.ip;
+  if (config.ip) {
+    xFwdFor = xFwdFor + ', ' + config.ip;
+  }
+  return {
+    headers: {
+      'x-forwarded-for': xFwdFor,
+      'x-from-afrostream-api-v1': 42
+    }
+  };
+}
+
 Afrostream.prototype.getToken = function (done) {
   var self = this;
 
@@ -116,7 +133,7 @@ Afrostream.prototype.getData = function (req, type, options, done) {
     function (result, done) {
       self.client
         .query('api')
-        .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
+        .options(optionXFwdFor(req))
         .select(selectRoute)
         .auth(result.access_token)
         .request(function (err, data, body) {
@@ -143,7 +160,7 @@ Afrostream.prototype.postData = function (req, type, options, done) {
     function (result, done) {
       self.client
         .query('api')
-        .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
+        .options(optionXFwdFor(req))
         .post(selectRoute)
         .form(options)
         .request(function (err, data, body) {
@@ -168,7 +185,7 @@ Afrostream.prototype.getSecureData = function (req, type, options, done) {
       function (done) {
         self.client
           .query('api')
-          .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
+          .options(optionXFwdFor(req))
           .select(selectRoute)
           .auth(req.query.afro_token)
           .request(function (err, data, body) {
@@ -194,7 +211,7 @@ Afrostream.prototype.postSecureData = function (type, options, done) {
       function (done) {
         self.client
           .query('api')
-          .options({headers:{'x-forwarded-for': req.ip, 'x-from-afrostream-api-v1': 42}})
+          .options(optionXFwdFor(req))
           .post(selectRoute)
           .json(options)
           .request(function (err, data, body) {
