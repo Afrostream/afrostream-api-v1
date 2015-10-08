@@ -41,13 +41,13 @@ module.exports = function (app) {
   app.use(express.static(path.join(config.root, 'server', 'static')));
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'server', 'favicon.ico')));
-    app.use(morgan('dev'));
+    app.use(morgan('combined'));
   }
 
   if ('development' === env || 'test' === env) {
     app.use(require('connect-livereload')());
     app.use(express.static(path.join(config.root, '.tmp')));
-    app.use(morgan('dev'));
+    app.use(morgan('combined'));
     app.use(errorHandler()); // Error handler - has to be last
   }
 };
