@@ -203,7 +203,7 @@ Afrostream.prototype.getSecureData = function (req, type, options, done) {
   }
 };
 
-Afrostream.prototype.postSecureData = function (type, options, done) {
+Afrostream.prototype.postSecureData = function (req, type, options, done) {
   var self = this;
   var selectRoute = type;
   options.access_token = options.afro_token;
