@@ -30,6 +30,13 @@ exports.cancel = function (req, res) {
   });
 };
 
+exports.status = function (req, res) {
+  purest.Afrostream.getSecureData(req, 'subscriptions/status', {}, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
+};
+
 exports.create = function (req, res) {
   purest.Afrostream.postSecureData(req, 'subscriptions', req.body, function (err, data) {
     if (err) return handleError(res, err);
