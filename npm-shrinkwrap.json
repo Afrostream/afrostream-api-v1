@@ -1489,14 +1489,48 @@
       }
     },
     "morgan": {
-      "version": "1.0.1",
-      "from": "morgan@>=1.0.0 <1.1.0",
-      "resolved": "https://registry.npmjs.org/morgan/-/morgan-1.0.1.tgz",
+      "version": "1.6.1",
+      "from": "morgan@*",
+      "resolved": "https://registry.npmjs.org/morgan/-/morgan-1.6.1.tgz",
       "dependencies": {
-        "bytes": {
-          "version": "0.3.0",
-          "from": "bytes@0.3.0",
-          "resolved": "https://registry.npmjs.org/bytes/-/bytes-0.3.0.tgz"
+        "basic-auth": {
+          "version": "1.0.3",
+          "from": "basic-auth@>=1.0.3 <1.1.0",
+          "resolved": "https://registry.npmjs.org/basic-auth/-/basic-auth-1.0.3.tgz"
+        },
+        "debug": {
+          "version": "2.2.0",
+          "from": "debug@>=2.2.0 <2.3.0",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-2.2.0.tgz",
+          "dependencies": {
+            "ms": {
+              "version": "0.7.1",
+              "from": "ms@0.7.1",
+              "resolved": "https://registry.npmjs.org/ms/-/ms-0.7.1.tgz"
+            }
+          }
+        },
+        "depd": {
+          "version": "1.0.1",
+          "from": "depd@>=1.0.1 <1.1.0",
+          "resolved": "https://registry.npmjs.org/depd/-/depd-1.0.1.tgz"
+        },
+        "on-finished": {
+          "version": "2.3.0",
+          "from": "on-finished@>=2.3.0 <2.4.0",
+          "resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.3.0.tgz",
+          "dependencies": {
+            "ee-first": {
+              "version": "1.1.1",
+              "from": "ee-first@1.1.1",
+              "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
+            }
+          }
+        },
+        "on-headers": {
+          "version": "1.0.1",
+          "from": "on-headers@>=1.0.0 <1.1.0",
+          "resolved": "https://registry.npmjs.org/on-headers/-/on-headers-1.0.1.tgz"
         }
       }
     },

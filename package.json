@@ -21,17 +21,17 @@
     "jsonwebtoken": "^0.3.0",
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
-    "morgan": "~1.0.0",
+    "morgan": "^1.6.1",
     "node-recurly-updated": "2.1.5",
     "node-uuid": "1.4.3",
     "nodemailer": "1.4.0",
     "nodemailer-sendgrid-transport": "0.2.0",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
+    "pm2": "^0.14.7",
     "purest": "^2.0.0",
     "request": "^2.61.0",
-    "serve-favicon": "~2.0.1",
-    "pm2": "^0.14.7"
+    "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3"
