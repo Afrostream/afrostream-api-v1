@@ -8,5 +8,6 @@ var router = express.Router();
 
 router.get('/', auth.isAuthenticated(), controller.index);
 router.get('/:id', auth.isAuthenticated(), controller.show);
+router.post('/search', auth.isAuthenticated(), controller.search);
 
 module.exports = router;
