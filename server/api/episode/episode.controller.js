@@ -16,6 +16,13 @@ exports.show = function (req, res) {
   });
 };
 
+exports.search = function (req, res) {
+  purest.Afrostream.postSecureData(req,'episodes/search', req.body, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }
