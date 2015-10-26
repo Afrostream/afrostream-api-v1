@@ -45,5 +45,8 @@ exports.create = function (req, res) {
 };
 
 function handleError(res, err) {
+  if (err === 'Unauthorized') {
+    return res.send(401, err);
+  }
   return res.send(500, err);
 }
