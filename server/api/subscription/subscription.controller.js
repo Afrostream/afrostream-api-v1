@@ -44,6 +44,13 @@ exports.create = function (req, res) {
   });
 };
 
+exports.gift = function (req, res) {
+  purest.Afrostream.postData(req, 'subscriptions/gift', req.body, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
+};
+
 function handleError(res, err) {
   if (err === 'Unauthorized') {
     return res.send(401, err);
