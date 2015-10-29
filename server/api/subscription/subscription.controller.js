@@ -45,7 +45,7 @@ exports.create = function (req, res) {
 };
 
 exports.gift = function (req, res) {
-  purest.Afrostream.postData(req, 'subscriptions/gifts', req.body, function (err, data) {
+  purest.Afrostream.postSecureData(req, 'subscriptions/gift', req.body, function (err, data) {
     if (err) return handleError(res, err);
     res.json(200, data);
   });
