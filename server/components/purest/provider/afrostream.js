@@ -215,7 +215,30 @@ Afrostream.prototype.postSecureData = function (req, type, options, done) {
           .post(selectRoute)
           .json(options)
           .request(function (err, data, body) {
-            console.log(err, body, data.headers);
+            if (err) return done(err);
+            done(null, body);
+          });
+      }
+    ],
+    function (err, result) {
+      if (err) return done(err);
+      done(null, result, result);
+    })
+  ;
+};
+
+Afrostream.prototype.deleteSecureData = function (req, type, options, done) {
+  var self = this;
+  var selectRoute = type;
+  options.access_token = options.afro_token;
+  async.waterfall([
+      function (done) {
+        self.client
+          .query('api')
+          .options(optionXFwdFor(req))
+          .del(selectRoute)
+          .json(options)
+          .request(function (err, data, body) {
             if (err) return done(err);
             done(null, body);
           });
