@@ -11,6 +11,8 @@ module.exports = function (app) {
   app.use('/api/subscriptions', require('./api/subscription'));
   app.use('/api/users', require('./api/user'));
 
+  app.use('/auth/geo', require('./auth/geo'));
+
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
     .get(function pageNotFound(req, res) {
