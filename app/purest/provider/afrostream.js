@@ -13,19 +13,10 @@ function Afrostream() {
   });
 }
 
-function optionXFwdFor(req) {
-  //
-  // FIXME: unsecure, we trust heroku here...
-  //  it's like 'localy' enabling expressjs 'trust proxy' option.
-  //
-  var xFwdFor = req.get("x-forwarded-for") || req.ip;
-  if (config.ip) {
-    xFwdFor = xFwdFor + ', ' + config.ip;
-  }
+function optionXFwd(req) {
   return {
     headers: {
-      'x-forwarded-for': xFwdFor,
-      'x-from-afrostream-api-v1': 42
+      'x-forwarded-clientip': req.herokuclientip
     }
   };
 }
@@ -132,7 +123,7 @@ Afrostream.prototype.getData = function (req, type, options, done) {
     function (result, done) {
       self.client
         .query('api')
-        .options(optionXFwdFor(req))
+        .options(optionXFwd(req))
         .select(selectRoute)
         .auth(result.access_token)
         .request(function (err, data, body) {
@@ -159,7 +150,7 @@ Afrostream.prototype.postData = function (req, type, options, done) {
     function (result, done) {
       self.client
         .query('api')
-        .options(optionXFwdFor(req))
+        .options(optionXFwd(req))
         .post(selectRoute)
         .form(options)
         .request(function (err, data, body) {
@@ -184,7 +175,7 @@ Afrostream.prototype.getSecureData = function (req, type, options, done) {
       function (done) {
         self.client
           .query('api')
-          .options(optionXFwdFor(req))
+          .options(optionXFwd(req))
           .select(selectRoute)
           .auth(req.query.afro_token)
           .request(function (err, data, body) {
@@ -210,7 +201,7 @@ Afrostream.prototype.postSecureData = function (req, type, options, done) {
       function (done) {
         self.client
           .query('api')
-          .options(optionXFwdFor(req))
+          .options(optionXFwd(req))
           .post(selectRoute)
           .json(options)
           .request(function (err, data, body) {
@@ -234,7 +225,7 @@ Afrostream.prototype.deleteSecureData = function (req, type, options, done) {
       function (done) {
         self.client
           .query('api')
-          .options(optionXFwdFor(req))
+          .options(optionXFwd(req))
           .del(selectRoute)
           .json(options)
           .request(function (err, data, body) {

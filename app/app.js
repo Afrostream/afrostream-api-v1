@@ -18,6 +18,7 @@ app.use(require('express-session')({secret: config.secrets.session}));
 app.use(require('passport').initialize());
 app.use(require('passport').session());
 app.use(require('./middlewares/middleware-allowcrossdomain')());
+app.use(require('./middlewares/middleware-herokuclientip')());
 
 app.use(express.static(path.join(config.root, 'static')));
 
