@@ -20,6 +20,10 @@ module.exports = {
     apiSecret: process.env.AFROSTREAM_API_SECRET,
     apiKey: process.env.AFROSTREAM_API_KEY
   },
+  backend: {
+    protocol: 'https',
+    authority: 'afr-back-end-staging.herokuapp.com'
+  },
   purest: {
     providers: {
       afrostream: {

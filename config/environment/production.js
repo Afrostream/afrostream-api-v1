@@ -29,6 +29,10 @@ module.exports = {
   allowOrigin: {
     url: process.env.ALLOW_URL
   },
+  backend: {
+    protocol: 'https',
+    authority: 'afrostream-backend.herokuapp.com'
+  },
   purest: {
     providers: {
       afrostream: {
