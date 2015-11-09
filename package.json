@@ -6,7 +6,6 @@
   "dependencies": {
     "async": "^1.4.2",
     "auth0": "~0.6.3",
-    "babel-core": "^5.6.4",
     "body-parser": "~1.0.1",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
@@ -15,6 +14,7 @@
     "dotenv": "^0.2.8",
     "errorhandler": "~1.0.0",
     "express": "^4.13.3",
+    "express-cluster": "0.0.4",
     "express-jwt": "0.2.1",
     "express-session": "^1.0.4",
     "jade": "~1.2.0",
@@ -28,20 +28,20 @@
     "nodemailer-sendgrid-transport": "0.2.0",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "pm2": "^0.14.7",
     "purest": "^2.0.0",
     "request": "^2.61.0",
     "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
-    "connect-livereload": "^0.5.3"
+    "connect-livereload": "^0.5.3",
+    "nodemon": "^1.8.1"
   },
   "engines": {
     "node": "0.12.x"
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "pm2-dev run server/index.js"
+    "dev": "node_modules/.bin/nodemon app/index.js"
   },
   "private": true
 }
