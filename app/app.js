@@ -21,16 +21,11 @@ app.use(require('./middlewares/middleware-allowcrossdomain')());
 app.use(require('./middlewares/middleware-herokuclientip')());
 
 app.use(express.static(path.join(config.root, 'static')));
-
-if ('production' === env) {
-  app.use(require('serve-favicon')(path.join(config.root, 'static', 'favicon.ico')));
-  app.use(require('morgan')('combined'));
-}
+app.use(require('serve-favicon')(path.join(config.root, 'static', 'favicon.ico')));
+app.use(require('morgan')('combined'));
 
 if ('development' === env || 'test' === env) {
   app.use(require('connect-livereload')());
-  app.use(express.static(path.join(config.root, '.tmp')));
-  app.use(require('morgan')('combined'));
   app.use(require('errorhandler')()); // Error handler - has to be last
 }
 
