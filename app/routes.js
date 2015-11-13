@@ -10,6 +10,7 @@ module.exports = function (app) {
   app.use('/api/categorys', require('./api/category'));
   app.use('/api/subscriptions', require('./api/subscription'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/waitingUsers', require('./api/waitingUser'));
 
   app.use('/auth/geo', require('./auth/geo'));
 
