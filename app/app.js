@@ -46,6 +46,10 @@ app.use(function cacheHandler(req, res, next) {
   next();
 });
 
+app.get('/headers', function (req, res) {
+  res.send('<pre>'+JSON.stringify(req.headers)+'</pre>');
+});
+
 require('./routes.js')(app);
 
 module.exports = app;
