@@ -7,6 +7,8 @@ var path = require('path');
 var config = require('../config/environment');
 
 var env = app.get('env');
+app.set('x-powered-by', false);
+app.set('etag', false);
 app.set('views', path.join(config.root, 'app', 'views'));
 app.set('view engine', 'jade');
 app.use(require('compression')());
