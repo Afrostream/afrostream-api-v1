@@ -16,7 +16,7 @@ function Afrostream() {
 function optionXFwd(req) {
   return {
     headers: {
-      'x-forwarded-clientip': req.herokuclientip
+      'x-forwarded-clientip': req.clientip
     }
   };
 }

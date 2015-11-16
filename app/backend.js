@@ -48,7 +48,7 @@ var getData = function (req, path) {
         json: true,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
-          'x-forwarded-clientip': req.herokuclientip
+          'x-forwarded-clientip': req.clientip
         },
         oauth: {
           consumer_key: config.afrostream.apiKey,
