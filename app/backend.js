@@ -48,7 +48,8 @@ var getData = function (req, path) {
         json: true,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
-          'x-forwarded-clientip': req.clientip
+          'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+          'x-forwarded-client-ip': req.clientIp
         },
         oauth: {
           consumer_key: config.afrostream.apiKey,

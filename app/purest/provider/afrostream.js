@@ -16,7 +16,8 @@ function Afrostream() {
 function optionXFwd(req) {
   return {
     headers: {
-      'x-forwarded-clientip': req.clientip
+      'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+      'x-forwarded-client-ip': req.clientIp
     }
   };
 }
