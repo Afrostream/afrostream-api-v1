@@ -5,6 +5,12 @@ var controller = require('./subscription.controller.js');
 var auth = require('../../auth/service.js');
 var router = express.Router();
 
+// all subscriptions routes are dynamic.
+router.use(function (req, res, next) {
+  res.isDynamic();
+  next();
+});
+
 router.get('/billing', auth.isAuthenticated(), controller.billing);
 router.get('/cancel', auth.isAuthenticated(), controller.cancel);
 router.get('/status', auth.isAuthenticated(), controller.status);

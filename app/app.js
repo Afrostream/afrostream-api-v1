@@ -31,6 +31,21 @@ if ('development' === env || 'test' === env) {
   app.use(require('errorhandler')()); // Error handler - has to be last
 }
 
+app.use(function cacheHandler(req, res, next) {
+  res.isDynamic = function () {
+    res.set('Cache-Control', 'public, max-age=0');
+  };
+  res.cache = function (duration) {
+    res.set('Cache-Control', 'public, max-age=' + (duration || 60));
+  };
+  res.isStatic = function () {
+    res.set('Cache-Control', 'public, max-age=31536000');
+  };
+  // all routes are dynamic by default
+  res.isDynamic();
+  next();
+});
+
 require('./routes.js')(app);
 
 module.exports = app;
