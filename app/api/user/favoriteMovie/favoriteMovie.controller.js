@@ -7,34 +7,22 @@ function handleError(res, err) {
 }
 
 exports.index = function (req, res) {
-  if (req.query.afro_token) {
-    purest.Afrostream.getSecureData(req, 'users/' + req.params.userId + '/favoritesMovies', {}, function (err, data) {
-      if (err) return handleError(res, err);
-      res.json(200, data);
-    });
-  } else {
-    handleError(res, 'missing querystring ?afro_token=...')();
-  }
+  purest.Afrostream.getSecureData(req, 'users/' + req.params.userId + '/favoritesMovies', {}, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
 };
 
 exports.add = function (req, res) {
-  if (req.body.afro_token) {
-    purest.Afrostream.postSecureData(req, 'users/' + req.params.userId + '/favoritesMovies', req.body, function (err, data) {
-      if (err) return handleError(res, err);
-      res.json(200, data);
-    });
-  } else {
-    handleError(res, 'missing postParam afro_token')();
-  }
+  purest.Afrostream.postSecureData(req, 'users/' + req.params.userId + '/favoritesMovies', req.body, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
 };
 
 exports.remove = function (req, res) {
-  if (req.body.afro_token) {
-    purest.Afrostream.deleteSecureData(req, 'users/' + req.params.userId + '/favoritesMovies/' + req.params.movieId, req.body, function (err, data) {
-      if (err) return handleError(res, err);
-      res.json(200, data);
-    });
-  } else {
-    handleError(res, 'missing postParam afro_token')();
-  }
+  purest.Afrostream.deleteSecureData(req, 'users/' + req.params.userId + '/favoritesMovies/' + req.params.movieId, req.body, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
 };
