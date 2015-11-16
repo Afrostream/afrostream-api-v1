@@ -13,10 +13,7 @@ exports.index = function (req, res) {
 exports.show = function (req, res) {
   purest.Afrostream.getSecureData(req,'videos/{0}', {id: req.params.id}, function (err, data) {
     if (err) return handleError(res, err);
-    //data.sources = _.forEach(data.sources, function (source) {
-    // _.partialRight(source.src, '//api.afrostream.tv/')
-    //source.src = req.protocol + '://' + req.get('host') + '/api' + source.src;
-    //});
+    res.set('Cache-Control', 'public, max-age=0');
     res.json(200, data);
   });
 };
