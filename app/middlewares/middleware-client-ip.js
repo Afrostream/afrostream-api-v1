@@ -14,7 +14,9 @@ module.exports = function (options) {
     //  the client is the first one (left) in the list of x-forwarded-for
     //  heroku router ip is in req.ip
     // we trim the result.
-    req.clientIp = req.get('fastly-client-ip') || String(req.get('x-forwarded-for').split(',').shift() || req.ip).replace(/^\s+|\s+$/g, '');
+    req.clientIp = req.get('fastly-client-ip') ||
+                   req.get('x-forwarded-for') && req.get('x-forwarded-for').split(',').shift().replace(/^\s+|\s+$/g, '') ||
+                   req.ip;
     //
     next();
   };
