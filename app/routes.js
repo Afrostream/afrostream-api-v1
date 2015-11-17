@@ -11,6 +11,7 @@ module.exports = function (app) {
   app.use('/api/subscriptions', require('./api/subscription'));
   app.use('/api/users', require('./api/user'));
   app.use('/api/waitingUsers', require('./api/waitingUser'));
+  app.use('/api/posts', require('./api/post'));
 
   app.use('/api/player', require('./api/player'));
   app.use('/api/cdnselector', require('./api/cdnselector'));
