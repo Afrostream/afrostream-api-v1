@@ -1,7 +1,6 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
+var purest = require('../../purest/index');
 
 exports.index = function (req, res) {
   res.cache();
