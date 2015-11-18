@@ -18,6 +18,19 @@ module.exports = function (app) {
 
   app.use('/auth/geo', require('./auth/geo'));
 
+  app.get('/right/user/:userId/asset/:assetId', function (req, res) {
+    console.log(req.url + ' query: ' + JSON.stringify(req.query) + ' headers: ' + JSON.stringify(req.headers));
+
+    res.set('Content-Type', 'application/json');
+    res.json({
+      "accountingId":"fake accountingId",
+      "profile": {
+        "purchase" : {}
+      },
+      "message":"granted"
+    })
+  });
+
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
     .get(function pageNotFound(req, res) {
