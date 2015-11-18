@@ -6,6 +6,8 @@ var request = require('request');
 
 var Q = require('q');
 
+var _ = require('lodash');
+
 // single backend, unique token.
 var token;
 
@@ -46,6 +48,7 @@ var getData = function (req, path) {
       return Q.nfcall(request, {
         method: 'GET',
         json: true,
+        qs: _.merge({}, req.query || {}, { access_token: token.access_token }),
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
@@ -53,8 +56,8 @@ var getData = function (req, path) {
         },
         oauth: {
           consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret,
-          token: token.access_token
+          consumer_secret: config.afrostream.apiSecret
+          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
         }
       });
     });
