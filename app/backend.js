@@ -63,6 +63,24 @@ var getData = function (req, path) {
     });
 };
 
+/**
+ * call this method when you don't need the token (faster & safer)
+ * @param req
+ * @param path
+ */
+var getDataWithoutAuth = function (req, path) {
+    return Q.nfcall(request, {
+      method: 'GET',
+      json: true,
+      qs: req.query,
+      uri: config.backend.protocol + '://' + config.backend.authority + path,
+      headers: {
+        'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+        'x-forwarded-client-ip': req.clientIp
+      }
+    });
+};
+
 /*
  * forward backend result to the frontend.
  *
@@ -80,5 +98,6 @@ var fwd = function (res) {
   };
 };
 
+module.exports.getDataWithoutAuth = getDataWithoutAuth;
 module.exports.getData = getData;
 module.exports.fwd = fwd;
