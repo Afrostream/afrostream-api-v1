@@ -52,8 +52,20 @@ exports.gift = function (req, res) {
 };
 
 function handleError(res, err) {
+
   if (err === 'Unauthorized') {
     return res.send(401, err);
+
+    //TODO: contact recurly about the below error,
+    //seems they do not properly validate the coupon code before we call the api.
+  } else if (typeof err[0] !== 'undefined' &&
+
+      typeof err[0]['field'] !== 'undefined' &&
+      typeof err[0]['symbol'] !== 'undefined' &&
+      err[0]['field'] === 'subscription.coupon_code' &&
+      err[0]['symbol'] === 'invalid') {
+
+    return res.send(403, err);
   }
   return res.send(500, err);
 }
