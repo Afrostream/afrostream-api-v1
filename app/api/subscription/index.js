@@ -7,7 +7,7 @@ var router = express.Router();
 
 // all subscriptions routes are dynamic.
 router.use(function (req, res, next) {
-  res.isDynamic();
+  res.noCache();
   next();
 });
 

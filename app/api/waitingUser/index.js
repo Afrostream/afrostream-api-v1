@@ -6,9 +6,9 @@ var auth = require('../../auth/service.js');
 
 var router = express.Router();
 
-// all waiting users routes are dynamic.
+// all waiting users routes are no-cache
 router.use(function (req, res, next) {
-  res.isDynamic();
+  res.noCache();
   next();
 });
 

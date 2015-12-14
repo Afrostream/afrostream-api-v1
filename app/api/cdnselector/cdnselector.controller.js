@@ -3,6 +3,6 @@
 var backend = require('../../backend');
 
 exports.getList = function (req, res) {
-  res.isDynamic();
+  res.noCache();
   backend.getData(req, '/api/cdnselector/list').nodeify(backend.fwd(res));
 };
