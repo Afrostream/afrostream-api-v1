@@ -65,7 +65,7 @@ function handleError(res, err) {
       err[0]['field'] === 'subscription.coupon_code' &&
       err[0]['symbol'] === 'invalid') {
 
-    //return res.send(403, err);
+    return res.send(403, err);
   }
   return res.send(500, err);
 }
