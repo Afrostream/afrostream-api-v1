@@ -34,6 +34,14 @@ exports.mea = function (req, res) {
   });
 };
 
+exports.allSpots = function (req, res) {
+  res.cache();
+  purest.Afrostream.getSecureData(req, 'categorys/spots', {}, function (err, data) {
+    if (err) return handleError(res, err);
+    res.json(200, data);
+  });
+};
+
 exports.menu = function (req, res) {
   res.cache();
   purest.Afrostream.menu(req, {}, function (err, data) {
