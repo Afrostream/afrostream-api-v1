@@ -43,8 +43,6 @@ app.use(function cacheHandler(req, res, next) {
   res.isStatic = function () {
     res.set('Cache-Control', 'public, max-age=31536000');
   };
-  // all routes are dynamic by default
-  res.noCache();
   next();
 });
 
