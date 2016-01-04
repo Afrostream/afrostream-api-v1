@@ -14,7 +14,6 @@
     "errorhandler": "~1.0.0",
     "express": "^4.13.3",
     "express-cluster": "0.0.4",
-    "express-jwt": "0.2.1",
     "jade": "~1.2.0",
     "jsonwebtoken": "^0.3.0",
     "lodash": "~2.4.1",
