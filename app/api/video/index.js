@@ -2,7 +2,6 @@
 
 var express = require('express');
 var controller = require('./video.controller.js');
-var auth = require('../../auth/service.js');
 
 var router = express.Router();
 
@@ -12,7 +11,7 @@ router.use(function (req, res, next) {
   next();
 });
 
-router.get('/', auth.isAuthenticated(), controller.index);
-router.get('/:id', auth.isAuthenticated(), controller.show);
+router.get('/', controller.index);
+router.get('/:id', controller.show);
 
 module.exports = router;

@@ -2,11 +2,10 @@
 
 var express = require('express');
 var controller = require('./post.controller.js');
-var auth = require('../../auth/service.js');
 
 var router = express.Router();
 
-router.get('/', auth.isAuthenticated(), controller.index);
-router.get('/:postUUID', auth.isAuthenticated(), controller.show);
+router.get('/', controller.index);
+router.get('/:postUUID', controller.show);
 
 module.exports = router;

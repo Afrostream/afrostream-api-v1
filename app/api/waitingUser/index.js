@@ -2,7 +2,6 @@
 
 var express = require('express');
 var controller = require('./waitingUser.controller.js');
-var auth = require('../../auth/service.js');
 
 var router = express.Router();
 
@@ -12,6 +11,6 @@ router.use(function (req, res, next) {
   next();
 });
 
-router.post('/', auth.isAuthenticated(), controller.create);
+router.post('/', controller.create);
 
 module.exports = router;

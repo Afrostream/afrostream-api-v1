@@ -2,15 +2,14 @@
 
 var express = require('express');
 var controller = require('./category.controller.js');
-var auth = require('../../auth/service.js');
 
 var router = express.Router();
 
-router.get('/', auth.isAuthenticated(), controller.index);
-router.get('/meas', auth.isAuthenticated(), controller.mea);
-router.get('/spots', auth.isAuthenticated(), controller.allSpots);
-router.get('/menu', auth.isAuthenticated(), controller.menu);
-router.get('/:id', auth.isAuthenticated(), controller.show);
-router.get('/:id/spots', auth.isAuthenticated(), controller.spots);
+router.get('/', controller.index);
+router.get('/meas', controller.mea);
+router.get('/spots', controller.allSpots);
+router.get('/menu', controller.menu);
+router.get('/:id', controller.show);
+router.get('/:id/spots', controller.spots);
 
 module.exports = router;
