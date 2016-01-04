@@ -15,10 +15,6 @@ app.use(require('compression')());
 app.use(require('body-parser').urlencoded({extended: false}));
 app.use(require('body-parser').json());
 app.use(require('method-override')());
-app.use(require('cookie-parser')());
-app.use(require('express-session')({secret: config.secrets.session}));
-app.use(require('passport').initialize());
-app.use(require('passport').session());
 app.use(require('./middlewares/middleware-allowcrossdomain')());
 app.use(require('./middlewares/middleware-client-ip')());
 
