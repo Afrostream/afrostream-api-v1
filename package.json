@@ -21,8 +21,6 @@
     "morgan": "^1.6.1",
     "node-recurly-updated": "2.1.5",
     "node-uuid": "1.4.3",
-    "nodemailer": "1.4.0",
-    "nodemailer-sendgrid-transport": "0.2.0",
     "purest": "^2.0.0",
     "q": "^1.4.1",
     "request": "^2.61.0",
