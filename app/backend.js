@@ -45,10 +45,54 @@ var getToken = function (done) {
 var getData = function (req, path) {
   return getToken()
     .then(function (token) {
+      var queryOptions = _.merge({}, { access_token: token.access_token }, req.query || {});
+
+      // FIXME: this code should be removed after cookie auth
+      // BEGIN REMOVE
+      if (req.query.afro_token) {
+        queryOptions.access_token = req.query.afro_token;
+      }
+      // END REMOVE
+
       return Q.nfcall(request, {
         method: 'GET',
         json: true,
-        qs: _.merge({}, req.query || {}, { access_token: token.access_token }),
+        qs: queryOptions,
+        uri: config.backend.protocol + '://' + config.backend.authority + path,
+        headers: {
+          'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+          'x-forwarded-client-ip': req.clientIp
+        },
+        oauth: {
+          consumer_key: config.afrostream.apiKey,
+          consumer_secret: config.afrostream.apiSecret
+          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
+        }
+      });
+    });
+};
+
+/**
+ * call the backend (POST), return the result
+ */
+var postData = function (req, path) {
+  return getToken()
+    .then(function (token) {
+      var queryOptions = _.merge({}, req.query || {}, { access_token: token.access_token });
+      var bodyOptions = _.merge({}, req.body || {}, { access_token: token.access_token });
+
+      // FIXME: this code should be removed after cookie auth
+      // BEGIN REMOVE
+      if (req.query.afro_token) {
+        queryOptions.access_token = req.query.afro_token;
+        bodyOptions.access_token = req.query.afro_token;
+      }
+      // END REMOVE
+
+      return Q.nfcall(request, {
+        method: 'GET',
+        json: true,
+        qs: queryOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
@@ -100,4 +144,5 @@ var fwd = function (res) {
 
 module.exports.getDataWithoutAuth = getDataWithoutAuth;
 module.exports.getData = getData;
+module.exports.postData = postData;
 module.exports.fwd = fwd;
