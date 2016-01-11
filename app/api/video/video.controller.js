@@ -1,22 +1,11 @@
 'use strict';
 
-var purest = require('../../purest/index');
-var express = require('express');
+var backend = require('../../backend');
 
 exports.index = function (req, res) {
-  purest.Afrostream.getSecureData(req,'videos', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/videos/').nodeify(backend.fwd(res));
 };
 
 exports.show = function (req, res) {
-  purest.Afrostream.getSecureData(req,'videos/{0}', {id: req.params.id}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/videos/' + req.params.id).nodeify(backend.fwd(res));
 };
-
-function handleError(res, err) {
-  return res.send(500, err);
-}
