@@ -104,6 +104,23 @@
         }
       }
     },
+    "cookie-parser": {
+      "version": "1.4.0",
+      "from": "cookie-parser@latest",
+      "resolved": "https://registry.npmjs.org/cookie-parser/-/cookie-parser-1.4.0.tgz",
+      "dependencies": {
+        "cookie": {
+          "version": "0.2.2",
+          "from": "cookie@0.2.2",
+          "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.2.2.tgz"
+        },
+        "cookie-signature": {
+          "version": "1.0.6",
+          "from": "cookie-signature@1.0.6",
+          "resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz"
+        }
+      }
+    },
     "errorhandler": {
       "version": "1.0.2",
       "from": "errorhandler@>=1.0.0 <1.1.0",
@@ -351,6 +368,45 @@
       "from": "express-cluster@*",
       "resolved": "https://registry.npmjs.org/express-cluster/-/express-cluster-0.0.4.tgz"
     },
+    "express-validation": {
+      "version": "0.4.5",
+      "from": "express-validation@latest",
+      "resolved": "https://registry.npmjs.org/express-validation/-/express-validation-0.4.5.tgz",
+      "dependencies": {
+        "joi": {
+          "version": "6.10.1",
+          "from": "joi@>=6.0.0 <7.0.0",
+          "resolved": "https://registry.npmjs.org/joi/-/joi-6.10.1.tgz",
+          "dependencies": {
+            "hoek": {
+              "version": "2.16.3",
+              "from": "hoek@>=2.0.0 <3.0.0",
+              "resolved": "https://registry.npmjs.org/hoek/-/hoek-2.16.3.tgz"
+            },
+            "topo": {
+              "version": "1.1.0",
+              "from": "topo@>=1.0.0 <2.0.0",
+              "resolved": "https://registry.npmjs.org/topo/-/topo-1.1.0.tgz"
+            },
+            "isemail": {
+              "version": "1.2.0",
+              "from": "isemail@>=1.0.0 <2.0.0",
+              "resolved": "https://registry.npmjs.org/isemail/-/isemail-1.2.0.tgz"
+            },
+            "moment": {
+              "version": "2.11.0",
+              "from": "moment@>=2.0.0 <3.0.0",
+              "resolved": "https://registry.npmjs.org/moment/-/moment-2.11.0.tgz"
+            }
+          }
+        },
+        "lodash": {
+          "version": "3.10.1",
+          "from": "lodash@>=3.3.1 <4.0.0",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
+        }
+      }
+    },
     "jade": {
       "version": "1.2.0",
       "from": "jade@>=1.2.0 <1.3.0",
@@ -586,6 +642,33 @@
               }
             }
           }
+        }
+      }
+    },
+    "joi": {
+      "version": "7.1.0",
+      "from": "joi@latest",
+      "resolved": "https://registry.npmjs.org/joi/-/joi-7.1.0.tgz",
+      "dependencies": {
+        "hoek": {
+          "version": "3.0.4",
+          "from": "hoek@>=3.0.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/hoek/-/hoek-3.0.4.tgz"
+        },
+        "topo": {
+          "version": "2.0.0",
+          "from": "topo@>=2.0.0 <3.0.0",
+          "resolved": "https://registry.npmjs.org/topo/-/topo-2.0.0.tgz"
+        },
+        "isemail": {
+          "version": "2.1.0",
+          "from": "isemail@>=2.0.0 <3.0.0",
+          "resolved": "https://registry.npmjs.org/isemail/-/isemail-2.1.0.tgz"
+        },
+        "moment": {
+          "version": "2.11.0",
+          "from": "moment@>=2.0.0 <3.0.0",
+          "resolved": "https://registry.npmjs.org/moment/-/moment-2.11.0.tgz"
         }
       }
     },
