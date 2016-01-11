@@ -31,7 +31,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "node_modules/.bin/nodemon app/index.js"
+    "dev": "echo 'requiring node v4.2.4' && . ~/.nvm/nvm.sh && nvm use 4.2.4 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js"
   },
   "private": true
 }
