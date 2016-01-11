@@ -3,7 +3,7 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var config = require('../config/environment');
+var config = require('../config');
 
 var app = require('./app.js');
 

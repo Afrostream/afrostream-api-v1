@@ -4,7 +4,7 @@ var app =  require('express')();
 var express = require('express');
 var path = require('path');
 
-var config = require('../config/environment');
+var config = require('../config');
 
 var env = app.get('env');
 app.set('x-powered-by', false);

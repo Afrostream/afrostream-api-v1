@@ -1,7 +1,7 @@
 var Purest = require('purest')
   , async = require('async')
   , _ = require('lodash')
-  , config = require('../../../config/environment');
+  , config = require('../../../config');
 
 function Afrostream() {
   this.client = new Purest({

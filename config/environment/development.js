@@ -13,6 +13,11 @@ module.exports = {
     clientId: 'BtSdIqKqfIse0H1dqlpHFJgKIkUG0NpE',
     clientSecret: 'KYmL01KW5HczO-XKpltlVUONRCXtynJQ0nFqiGNOsjN9c3RsBAnr5_T-rnnc7DYY'
   },
+  cookie: {
+    name: 'auth',
+    domain: '.afrostream.dev', // RFC 2109
+    secret: 'dev'
+  },
   recurly: {
     subdomain: 'johnarch',
     apiKey: '67dbb29f0dbe4e219bc247a3b5387652'

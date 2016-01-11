@@ -13,6 +13,12 @@ module.exports = {
   process.env.PORT ||
   8080,
 
+  cookie: {
+    name: 'auth',
+    domain: '.afrostream.dev', // RFC 2109
+    secret: '-=4fr0str34m=-'
+  },
+
   auth0: {
     domain: process.env.AUTH0_DOMAIN,
     clientId: process.env.AUTH0_CLIENT_ID,
