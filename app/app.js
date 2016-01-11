@@ -14,6 +14,7 @@ app.set('view engine', 'jade');
 app.use(require('compression')());
 app.use(require('body-parser').urlencoded({extended: false}));
 app.use(require('body-parser').json());
+app.use(require('cookie-parser')(config.cookie.secret));
 app.use(require('method-override')());
 app.use(require('./middlewares/middleware-allowcrossdomain')());
 app.use(require('./middlewares/middleware-client-ip')());
@@ -49,6 +50,8 @@ app.use(function cacheHandler(req, res, next) {
 app.get('/headers', function (req, res) {
   res.send('<pre>'+JSON.stringify(req.headers)+'</pre>');
 });
+
+app.use(require('./middlewares/middleware-auth.js')());
 
 require('./routes.js')(app);
 
