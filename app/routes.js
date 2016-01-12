@@ -16,7 +16,7 @@ module.exports = function (app) {
   app.use('/api/player', require('./api/player'));
   app.use('/api/cdnselector', require('./api/cdnselector'));
 
-  app.use('/auth/geo', require('./auth/geo'));
+  app.use('/auth', require('./auth'));
 
   app.use('/right', require('./right'));
 
