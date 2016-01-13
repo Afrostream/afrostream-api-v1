@@ -111,17 +111,22 @@ var postData = function (req, path) {
  * @param req
  * @param path
  */
-var getDataWithoutAuth = function (req, path) {
-    return Q.nfcall(request, {
-      method: 'GET',
-      json: true,
-      qs: req.query,
-      uri: config.backend.protocol + '://' + config.backend.authority + path,
-      headers: {
-        'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-        'x-forwarded-client-ip': req.clientIp
-      }
-    });
+var getDataWithoutAuth = function (req, path, requestOptions) {
+    return Q.nfcall(request,
+      _.merge(
+        {
+          method: 'GET',
+          json: true,
+          qs: req.query,
+          uri: config.backend.protocol + '://' + config.backend.authority + path,
+          headers: {
+            'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+            'x-forwarded-client-ip': req.clientIp
+          }
+        },
+        requestOptions || {}
+      )
+    );
 };
 
 /*
