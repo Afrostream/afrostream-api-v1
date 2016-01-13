@@ -70,6 +70,20 @@ describe('POST /auth/signup', function () {
           });
       });
   });
+
+  it('it should not be able to signup again with the same email', function(done) {
+    request(app)
+      .post('/auth/signup')
+      .send({
+        email: email,
+        password: 'test'
+      })
+      .expect('Content-Type', /json/)
+      .expect(422, function (err, res) {
+        assert(res.body.message.indexOf('address is already in use') !== -1);
+        done(err);
+      });
+  });
 });
 
 describe('POST /auth/signin', function() {
@@ -104,6 +118,20 @@ describe('POST /auth/signin', function() {
             assert(res.body.email === 'admin@admin.com');
             done();
           });
+      });
+  });
+
+  it('should not be able to login with an invalid account', function(done) {
+    request(app)
+      .post('/auth/signin')
+      .send({
+        email: 'admin452T23T234KR3POF@admin.com',
+        password: 'admin'
+      })
+      .expect('Content-Type', /json/)
+      .expect(403, function (err, res) {
+        assert(res.body.message.indexOf('invalid_grant') !== -1);
+        done(err);
       });
   });
 });

@@ -19,6 +19,6 @@ router.use('/geo', require('./geo'));
 router.use(dumpPostData());
 router.post('/signup', validator.validateSignupBody, controller.signup);
 router.post('/signin', validator.validateSigninBody, controller.signin);
-router.post('/resetPassword', validator.validateResetPasswordBody, controller.signin);
+router.post('/reset', validator.validateResetPasswordBody, controller.reset);
 
 module.exports = router;

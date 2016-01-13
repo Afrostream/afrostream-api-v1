@@ -10,7 +10,13 @@ var config = require('../../config');
 
 var ensure200OK = function (result) {
   if (result[0].statusCode !== 200) {
-    throw new Error(result[1]);
+    console.error('auth: error: backend status='+result[0].statusCode+': ', result[1]);
+    var error = new Error(
+      result[1] && result[1].message || // ex: { message: 'The specified email address is already in use.' }
+      result[1] && result[1].error ||   // ex: { error: 'invalid_grant' }
+      result[1]);
+    error.statusCode = result[0].statusCode || 500;
+    throw error;
   }
   return result[1];
 };
@@ -25,7 +31,7 @@ var signup = function (req, res) {
     },
     function error(err) {
       console.error('auth: signup: error: ' + req.body.email + ' ' + String(err), err);
-      res.status(500).json({message:String(err)});
+      res.status(err.statusCode || 500).json({message:String(err)});
     });
 };
 
@@ -63,9 +69,14 @@ var signin = function (req, res) {
         res.clearCookie('auth');
       */
       console.error('auth: signin: error: ' + req.body.email + ' ' + String(err), err);
-      res.status(500).json({message:String(err)});
+      res.status(err.statusCode || 500).json({message:String(err)});
     });
+};
+
+var reset = function (req, res) {
+  res.send('FIXME');
 };
 
 module.exports.signin = signin;
 module.exports.signup = signup;
+module.exports.reset = reset;
