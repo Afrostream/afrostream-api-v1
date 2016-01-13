@@ -14,6 +14,7 @@ router.use(function (req, res, next) {
 });
 
 router.use('/geo', require('./geo'));
+router.use('/facebook', require('./facebook'));
 
 // dumping signup/signin/resetPassword inputs.
 router.use(dumpPostData());
