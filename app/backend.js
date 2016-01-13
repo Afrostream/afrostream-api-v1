@@ -78,21 +78,14 @@ var getData = function (req, path) {
 var postData = function (req, path) {
   return getToken()
     .then(function (token) {
-      var queryOptions = _.merge({}, req.query || {}, { access_token: token.access_token });
-      var bodyOptions = _.merge({}, req.body || {}, { access_token: token.access_token });
-
-      // FIXME: this code should be removed after cookie auth
-      // BEGIN REMOVE
-      if (req.query.afro_token) {
-        queryOptions.access_token = req.query.afro_token;
-        bodyOptions.access_token = req.query.afro_token;
-      }
-      // END REMOVE
+      var queryOptions = _.merge({}, req.query || {});
+      var bodyOptions = _.merge({}, { access_token: token.access_token }, req.body || {} );
 
       return Q.nfcall(request, {
-        method: 'GET',
+        method: 'POST',
         json: true,
         qs: queryOptions,
+        form: bodyOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
