@@ -21,7 +21,7 @@ var signup = function (req, res) {
     .then(
     function success() {
       console.error('auth: signup: ok: ' + req.body.email + ' created');
-      return signin();
+      return signin(req, res);
     },
     function error(err) {
       console.error('auth: signup: error: ' + req.body.email + ' ' + String(err), err);
