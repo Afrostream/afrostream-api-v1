@@ -42,7 +42,7 @@ var getToken = function (done) {
 /**
  * call the backend, return the result
  */
-var getData = function (req, path) {
+var getData = function (req, path, requestOptions) {
   return getToken()
     .then(function (token) {
       var queryOptions = _.merge({}, { access_token: token.access_token }, req.query || {});
@@ -54,21 +54,27 @@ var getData = function (req, path) {
       }
       // END REMOVE
 
-      return Q.nfcall(request, {
-        method: 'GET',
-        json: true,
-        qs: queryOptions,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-          'x-forwarded-client-ip': req.clientIp
-        },
-        oauth: {
-          consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret
-          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-        }
-      });
+      return Q.nfcall(
+        request,
+        _.merge(
+          {
+            method: 'GET',
+            json: true,
+            qs: queryOptions,
+            uri: config.backend.protocol + '://' + config.backend.authority + path,
+            headers: {
+              'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+              'x-forwarded-client-ip': req.clientIp
+            },
+            oauth: {
+              consumer_key: config.afrostream.apiKey,
+              consumer_secret: config.afrostream.apiSecret
+              // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
+            }
+          },
+          requestOptions || {}
+        )
+      );
     });
 };
 
