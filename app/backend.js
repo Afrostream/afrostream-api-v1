@@ -141,6 +141,17 @@ var fwd = function (res) {
     } else {
       var backendResponse = data[0]
         , backendBody = data[1];
+      switch (backendResponse.statusCode) {
+        case 301:
+        case 302:
+          if (backendResponse.headers &&
+              backendResponse.headers.location) {
+            res.set('location', backendResponse.headers.location);
+          }
+          break;
+        default:
+          break;
+      }
       res.status(backendResponse.statusCode).json(backendBody);
     }
   };
