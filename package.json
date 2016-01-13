@@ -23,8 +23,11 @@
     "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
+    "better-assert": "^1.0.2",
     "connect-livereload": "^0.5.3",
-    "nodemon": "^1.8.1"
+    "mocha": "^2.3.4",
+    "nodemon": "^1.8.1",
+    "supertest": "^1.1.0"
   },
   "engines": {
     "node": "4.2.4"
