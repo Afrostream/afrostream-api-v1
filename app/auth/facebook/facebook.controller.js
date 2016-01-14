@@ -4,5 +4,10 @@ var backend = require('../../backend');
 
 exports.checkAuth = function (req, res) {
   res.noCache();
-  backend.getDataWithoutAuth(req, '/auth/facebook/', {followRedirect: false}).nodeify(backend.fwd(res));
+  backend.getDataWithoutAuth(req, '/auth/facebook', {followRedirect: false}).nodeify(backend.fwd(res));
+};
+
+exports.callback = function (req, res) {
+  res.noCache();
+  backend.getDataWithoutAuth(req, '/auth/facebook/callback', {followRedirect: false}).nodeify(backend.fwd(res));
 };
