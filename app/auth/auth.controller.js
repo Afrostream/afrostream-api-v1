@@ -74,7 +74,21 @@ var signin = function (req, res) {
 };
 
 var reset = function (req, res) {
-  res.send('FIXME');
+  return backend.postData(req, '/auth/reset')
+    .then(ensure200OK)
+    .then(
+    function success(data) {
+      if (req.body.email) {
+        console.error('auth: reset: ok: email ' + req.body.email);
+      } else if (req.body.k) {
+        console.error('auth: reset: ok: token ' + req.body.k);
+      }
+      res.status(200).json(data);
+    },
+    function error(err) {
+      console.error('auth: reset: error: ' + String(err), err);
+      res.status(err.statusCode || 500).json({message:String(err)});
+    });
 };
 
 module.exports.signin = signin;
