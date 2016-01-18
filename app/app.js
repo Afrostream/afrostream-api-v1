@@ -1,6 +1,6 @@
 'use strict';
 
-var app =  require('express')();
+var app = require('express')();
 var express = require('express');
 var path = require('path');
 
@@ -48,7 +48,7 @@ app.use(function cacheHandler(req, res, next) {
 });
 
 app.get('/headers', function (req, res) {
-  res.send('<pre>'+JSON.stringify(req.headers)+'</pre>');
+  res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
 });
 
 app.use(require('./middlewares/middleware-auth.js')());
