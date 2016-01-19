@@ -8,6 +8,21 @@ var backend = require('../backend');
 
 var config = require('../../config');
 
+var _signin = function (req) {
+  return Q.nfcall(request, {
+    method: 'POST',
+    uri: config.backend.protocol + '://' + config.backend.authority + '/auth/oauth2/token',
+    json: true,
+    form:{
+      grant_type:'password',
+      client_id: config.afrostream.apiKey,
+      client_secret: config.afrostream.apiSecret,
+      username:req.body.email,
+      password:req.body.password
+    }
+  }).then(ensure200OK);
+};
+
 var ensure200OK = function (result) {
   if (result[0].statusCode !== 200) {
     console.error('auth: error: backend status='+result[0].statusCode+': ', result[1]);
@@ -22,32 +37,38 @@ var ensure200OK = function (result) {
 };
 
 var signup = function (req, res) {
-  return backend.postData(req, '/api/users/')
-    .then(ensure200OK)
+  // maybe it's a signin ?
+  _signin(req)
     .then(
-    function success() {
-      console.error('auth: signup: ok: ' + req.body.email + ' created');
-      return signin(req, res);
+    function (oauth2Response) {
+      if (!oauth2Response.access_token) {
+        throw new Error("no access_token");
+      }
+      return oauth2Response;
+    })
+    .then(
+    function (oauth2Response) {
+      console.log('auth: signup: -> signin: ' + req.body.email);
+      res.json({accessToken: oauth2Response.access_token});
     },
-    function error(err) {
-      console.error('auth: signup: error: ' + req.body.email + ' ' + String(err), err);
-      res.status(err.statusCode || 500).json({message:String(err)});
+    function (err) {
+      // ok, let's signup
+      backend.postData(req, '/api/users/')
+        .then(ensure200OK)
+        .then(
+        function success() {
+          console.error('auth: signup: ok: ' + req.body.email + ' created');
+          return signin(req, res);
+        },
+        function error(err) {
+          console.error('auth: signup: error: ' + req.body.email + ' ' + String(err), err);
+          res.status(err.statusCode || 500).json({message:String(err)});
+        });
     });
 };
 
 var signin = function (req, res) {
-  return Q.nfcall(request, {
-    method: 'POST',
-    uri: config.backend.protocol + '://' + config.backend.authority + '/auth/oauth2/token',
-    json: true,
-    form:{
-      grant_type:'password',
-      client_id: config.afrostream.apiKey,
-      client_secret: config.afrostream.apiSecret,
-      username:req.body.email,
-      password:req.body.password
-    }
-  }).then(ensure200OK)
+  _signin(req)
     .then(
     function success(oauth2Response) {
       /*

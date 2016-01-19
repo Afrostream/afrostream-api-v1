@@ -76,12 +76,32 @@ describe('POST /auth/signup', function () {
       .post('/auth/signup')
       .send({
         email: email,
-        password: 'test'
+        password: 'toto'
       })
       .expect('Content-Type', /json/)
       .expect(422, function (err, res) {
         assert(res.body.message.indexOf('address is already in use') !== -1);
         done(err);
+      });
+  });
+
+  it('but should be able to signin using signup & respond 200 OK with a valid access_token', function(done) {
+    request(app)
+      .post('/auth/signup')
+      .send({
+        email: email,
+        password: 'test'
+      })
+      .expect('Content-Type', /json/)
+      .expect(200, function (err, res) {
+        assert(res.body.accessToken);
+
+        request(app)
+          .get('/api/users/me?afro_token=' + res.body.accessToken)
+          .expect(200, function (err, res) {
+            assert(res.body.email === email);
+            done();
+          });
       });
   });
 });
