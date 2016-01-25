@@ -17,7 +17,8 @@ function optionXFwd(req) {
   return {
     headers: {
       'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-      'x-forwarded-client-ip': req.clientIp
+      'x-forwarded-client-ip': req.clientIp,
+      'x-forwarded-user-agent': req.get('User-Agent')
     }
   };
 }

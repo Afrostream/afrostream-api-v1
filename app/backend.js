@@ -64,7 +64,8 @@ var getData = function (req, path, requestOptions) {
             uri: config.backend.protocol + '://' + config.backend.authority + path,
             headers: {
               'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-              'x-forwarded-client-ip': req.clientIp
+              'x-forwarded-client-ip': req.clientIp,
+              'x-forwarded-user-agent': req.get('User-Agent')
             },
             oauth: {
               consumer_key: config.afrostream.apiKey,
@@ -95,7 +96,8 @@ var postData = function (req, path) {
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-          'x-forwarded-client-ip': req.clientIp
+          'x-forwarded-client-ip': req.clientIp,
+          'x-forwarded-user-agent': req.get('User-Agent')
         },
         oauth: {
           consumer_key: config.afrostream.apiKey,
@@ -121,7 +123,8 @@ var getDataWithoutAuth = function (req, path, requestOptions) {
           uri: config.backend.protocol + '://' + config.backend.authority + path,
           headers: {
             'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-            'x-forwarded-client-ip': req.clientIp
+            'x-forwarded-client-ip': req.clientIp,
+            'x-forwarded-user-agent': req.get('User-Agent')
           }
         },
         requestOptions || {}
