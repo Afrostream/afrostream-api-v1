@@ -10,6 +10,7 @@
  */
 module.exports = function (options) {
   return function (req, res, next) {
+    req.userAccessToken = req.get('Acces-Token') || req.query.afro_token;
     /*
       // FIXME: cookie auth
       if (req.signedCookie && req.signedCookie.auth) {
