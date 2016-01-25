@@ -42,7 +42,8 @@ describe('POST /auth/signup', function () {
         accessToken = res.body.accessToken;
 
         request(app)
-          .get('/api/users/me?afro_token='+accessToken)
+          .get('/api/users/me')
+          .set('Access-Token', accessToken)
           .expect(200, function (err, res) {
             assert(res.body.email === email);
 
@@ -63,7 +64,8 @@ describe('POST /auth/signup', function () {
         assert(res.body.accessToken);
 
         request(app)
-          .get('/api/users/me?afro_token=' + res.body.accessToken)
+          .get('/api/users/me')
+          .set('Access-Token', res.body.accessToken)
           .expect(200, function (err, res) {
             assert(res.body.email === email);
             done();
@@ -97,7 +99,8 @@ describe('POST /auth/signup', function () {
         assert(res.body.accessToken);
 
         request(app)
-          .get('/api/users/me?afro_token=' + res.body.accessToken)
+          .get('/api/users/me')
+          .set('Access-Token', res.body.accessToken)
           .expect(200, function (err, res) {
             assert(res.body.email === email);
             done();
@@ -133,7 +136,8 @@ describe('POST /auth/signin', function() {
         assert(res.body.accessToken);
 
         request(app)
-          .get('/api/users/me?afro_token='+res.body.accessToken)
+          .get('/api/users/me')
+          .set('Access-Token', res.body.accessToken)
           .expect(200, function (err, res) {
             assert(res.body.email === 'admin@admin.com');
             done();

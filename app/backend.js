@@ -49,8 +49,8 @@ var getData = function (req, path, requestOptions) {
 
       // FIXME: this code should be removed after cookie auth
       // BEGIN REMOVE
-      if (req.query.afro_token) {
-        queryOptions.access_token = req.query.afro_token;
+      if (req.userAccessToken) {
+        queryOptions.access_token = req.userAccessToken;
       }
       // END REMOVE
 

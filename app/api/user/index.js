@@ -13,8 +13,8 @@ router.use(function (req, res, next) {
 
 // all user routes require the afro token.
 router.use(function (req, res, next) {
-  if (!req.query.afro_token) {
-    console.error('Unauthorized: missing querystring ?afro_token=... on '+req.url);;
+  if (!req.userAccessToken) {
+    console.error('Unauthorized: missing Access-Token on '+req.url);;
     res.status(401).send('Unauthorized');
   } else {
     next();
