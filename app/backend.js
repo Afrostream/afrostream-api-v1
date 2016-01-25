@@ -86,8 +86,10 @@ var postData = function (req, path) {
   return getToken()
     .then(function (token) {
       var queryOptions = _.merge({}, req.query || {});
-      var bodyOptions = _.merge({}, { access_token: token.access_token }, req.body || {} );
-
+      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
+      var accessToken = req.userAccessToken || token.access_token;
+      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
+      //
       return Q.nfcall(request, {
         method: 'POST',
         json: true,
