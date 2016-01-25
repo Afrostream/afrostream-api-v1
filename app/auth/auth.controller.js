@@ -19,6 +19,12 @@ var _signin = function (req) {
       client_secret: config.afrostream.apiSecret,
       username:req.body.email,
       password:req.body.password
+    },
+    // FIXME: abstract request api.
+    headers: {
+      'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
+      'x-forwarded-client-ip': req.clientIp,
+      'x-forwarded-user-agent': req.get('User-Agent')
     }
   }).then(ensure200OK);
 };
