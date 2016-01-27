@@ -7,6 +7,7 @@ var path = require('path');
 var config = require('../config');
 
 var env = app.get('env');
+app.set('startDate', new Date());
 app.set('x-powered-by', false);
 app.set('etag', false);
 app.set('views', path.join(config.root, 'app', 'views'));
