@@ -53,6 +53,7 @@ exports.gift = function (req, res) {
 
 function handleError(res, err) {
 
+
   if (err === 'Unauthorized') {
     return res.send(401, err);
 
@@ -66,6 +67,14 @@ function handleError(res, err) {
       err[0]['symbol'] === 'invalid') {
 
     return res.send(403, err);
+  }  else if (typeof err[0] !== 'undefined' &&
+
+      typeof err[0]['field'] !== 'undefined' &&
+      typeof err[0]['symbol'] !== 'undefined' &&
+      err[0]['field'] === 'subscription.account.base' &&
+      err[0]['symbol'] === 'declined') {
+
+    return res.send(402, err);
   }
   return res.send(500, err);
 }
