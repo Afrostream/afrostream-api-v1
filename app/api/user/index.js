@@ -14,7 +14,7 @@ router.use(function (req, res, next) {
 // all user routes require the afro token.
 router.use(function (req, res, next) {
   if (!req.userAccessToken) {
-    console.error('Unauthorized: missing Access-Token on '+req.url);;
+    console.error('Unauthorized: missing Access-Token on '+req.url);
     res.status(401).send('Unauthorized');
   } else {
     next();
