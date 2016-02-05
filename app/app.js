@@ -35,6 +35,7 @@ if ('development' === env || 'test' === env) {
 }
 
 app.get('/headers', function (req, res) {
+  res.noCache();
   res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
 });
 
