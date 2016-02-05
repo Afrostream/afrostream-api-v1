@@ -35,7 +35,9 @@ if ('development' === env || 'test' === env) {
 }
 
 app.get('/headers', function (req, res) {
-  res.noCache();
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
+  res.set('Pragma', 'no-cache'); // http 1.0
+  res.set('Expires', '0'); // proxy
   res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
 });
 
