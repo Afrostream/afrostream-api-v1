@@ -2,12 +2,11 @@
 
 var purest = require('../../purest/index');
 
+var backend = require('../../backend');
+
 exports.index = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req, 'categorys', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys').nodeify(backend.fwd(res));
 };
 
 exports.show = function (req, res) {
