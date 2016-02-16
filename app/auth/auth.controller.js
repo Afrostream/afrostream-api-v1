@@ -22,8 +22,8 @@ var _signin = function (req) {
     },
     // FIXME: abstract request api.
     headers: {
-      'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-      'x-forwarded-client-ip': req.clientIp,
+      'x-forwarded-clientip': req.userIp, // FIXME: to be removed
+      'x-forwarded-client-ip': req.userIp,
       'x-forwarded-user-agent': req.get('User-Agent')
     }
   }).then(ensure200OK);

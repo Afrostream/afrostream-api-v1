@@ -3,7 +3,7 @@
 var ip = require('ip');
 
 /**
- * req.clientIp will contain the client ip
+ * req.userIp will contain the client ip
  *   searching the leftmost x-forwarded-for non private ip (rfc 1918)
  *
  * should work :
@@ -16,7 +16,7 @@ var ip = require('ip');
  */
 module.exports = function (options) {
   return function (req, res, next) {
-    req.clientIp = (req.get('x-forwarded-for') || '')
+    req.userIp = (req.get('x-forwarded-for') || '')
       .split(',')
       // trim spaces
       .map(function (i) { return i.replace(/^\s+|\s+$/g, ''); })
