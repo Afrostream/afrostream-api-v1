@@ -63,8 +63,8 @@ var getData = function (req, path, requestOptions) {
             qs: queryOptions,
             uri: config.backend.protocol + '://' + config.backend.authority + path,
             headers: {
-              'x-forwarded-clientip': req.userIp, // FIXME: to be removed
               'x-forwarded-client-ip': req.userIp,
+              'x-forwarded-user-ip': req.userIp,
               'x-forwarded-user-agent': req.get('User-Agent')
             },
             oauth: {
@@ -97,8 +97,8 @@ var postData = function (req, path) {
         form: bodyOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
-          'x-forwarded-clientip': req.userIp, // FIXME: to be removed
           'x-forwarded-client-ip': req.userIp,
+          'x-forwarded-user-ip': req.userIp,
           'x-forwarded-user-agent': req.get('User-Agent')
         },
         oauth: {
@@ -124,8 +124,8 @@ var getDataWithoutAuth = function (req, path, requestOptions) {
           qs: req.query,
           uri: config.backend.protocol + '://' + config.backend.authority + path,
           headers: {
-            'x-forwarded-clientip': req.userIp, // FIXME: to be removed
             'x-forwarded-client-ip': req.userIp,
+            'x-forwarded-user-ip': req.userIp,
             'x-forwarded-user-agent': req.get('User-Agent')
           }
         },
