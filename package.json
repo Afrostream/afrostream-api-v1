@@ -12,6 +12,7 @@
     "express": "^4.13.3",
     "express-cluster": "0.0.4",
     "express-validation": "^0.4.5",
+    "ip": "^1.1.0",
     "jade": "~1.2.0",
     "joi": "^7.1.0",
     "lodash": "~2.4.1",
