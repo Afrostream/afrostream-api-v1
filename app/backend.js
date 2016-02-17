@@ -111,6 +111,37 @@ var postData = function (req, path) {
 };
 
 /**
+ * DELETE
+ */
+var deleteData = function (req, path) {
+  return getToken()
+    .then(function (token) {
+      var queryOptions = _.merge({}, req.query || {});
+      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
+      var accessToken = req.userAccessToken || token.access_token;
+      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
+      //
+      return Q.nfcall(request, {
+        method: 'DELETE',
+        json: true,
+        qs: queryOptions,
+        form: bodyOptions,
+        uri: config.backend.protocol + '://' + config.backend.authority + path,
+        headers: {
+          'x-forwarded-client-ip': req.userIp,
+          'x-forwarded-user-ip': req.userIp,
+          'x-forwarded-user-agent': req.get('User-Agent')
+        },
+        oauth: {
+          consumer_key: config.afrostream.apiKey,
+          consumer_secret: config.afrostream.apiSecret
+          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
+        }
+      });
+    });
+};
+
+/**
  * call this method when you don't need the token (faster & safer)
  * @param req
  * @param path
@@ -165,4 +196,5 @@ var fwd = function (res) {
 module.exports.getDataWithoutAuth = getDataWithoutAuth;
 module.exports.getData = getData;
 module.exports.postData = postData;
+module.exports.deleteData = deleteData;
 module.exports.fwd = fwd;

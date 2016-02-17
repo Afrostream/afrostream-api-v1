@@ -1,14 +1,7 @@
 'use strict';
 
-var purest = require('../../purest/index');
+var backend = require('../../backend');
 
 exports.info = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'users/me', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/users/me').nodeify(backend.fwd(res));
 };
-
-function handleError(res, err) {
-  return res.send(500, err);
-}

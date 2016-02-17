@@ -1,31 +1,18 @@
 'use strict';
 
-var purest = require('../../purest/index');
+var backend = require('../../backend');
 
 exports.index = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req,'seasons', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/seasons').nodeify(backend.fwd(res));
 };
 
 exports.show = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req,'seasons/{0}', {id: req.params.id}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/seasons/' + req.params.id).nodeify(backend.fwd(res));
 };
 
 exports.search = function (req, res) {
   res.isDynamic();
-  purest.Afrostream.postSecureData(req,'seasons/search', req.body, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.postData(req, '/api/seasons/search').nodeify(backend.fwd(res));
 };
-
-function handleError(res, err) {
-  return res.send(500, err);
-}
