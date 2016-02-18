@@ -63,8 +63,8 @@ var getData = function (req, path, requestOptions) {
             qs: queryOptions,
             uri: config.backend.protocol + '://' + config.backend.authority + path,
             headers: {
-              'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-              'x-forwarded-client-ip': req.clientIp,
+              'x-forwarded-client-ip': req.userIp,
+              'x-forwarded-user-ip': req.userIp,
               'x-forwarded-user-agent': req.get('User-Agent')
             },
             oauth: {
@@ -97,8 +97,39 @@ var postData = function (req, path) {
         form: bodyOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
-          'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-          'x-forwarded-client-ip': req.clientIp,
+          'x-forwarded-client-ip': req.userIp,
+          'x-forwarded-user-ip': req.userIp,
+          'x-forwarded-user-agent': req.get('User-Agent')
+        },
+        oauth: {
+          consumer_key: config.afrostream.apiKey,
+          consumer_secret: config.afrostream.apiSecret
+          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
+        }
+      });
+    });
+};
+
+/**
+ * DELETE
+ */
+var deleteData = function (req, path) {
+  return getToken()
+    .then(function (token) {
+      var queryOptions = _.merge({}, req.query || {});
+      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
+      var accessToken = req.userAccessToken || token.access_token;
+      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
+      //
+      return Q.nfcall(request, {
+        method: 'DELETE',
+        json: true,
+        qs: queryOptions,
+        form: bodyOptions,
+        uri: config.backend.protocol + '://' + config.backend.authority + path,
+        headers: {
+          'x-forwarded-client-ip': req.userIp,
+          'x-forwarded-user-ip': req.userIp,
           'x-forwarded-user-agent': req.get('User-Agent')
         },
         oauth: {
@@ -124,8 +155,8 @@ var getDataWithoutAuth = function (req, path, requestOptions) {
           qs: req.query,
           uri: config.backend.protocol + '://' + config.backend.authority + path,
           headers: {
-            'x-forwarded-clientip': req.clientIp, // FIXME: to be removed
-            'x-forwarded-client-ip': req.clientIp,
+            'x-forwarded-client-ip': req.userIp,
+            'x-forwarded-user-ip': req.userIp,
             'x-forwarded-user-agent': req.get('User-Agent')
           }
         },
@@ -165,4 +196,5 @@ var fwd = function (res) {
 module.exports.getDataWithoutAuth = getDataWithoutAuth;
 module.exports.getData = getData;
 module.exports.postData = postData;
+module.exports.deleteData = deleteData;
 module.exports.fwd = fwd;

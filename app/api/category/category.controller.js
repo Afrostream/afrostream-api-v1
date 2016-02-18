@@ -1,55 +1,33 @@
 'use strict';
 
-var purest = require('../../purest/index');
+var backend = require('../../backend');
 
 exports.index = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req, 'categorys', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys').nodeify(backend.fwd(res));
 };
 
 exports.show = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req, 'categorys/{0}', {id: req.params.id}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys/'+req.params.id).nodeify(backend.fwd(res));
 };
 
 exports.spots = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req, 'categorys/{0}/spots', {id: req.params.id}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys/'+req.params.id+'/spots').nodeify(backend.fwd(res));
 };
 
 exports.mea = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req, 'categorys/meas', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys/meas').nodeify(backend.fwd(res));
 };
 
 exports.allSpots = function (req, res) {
   res.cache();
-  purest.Afrostream.getSecureData(req, 'categorys/spots', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys/spots').nodeify(backend.fwd(res));
 };
 
 exports.menu = function (req, res) {
   res.cache();
-  purest.Afrostream.menu(req, {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/categorys/menu').nodeify(backend.fwd(res));
 };
-
-function handleError(res, err) {
-  return res.status(500).send(err);
-}
