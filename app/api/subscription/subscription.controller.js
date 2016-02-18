@@ -23,7 +23,7 @@ exports.status = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  backend.postData(req, '/api/subscriptions/status').nodeify(backend.fwd(res));
+  backend.postData(req, '/api/subscriptions/').nodeify(backend.fwd(res));
 };
 
 exports.gift = function (req, res) {
