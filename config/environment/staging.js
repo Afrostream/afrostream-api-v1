@@ -28,35 +28,5 @@ module.exports = {
   backend: {
     protocol: 'https',
     authority: 'afr-back-end-staging.herokuapp.com'
-  },
-  purest: {
-    providers: {
-      afrostream: {
-        '__provider': {
-          oauth2: true,
-          refresh: "https://afr-back-end-staging.herokuapp.com/auth/oauth2",
-          docs: "https://afr-back-end-staging.herokuapp.com/doc"
-        },
-        'https://afr-back-end-staging.herokuapp.com': {
-          '__domain': {
-            auth: {
-              qs: {
-                'access_token': "[0]"
-              }
-            }
-          },
-          'auth/oauth2/{endpoint}': {
-            '__path': {
-              'alias': "oauth"
-            }
-          },
-          'api/{endpoint}': {
-            '__path': {
-              'alias': "api"
-            }
-          }
-        }
-      }
-    }
   }
 };

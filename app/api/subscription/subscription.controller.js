@@ -1,80 +1,31 @@
 'use strict';
 
-var purest = require('../../purest/index');
+var backend = require('../../backend');
 
 exports.me = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/me', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/subscriptions/me').nodeify(backend.fwd(res));
 };
 
 exports.all = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/all', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/subscriptions/all').nodeify(backend.fwd(res));
 };
 
 exports.billing = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/billing', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/subscriptions/billing').nodeify(backend.fwd(res));
 };
 
 exports.cancel = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/cancel', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/subscriptions/cancel').nodeify(backend.fwd(res));
 };
 
 exports.status = function (req, res) {
-  purest.Afrostream.getSecureData(req, 'subscriptions/status', {}, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.getData(req, '/api/subscriptions/status').nodeify(backend.fwd(res));
 };
 
 exports.create = function (req, res) {
-  purest.Afrostream.postSecureData(req, 'subscriptions', req.body, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.postData(req, '/api/subscriptions/status').nodeify(backend.fwd(res));
 };
 
 exports.gift = function (req, res) {
-  purest.Afrostream.postSecureData(req, 'subscriptions/gift', req.body, function (err, data) {
-    if (err) return handleError(res, err);
-    res.json(200, data);
-  });
+  backend.postData(req, '/api/subscriptions/gift').nodeify(backend.fwd(res));
 };
-
-function handleError(res, err) {
-
-
-  if (err === 'Unauthorized') {
-    return res.send(401, err);
-
-    //TODO: contact recurly about the below error,
-    //seems they do not properly validate the coupon code before we call the api.
-  } else if (typeof err[0] !== 'undefined' &&
-
-      typeof err[0]['field'] !== 'undefined' &&
-      typeof err[0]['symbol'] !== 'undefined' &&
-      err[0]['field'] === 'subscription.coupon_code' &&
-      err[0]['symbol'] === 'invalid') {
-
-    return res.send(403, err);
-  }  else if (typeof err[0] !== 'undefined' &&
-
-      typeof err[0]['field'] !== 'undefined' &&
-      typeof err[0]['symbol'] !== 'undefined' &&
-      err[0]['field'] === 'subscription.account.base' &&
-      err[0]['symbol'] === 'declined') {
-
-    return res.send(402, err);
-  }
-  return res.send(500, err);
-}
