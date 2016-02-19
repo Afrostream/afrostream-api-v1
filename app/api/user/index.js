@@ -28,5 +28,6 @@ router.use('/:userId/favoritesSeasons', require('./favoriteSeason/index'));
 router.get('/me', controller.info);
 
 router.use('/:userId/videos', require('./video/index'));
+router.get('/:userId/history', controller.history);
 
 module.exports = router;
