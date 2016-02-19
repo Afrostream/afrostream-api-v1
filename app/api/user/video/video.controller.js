@@ -9,3 +9,7 @@ exports.show = function (req, res) {
 exports.update = function (req, res) {
   backend.putData(req, '/api/users/' + req.params.userId + '/videos/' + req.params.videoId).nodeify(backend.fwd(res));
 };
+
+exports.index = function (req, res) {
+  backend.getData(req, '/api/users/' + req.params.userId + '/videos').nodeify(backend.fwd(res));
+};
