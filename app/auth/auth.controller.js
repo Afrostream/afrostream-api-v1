@@ -29,6 +29,26 @@ var _signin = function (req) {
   }).then(ensure200OK);
 };
 
+var _refresh = function (req) {
+  return Q.nfcall(request, {
+    method: 'POST',
+    uri: config.backend.protocol + '://' + config.backend.authority + '/auth/oauth2/token',
+    json: true,
+    form:{
+      grant_type:'refresh_token',
+      client_id: config.afrostream.apiKey,
+      client_secret: config.afrostream.apiSecret,
+      refresh_token:req.body.refresh_token
+    },
+    // FIXME: abstract request api.
+    headers: {
+      'x-forwarded-client-ip': req.userIp,
+      'x-forwarded-user-ip': req.userIp,
+      'x-forwarded-user-agent': req.get('User-Agent')
+    }
+  }).then(ensure200OK);
+};
+
 var ensure200OK = function (result) {
   if (result[0].statusCode !== 200) {
     console.error('auth: error: backend status='+result[0].statusCode+': ', result[1]);
@@ -41,6 +61,10 @@ var ensure200OK = function (result) {
   }
   return result[1];
 };
+
+var refresh = function (req, res) {
+
+}
 
 var signup = function (req, res) {
   // maybe it's a signin ?
@@ -92,7 +116,11 @@ var signin = function (req, res) {
         });
       */
       console.log('auth: signin: ok: ' + req.body.email);
-      res.json({accessToken: oauth2Response.access_token});
+      res.json({
+        accessToken: oauth2Response.access_token,
+        refreshToken:oauth2Response.refresh_token,
+        expiresIn:oauth2Response.expires_in
+      });
     },
     function error(err) {
       /*
@@ -100,6 +128,37 @@ var signin = function (req, res) {
         res.clearCookie('auth');
       */
       console.error('auth: signin: error: ' + req.body.email + ' ' + String(err), err);
+      res.status(err.statusCode || 500).json({message:String(err)});
+    });
+};
+
+var refresh = function (req, res) {
+  _refresh(req)
+    .then(
+    function success(oauth2Response) {
+      /*
+        // FIXME: cookie auth.
+        res.cookie('auth', {
+        access_token: oauth2Response.access_token,
+        expires_at: new Date(Date.now() + 1000 * oauth2Response.expires_in).toISOString()
+        }, {
+          domain:'.afrostream.tv',
+          signed: true
+        });
+      */
+      console.log('auth: signin: ok: ' + req.body.email);
+      res.json({
+        accessToken: oauth2Response.access_token,
+        refreshToken:oauth2Response.refresh_token,
+        expiresIn:oauth2Response.expires_in
+      });
+    },
+    function error(err) {
+      /*
+        // FIXME: cookie auth.
+        res.clearCookie('auth');
+      */
+      console.error('auth: refresh token : error: ' + req.body.email + ' ' + String(err), err);
       res.status(err.statusCode || 500).json({message:String(err)});
     });
 };
@@ -122,6 +181,7 @@ var reset = function (req, res) {
     });
 };
 
+module.exports.refresh = refresh;
 module.exports.signin = signin;
 module.exports.signup = signup;
 module.exports.reset = reset;

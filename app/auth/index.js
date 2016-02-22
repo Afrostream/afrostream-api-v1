@@ -18,6 +18,7 @@ router.use('/facebook', require('./facebook'));
 
 // dumping signup/signin/resetPassword inputs.
 router.use(dumpPostData());
+router.post('/refresh', controller.refresh);
 router.post('/signup', validator.validateSignupBody, controller.signup);
 router.post('/signin', validator.validateSigninBody, controller.signin);
 router.post('/reset', validator.validateResetPasswordBody, controller.reset);
