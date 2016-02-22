@@ -55,7 +55,11 @@ var signup = function (req, res) {
     .then(
     function (oauth2Response) {
       console.log('auth: signup: -> signin: ' + req.body.email);
-      res.json({accessToken: oauth2Response.access_token});
+      res.json({
+        accessToken: oauth2Response.access_token,
+        refreshToken:oauth2Response.refresh_token,
+        expiresIn:oauth2Response.expires_in
+      });
     },
     function (err) {
       // ok, let's signup
