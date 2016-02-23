@@ -14,6 +14,7 @@
     "AUTH0_SECRET": "OJaS7YoY83bfNXrIAXbSZW9OidO65eeYMXZTGOSG27SrQP1JNp2xdpAddlWRo3Y9",
     "AUTH0_DOMAIN": "afrostream.eu.auth0.com",
     "AUTH0_CALLBACK_URL": "afrostream-staging.herokuapp.com/callback",
+    "BACKEND_AUTHORITY": "afr-back-end-staging.herokuapp.com",
     "RECURLY_SUB_DOMAIN": "##",
     "RECURLY_API_KEY": "##"
   },

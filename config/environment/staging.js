@@ -27,6 +27,6 @@ module.exports = {
   },
   backend: {
     protocol: 'https',
-    authority: 'afr-back-end-staging.herokuapp.com'
+    authority: process.env.BACKEND_AUTHORITY || 'afr-back-end-staging.herokuapp.com'
   }
 };
