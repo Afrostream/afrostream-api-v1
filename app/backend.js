@@ -40,42 +40,50 @@ var getToken = function (done) {
 };
 
 /**
+ * global call backend
+ */
+var callBackend = function (req, path, requestOptions) {
+  return Q.nfcall(
+    request,
+    _.merge(
+      {
+        method: 'GET',
+        json: true,
+        uri: config.backend.protocol + '://' + config.backend.authority + path,
+        headers: {
+          'x-forwarded-client-ip': req.userIp,
+          'x-forwarded-user-ip': req.userIp,
+          'x-forwarded-user-agent': req.get('User-Agent')
+        },
+        oauth: {
+          consumer_key: config.afrostream.apiKey,
+          consumer_secret: config.afrostream.apiSecret
+          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
+        }
+      },
+      requestOptions || {}
+    )
+  );
+}
+/**
  * call the backend, return the result
  */
 var getData = function (req, path, requestOptions) {
   return getToken()
     .then(function (token) {
-      var queryOptions = _.merge({}, { access_token: token.access_token }, req.query || {});
+      var queryOptions = _.merge({}, {access_token: token.access_token}, req.query || {});
 
       // FIXME: this code should be removed after cookie auth
       // BEGIN REMOVE
       if (req.userAccessToken) {
         queryOptions.access_token = req.userAccessToken;
       }
-      // END REMOVE
 
-      return Q.nfcall(
-        request,
-        _.merge(
-          {
-            method: 'GET',
-            json: true,
-            qs: queryOptions,
-            uri: config.backend.protocol + '://' + config.backend.authority + path,
-            headers: {
-              'x-forwarded-client-ip': req.userIp,
-              'x-forwarded-user-ip': req.userIp,
-              'x-forwarded-user-agent': req.get('User-Agent')
-            },
-            oauth: {
-              consumer_key: config.afrostream.apiKey,
-              consumer_secret: config.afrostream.apiSecret
-              // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-            }
-          },
-          requestOptions || {}
-        )
-      );
+      // END REMOVE
+      return callBackend(req, path, _.merge({
+        method: 'GET',
+        qs: queryOptions
+      }, requestOptions));
     });
 };
 
@@ -88,56 +96,12 @@ var postData = function (req, path) {
       var queryOptions = _.merge({}, req.query || {});
       // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
       var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
+      var bodyOptions = _.merge({}, {access_token: accessToken}, req.body || {});
       //
-      return Q.nfcall(request, {
+      return callBackend(req, path, {
         method: 'POST',
-        json: true,
         qs: queryOptions,
-        body: bodyOptions,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-client-ip': req.userIp,
-          'x-forwarded-user-ip': req.userIp,
-          'x-forwarded-user-agent': req.get('User-Agent')
-        },
-        oauth: {
-          consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret
-          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-        }
-      });
-    });
-};
-
-
-/**
- * PUT
- */
-var putData = function (req, path) {
-  return getToken()
-    .then(function (token) {
-      var queryOptions = _.merge({}, req.query || {});
-      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
-      var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
-      //
-      return Q.nfcall(request, {
-        method: 'PUT',
-        json: true,
-        qs: queryOptions,
-        body: bodyOptions,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-client-ip': req.userIp,
-          'x-forwarded-user-ip': req.userIp,
-          'x-forwarded-user-agent': req.get('User-Agent')
-        },
-        oauth: {
-          consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret
-          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-        }
+        body: bodyOptions
       });
     });
 };
@@ -152,24 +116,12 @@ var deleteData = function (req, path) {
       var queryOptions = _.merge({}, req.query || {});
       // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
       var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
+      var bodyOptions = _.merge({}, {access_token: accessToken}, req.body || {});
       //
-      return Q.nfcall(request, {
+      return callBackend(req, path, {
         method: 'DELETE',
-        json: true,
         qs: queryOptions,
-        body: bodyOptions,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-client-ip': req.userIp,
-          'x-forwarded-user-ip': req.userIp,
-          'x-forwarded-user-agent': req.get('User-Agent')
-        },
-        oauth: {
-          consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret
-          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-        }
+        body: bodyOptions
       });
     });
 };
@@ -183,24 +135,12 @@ var putData = function (req, path) {
       var queryOptions = _.merge({}, req.query || {});
       // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
       var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, { access_token: accessToken }, req.body || {} );
+      var bodyOptions = _.merge({}, {access_token: accessToken}, req.body || {});
       //
-      return Q.nfcall(request, {
+      return callBackend(req, path, {
         method: 'PUT',
-        json: true,
         qs: queryOptions,
-        form: bodyOptions,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-client-ip': req.userIp,
-          'x-forwarded-user-ip': req.userIp,
-          'x-forwarded-user-agent': req.get('User-Agent')
-        },
-        oauth: {
-          consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret
-          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-        }
+        body: bodyOptions
       });
     });
 };
@@ -211,22 +151,22 @@ var putData = function (req, path) {
  * @param path
  */
 var getDataWithoutAuth = function (req, path, requestOptions) {
-    return Q.nfcall(request,
-      _.merge(
-        {
-          method: 'GET',
-          json: true,
-          qs: req.query,
-          uri: config.backend.protocol + '://' + config.backend.authority + path,
-          headers: {
-            'x-forwarded-client-ip': req.userIp,
-            'x-forwarded-user-ip': req.userIp,
-            'x-forwarded-user-agent': req.get('User-Agent')
-          }
-        },
-        requestOptions || {}
-      )
-    );
+  return Q.nfcall(request,
+    _.merge(
+      {
+        method: 'GET',
+        json: true,
+        qs: req.query,
+        uri: config.backend.protocol + '://' + config.backend.authority + path,
+        headers: {
+          'x-forwarded-client-ip': req.userIp,
+          'x-forwarded-user-ip': req.userIp,
+          'x-forwarded-user-agent': req.get('User-Agent')
+        }
+      },
+      requestOptions || {}
+    )
+  );
 };
 
 /*
@@ -245,7 +185,7 @@ var fwd = function (res) {
         case 301:
         case 302:
           if (backendResponse.headers &&
-              backendResponse.headers.location) {
+            backendResponse.headers.location) {
             res.set('location', backendResponse.headers.location);
           }
           break;

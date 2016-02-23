@@ -62,10 +62,6 @@ var ensure200OK = function (result) {
   return result[1];
 };
 
-var refresh = function (req, res) {
-
-}
-
 var signup = function (req, res) {
   // maybe it's a signin ?
   _signin(req)
