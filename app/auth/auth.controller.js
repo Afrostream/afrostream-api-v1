@@ -13,7 +13,7 @@ var _signin = function (req) {
     method: 'POST',
     uri: config.backend.protocol + '://' + config.backend.authority + '/auth/oauth2/token',
     json: true,
-    form:{
+    body:{
       grant_type:'password',
       client_id: config.afrostream.apiKey,
       client_secret: config.afrostream.apiSecret,

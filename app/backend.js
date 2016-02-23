@@ -23,7 +23,7 @@ var getToken = function (done) {
     method: 'POST',
     uri: config.backend.protocol + '://' + config.backend.authority + '/auth/oauth2/token',
     json: true,
-    form: {
+    body: {
       grant_type: 'client_credentials',
       client_id: config.afrostream.apiKey,
       client_secret: config.afrostream.apiSecret
@@ -94,7 +94,7 @@ var postData = function (req, path) {
         method: 'POST',
         json: true,
         qs: queryOptions,
-        form: bodyOptions,
+        body: bodyOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-client-ip': req.userIp,
@@ -126,7 +126,7 @@ var putData = function (req, path) {
         method: 'PUT',
         json: true,
         qs: queryOptions,
-        form: bodyOptions,
+        body: bodyOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-client-ip': req.userIp,
@@ -158,7 +158,7 @@ var deleteData = function (req, path) {
         method: 'DELETE',
         json: true,
         qs: queryOptions,
-        form: bodyOptions,
+        body: bodyOptions,
         uri: config.backend.protocol + '://' + config.backend.authority + path,
         headers: {
           'x-forwarded-client-ip': req.userIp,
