@@ -2,18 +2,6 @@
 
 var backend = require('../../backend');
 
-exports.me = function (req, res) {
-  backend.getData(req, '/api/subscriptions/me').nodeify(backend.fwd(res));
-};
-
-exports.all = function (req, res) {
-  backend.getData(req, '/api/subscriptions/all').nodeify(backend.fwd(res));
-};
-
-exports.billing = function (req, res) {
-  backend.getData(req, '/api/subscriptions/billing').nodeify(backend.fwd(res));
-};
-
 exports.cancel = function (req, res) {
   backend.getData(req, '/api/subscriptions/cancel').nodeify(backend.fwd(res));
 };
