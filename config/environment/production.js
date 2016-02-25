@@ -37,6 +37,6 @@ module.exports = {
   },
   backend: {
     protocol: 'https',
-    authority: 'afrostream-backend.herokuapp.com'
+    authority: process.env.BACKEND_AUTHORITY || 'afrostream-backend.herokuapp.com'
   }
 };
