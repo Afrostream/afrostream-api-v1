@@ -11,7 +11,7 @@ exports.createSubscriptions = function (req, res) {
 };
 
 exports.createGift = function (req, res) {
-  backend.postData(req, '/api/billings/gift').nodeify(backend.fwd(res));
+  backend.postData(req, '/api/billings/gifts').nodeify(backend.fwd(res));
 };
 
 exports.cancelSubscriptions = function (req, res) {
