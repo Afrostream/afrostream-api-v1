@@ -14,6 +14,10 @@ exports.createGift = function (req, res) {
   backend.postData(req, '/api/billings/gifts').nodeify(backend.fwd(res));
 };
 
+exports.validateCoupon = function (req, res) {
+  backend.getData(req, '/api/billings/coupons').nodeify(backend.fwd(res));
+};
+
 exports.cancelSubscriptions = function (req, res) {
   backend.putData(req, '/api/billings/subscriptions/' + req.params.subscriptionUuid + '/cancel').nodeify(backend.fwd(res));
 };
