@@ -14,6 +14,5 @@ router.get('/cancel', controller.cancel);
 router.get('/status', controller.status);
 router.post('/', controller.create);
 router.post('/gift', controller.gift);
-router.post('/coupon', controller.coupons);
 
 module.exports = router;
