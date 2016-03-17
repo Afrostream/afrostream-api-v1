@@ -12,6 +12,7 @@ router.use(function (req, res, next) {
 
 router.get('/internalplans', controller.showInternalplans);
 router.post('/subscriptions', controller.createSubscriptions);
+router.post('/gifts', controller.createGift);
 router.put('/subscriptions/:subscriptionUuid/cancel', controller.cancelSubscriptions);
 
 module.exports = router;
