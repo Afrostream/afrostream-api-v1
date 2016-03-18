@@ -192,9 +192,6 @@ var fwd = function (res) {
         default:
           break;
       }
-      console.log('*** start of the backend response ***');
-      console.log(backendBody);
-      console.log('*** end of the backend response ***');
       res.status(backendResponse.statusCode).json(backendBody);
     }
   };
