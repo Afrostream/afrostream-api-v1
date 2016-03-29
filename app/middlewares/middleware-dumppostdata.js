@@ -5,7 +5,8 @@ module.exports = function (options) {
     if (req && req.body) {
       try {
         // avoiding to dump post on /api/users/.*/videos/
-        if (!String(req.url).match(/^\/api\/users\/[^\/]+\/videos\/.*$/)) {
+        if (!String(req.url).match(/^\/api\/users\/[^\/]+\/videos\/.*$/) &&
+            ['POST', 'PUT', 'PATCH'].indexOf(req.method) !== -1) {
           // fix: do not dump users passwords into logentries.
           var body = JSON.parse(JSON.stringify(req.body));
           if (body.password) { body.password = 'xxxxxxxx'; }
