@@ -35,13 +35,6 @@ if ('development' === env || 'test' === env) {
   app.use(require('errorhandler')()); // Error handler - has to be last
 }
 
-app.get('/headers', function (req, res) {
-  res.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
-  res.set('Pragma', 'no-cache'); // http 1.0
-  res.set('Expires', '0'); // proxy
-  res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
-});
-
 var backend = require('./backend');
 app.post('/test/post', function (req, res) {
   backend.postData(req, '/test/post').nodeify(backend.fwd(res));

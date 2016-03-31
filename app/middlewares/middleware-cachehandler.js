@@ -9,6 +9,7 @@ module.exports = function (options) {
       // res.set('Expires', '0'); // proxy
       // but we have a bug with fastly, we follow the documentation :
       //  https://docs.fastly.com/guides/tutorials/cache-control-tutorial
+
       res.set('Cache-Control', 'private');
     };
     res.isDynamic = function () {

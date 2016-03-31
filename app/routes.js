@@ -23,7 +23,8 @@ module.exports = function (app) {
 
   app.use('/right', require('./right'));
 
-  app.use('/alive', require('./alive.controller.js').alive);
+  app.use('/alive', require('./controller.js').alive);
+  app.use('/headers', require('./controller.js').headers);
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
