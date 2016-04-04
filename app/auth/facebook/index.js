@@ -5,7 +5,8 @@ var controller = require('./facebook.controller.js');
 
 var router = express.Router();
 
-router.get('/', controller.checkAuth);
+router.get('/signin', controller.signin);
+router.get('/signup', controller.signup);
 router.get('/callback', controller.callback);
 router.get('/unlink', controller.unlink);
 

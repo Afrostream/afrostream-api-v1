@@ -3,9 +3,14 @@
 var backend = require('../../backend');
 var auth = require('../auth.controller');
 
-exports.checkAuth = function (req, res) {
+exports.signin = function (req, res) {
   res.noCache();
-  backend.getDataWithoutAuth(req, '/auth/facebook', {followRedirect: false}).nodeify(backend.fwd(res));
+  backend.getDataWithoutAuth(req, '/auth/facebook/signin', {followRedirect: false}).nodeify(backend.fwd(res));
+};
+
+exports.signup = function (req, res) {
+  res.noCache();
+  backend.getDataWithoutAuth(req, '/auth/facebook/signup', {followRedirect: false}).nodeify(backend.fwd(res));
 };
 
 exports.callback = function (req, res) {
