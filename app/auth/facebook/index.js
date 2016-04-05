@@ -7,7 +7,8 @@ var router = express.Router();
 
 router.get('/signin', controller.signin);
 router.get('/signup', controller.signup);
-router.get('/callback', controller.callback);
+router.get('/link', controller.link);
 router.get('/unlink', controller.unlink);
+router.get('/callback', controller.callback);
 
 module.exports = router;
