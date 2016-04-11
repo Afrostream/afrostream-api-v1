@@ -5,12 +5,12 @@ var auth = require('../auth.controller');
 
 exports.signin = function (req, res) {
   res.noCache();
-  backend.getDataWithoutAuth(req, '/auth/facebook/signin', {followRedirect: false}).nodeify(backend.fwd(res));
+  backend.getData(req, '/auth/facebook/signin', {followRedirect: false}).nodeify(backend.fwd(res));
 };
 
 exports.signup = function (req, res) {
   res.noCache();
-  backend.getDataWithoutAuth(req, '/auth/facebook/signup', {followRedirect: false}).nodeify(backend.fwd(res));
+  backend.getData(req, '/auth/facebook/signup', {followRedirect: false}).nodeify(backend.fwd(res));
 };
 
 exports.link = function (req, res) {
@@ -25,5 +25,5 @@ exports.unlink = function (req, res) {
 
 exports.callback = function (req, res) {
   res.noCache();
-  backend.getDataWithoutAuth(req, '/auth/facebook/callback', {followRedirect: false}).nodeify(auth.fwd(res));
+  backend.getData(req, '/auth/facebook/callback', {followRedirect: false}).nodeify(auth.fwd(res));
 };
