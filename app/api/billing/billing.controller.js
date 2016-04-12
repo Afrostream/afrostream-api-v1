@@ -18,6 +18,10 @@ exports.validateCoupon = function (req, res) {
   backend.getData(req, '/api/billings/coupons').nodeify(backend.fwd(res));
 };
 
+exports.getCouponCampains = function (req, res) {
+  backend.getData(req, '/api/billings/couponscampaigns').nodeify(backend.fwd(res));
+};
+
 exports.cancelSubscriptions = function (req, res) {
   backend.putData(req, '/api/billings/subscriptions/' + req.params.subscriptionUuid + '/cancel').nodeify(backend.fwd(res));
 };

@@ -14,6 +14,7 @@ router.get('/internalplans', controller.showInternalplans);
 router.post('/subscriptions', controller.createSubscriptions);
 router.post('/gifts', controller.createGift);
 router.get('/coupons', controller.validateCoupon);
+router.get('/couponscampaigns', controller.getCouponCampains);
 router.put('/subscriptions/:subscriptionUuid/cancel', controller.cancelSubscriptions);
 
 module.exports = router;
