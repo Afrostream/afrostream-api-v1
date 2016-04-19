@@ -13,6 +13,7 @@ app.set('etag', false);
 app.set('views', path.join(config.root, 'app', 'views'));
 app.set('view engine', 'jade');
 app.use(require('compression')());
+app.use(require('body-parser').text({type: 'text/html'}));
 app.use(require('body-parser').urlencoded({extended: false}));
 app.use(require('body-parser').json());
 app.use(require('cookie-parser')(config.cookie.secret));

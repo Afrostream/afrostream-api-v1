@@ -5,7 +5,7 @@
   "description": "Universal Afrostream Front Api",
   "dependencies": {
     "async": "^1.4.2",
-    "body-parser": "~1.0.1",
+    "body-parser": "~1.5.0",
     "compression": "~1.0.1",
     "cookie-parser": "^1.4.0",
     "errorhandler": "~1.0.0",
