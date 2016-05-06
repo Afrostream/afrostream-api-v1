@@ -15,7 +15,7 @@ var isTokenValid = function () {
   return token && new Date(token.expires_at).getTime() > Date.now();
 };
 
-var getToken = function (done) {
+var getToken = function () {
   if (isTokenValid()) {
     return Q(token);
   }
@@ -42,67 +42,56 @@ var getToken = function (done) {
 /**
  * global call backend
  */
-var callBackend = function (req, path, requestOptions) {
-  return Q.nfcall(
-    request,
-    _.merge(
-      {
-        method: 'GET',
-        json: true,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-client-ip': req.userIp,
-          'x-forwarded-user-ip': req.userIp,
-          'x-forwarded-user-agent': req.get('User-Agent')
-        },
-        oauth: {
-          consumer_key: config.afrostream.apiKey,
-          consumer_secret: config.afrostream.apiSecret
-          // token: token.access_token // <= FIXME: access token should be here, but the backend doesn't allow it ?!
-        }
-      },
-      requestOptions || {}
-    )
+var callBackend = function (req, path, requestOptions, token) {
+  requestOptions = _.merge(
+    {
+      method: 'GET',
+      json: true,
+      uri: config.backend.protocol + '://' + config.backend.authority + path,
+      headers: {
+        'x-forwarded-client-ip': req.userIp,
+        'x-forwarded-user-ip': req.userIp,
+        'x-forwarded-user-agent': req.get('User-Agent')
+      }
+    },
+    requestOptions || {}
   );
-}
+  if (token) {
+    _.merge(requestOptions, {
+      headers: {
+        Authorization: 'Bearer '+token
+      }
+    });
+  }
+  return Q.nfcall(request, requestOptions);
+};
+
 /**
  * call the backend, return the result
  */
 var getData = function (req, path, requestOptions) {
   return getToken()
-    .then(function (token) {
-      var queryOptions = _.merge({}, {access_token: token.access_token}, req.query || {});
-
-      // FIXME: this code should be removed after cookie auth
-      // BEGIN REMOVE
-      if (req.userAccessToken) {
-        queryOptions.access_token = req.userAccessToken;
-      }
-
-      // END REMOVE
-      return callBackend(req, path, _.merge({
-        method: 'GET',
-        qs: queryOptions
-      }, requestOptions));
+    .then(function (clientToken) {
+      return callBackend(
+        req,
+        path,
+        _.merge({ method: 'GET',  qs: req.query }, requestOptions || {}),
+        req.userAccessToken || clientToken.access_token
+      );
     });
 };
 
 /**
  * call the backend (POST), return the result
  */
-var postData = function (req, path) {
+var postData = function (req, path, requestOptions) {
   return getToken()
-    .then(function (token) {
-      var queryOptions = _.merge({}, req.query || {});
-      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
-      var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, {access_token: accessToken}, req.body || {});
-      //
-      return callBackend(req, path, {
-        method: 'POST',
-        qs: queryOptions,
-        body: bodyOptions
-      });
+    .then(function (clientToken) {
+      return callBackend(
+        req,
+        path,
+        _.merge({ method: 'POST',  qs: req.query, body: req.body }, requestOptions || {}),
+        req.userAccessToken || clientToken.access_token);
     });
 };
 
@@ -110,38 +99,29 @@ var postData = function (req, path) {
 /**
  * DELETE
  */
-var deleteData = function (req, path) {
+var deleteData = function (req, path, requestOptions) {
   return getToken()
-    .then(function (token) {
-      var queryOptions = _.merge({}, req.query || {});
-      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
-      var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, {access_token: accessToken}, req.body || {});
-      //
-      return callBackend(req, path, {
-        method: 'DELETE',
-        qs: queryOptions,
-        body: bodyOptions
-      });
+    .then(function (clientToken) {
+      return callBackend(
+        req,
+        path,
+        _.merge({ method: 'DELETE',  qs: req.query, body: req.body }, requestOptions || {}),
+        req.userAccessToken || clientToken.access_token
+      );
     });
 };
 
 /**
  * PUT
  */
-var putData = function (req, path) {
+var putData = function (req, path, requestOptions) {
   return getToken()
-    .then(function (token) {
-      var queryOptions = _.merge({}, req.query || {});
-      // priority for body.access_token is : body > headers['Access-Token'] > token.access_token
-      var accessToken = req.userAccessToken || token.access_token;
-      var bodyOptions = _.merge({}, {access_token: accessToken}, req.body || {});
-      //
-      return callBackend(req, path, {
-        method: 'PUT',
-        qs: queryOptions,
-        body: bodyOptions
-      });
+    .then(function (clientToken) {
+      return callBackend(
+        req,
+        path,
+        _.merge({ method: 'PUT',  qs: req.query, body: req.body }, requestOptions || {}),
+        req.userAccessToken || clientToken.access_token);
     });
 };
 
@@ -151,21 +131,10 @@ var putData = function (req, path) {
  * @param path
  */
 var getDataWithoutAuth = function (req, path, requestOptions) {
-  return Q.nfcall(request,
-    _.merge(
-      {
-        method: 'GET',
-        json: true,
-        qs: req.query,
-        uri: config.backend.protocol + '://' + config.backend.authority + path,
-        headers: {
-          'x-forwarded-client-ip': req.userIp,
-          'x-forwarded-user-ip': req.userIp,
-          'x-forwarded-user-agent': req.get('User-Agent')
-        }
-      },
-      requestOptions || {}
-    )
+  return callBackend(
+    req,
+    path,
+    _.merge({ method: 'GET',  qs: req.query }, requestOptions || {})
   );
 };
 
