@@ -51,7 +51,8 @@ var callBackend = function (req, path, requestOptions, token) {
       headers: {
         'x-forwarded-client-ip': req.userIp,
         'x-forwarded-user-ip': req.userIp,
-        'x-forwarded-user-agent': req.get('User-Agent')
+        'x-forwarded-user-agent': req.get('User-Agent'),
+        'Content-Type': req.get('Content-Type')
       }
     },
     requestOptions || {}
