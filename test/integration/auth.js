@@ -33,7 +33,7 @@ describe('POST /auth/signup', function () {
       .post('/auth/signup')
       .send({
         email: email,
-        password: 'test'
+        password: 'test42'
       })
       .expect('Content-Type', /json/)
       .expect(200, function (err, res) {
@@ -57,7 +57,7 @@ describe('POST /auth/signup', function () {
       .post('/auth/signin')
       .send({
         email: email,
-        password: 'test'
+        password: 'test42'
       })
       .expect('Content-Type', /json/)
       .expect(200, function (err, res) {
@@ -78,7 +78,7 @@ describe('POST /auth/signup', function () {
       .post('/auth/signup')
       .send({
         email: email,
-        password: 'toto'
+        password: 'toto42'
       })
       .expect('Content-Type', /json/)
       .expect(422, function (err, res) {
@@ -92,7 +92,7 @@ describe('POST /auth/signup', function () {
       .post('/auth/signup')
       .send({
         email: email,
-        password: 'test'
+        password: 'test42'
       })
       .expect('Content-Type', /json/)
       .expect(200, function (err, res) {
@@ -129,7 +129,7 @@ describe('POST /auth/signin', function() {
       .post('/auth/signin')
       .send({
         email: 'admin@admin.com',
-        password: 'admin'
+        password: '123456'
       })
       .expect('Content-Type', /json/)
       .expect(200, function (err, res) {
@@ -150,7 +150,7 @@ describe('POST /auth/signin', function() {
       .post('/auth/signin')
       .send({
         email: 'admin452T23T234KR3POF@admin.com',
-        password: 'admin'
+        password: '123456'
       })
       .expect('Content-Type', /json/)
       .expect(403, function (err, res) {
