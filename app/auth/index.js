@@ -8,19 +8,17 @@ var router = express.Router();
 
 var dumpPostData = require('../middlewares/middleware-dumppostdata');
 
+var backend = require('../backend.js');
+
+var backendProxy = function (req, res) {
+  backend.proxy(req, res, { token: req.userAccessToken });
+};
+
 router.use(function (req, res, next) {
   res.noCache();
   next();
 });
 
-router.use('/geo', require('./geo'));
-router.use('/facebook', require('./facebook'));
 
-// dumping signup/signin/resetPassword inputs.
-router.use(dumpPostData());
-router.post('/refresh', controller.refresh);
-router.post('/signup', validator.validateSignupBody, controller.signup);
-router.post('/signin', validator.validateSigninBody, controller.signin);
-router.post('/reset', validator.validateResetPasswordBody, controller.reset);
 
 module.exports = router;

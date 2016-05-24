@@ -36,13 +36,8 @@ if ('development' === env || 'test' === env) {
   app.use(require('errorhandler')()); // Error handler - has to be last
 }
 
-var backend = require('./backend');
-app.post('/test/post', function (req, res) {
-  backend.postData(req, '/test/post').nodeify(backend.fwd(res));
-});
-
 app.use(require('./middlewares/middleware-auth.js')());
 
-require('./routes.js')(app);
+app.use(require('./routes.js'));
 
 module.exports = app;
