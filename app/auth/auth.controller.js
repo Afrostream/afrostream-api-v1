@@ -1,9 +1,5 @@
 'use strict';
 
-var Q = require('q');
-
-var request = require('request');
-
 var backend = require('../backend');
 
 var config = require('../../config');
@@ -14,7 +10,9 @@ var _signin = function (req) {
     body: {
       grant_type: 'password',
       username: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      client_id: config.afrostream.apiKey,
+      client_secret: config.afrostream.apiSecret
     }
   });
 };
@@ -24,7 +22,9 @@ var _refresh = function (req) {
     uri: '/auth/oauth2/token',
     body: {
       grant_type: 'refresh_token',
-      refresh_token: req.body.refresh_token
+      refresh_token: req.body.refresh_token,
+      client_id: config.afrostream.apiKey,
+      client_secret: config.afrostream.apiSecret
     }
   });
 };

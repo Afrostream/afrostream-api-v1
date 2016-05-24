@@ -54,10 +54,10 @@ router.use('/auth/facebook', noCache, backendProxy);
 
 // dumping signup/signin/resetPassword inputs.
 var dumpPostData = require('./middlewares/middleware-dumppostdata');
-router.post('/auth/refresh', dumpPostData(), authController.refresh);
-router.post('/auth/signup', dumpPostData(), authValidator.validateSignupBody, authController.signup);
-router.post('/auth/signin', dumpPostData(), authValidator.validateSigninBody, authController.signin);
-router.post('/auth/reset', dumpPostData(), authValidator.validateResetPasswordBody, authController.reset);
+router.post('/auth/refresh', dumpPostData(), noCache, authController.refresh);
+router.post('/auth/signup', dumpPostData(), noCache, authValidator.validateSignupBody, authController.signup);
+router.post('/auth/signin', dumpPostData(), noCache, authValidator.validateSigninBody, authController.signin);
+router.post('/auth/reset', dumpPostData(), noCache, authValidator.validateResetPasswordBody, authController.reset);
 
 /*
  * RIGHT
