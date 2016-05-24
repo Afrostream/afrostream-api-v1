@@ -400,6 +400,18 @@
       "from": "async@>=1.4.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/async/-/async-1.4.2.tgz"
     },
+    "better-assert": {
+      "version": "1.0.2",
+      "from": "better-assert@latest",
+      "resolved": "https://registry.npmjs.org/better-assert/-/better-assert-1.0.2.tgz",
+      "dependencies": {
+        "callsite": {
+          "version": "1.0.0",
+          "from": "callsite@1.0.0",
+          "resolved": "https://registry.npmjs.org/callsite/-/callsite-1.0.0.tgz"
+        }
+      }
+    },
     "body-parser": {
       "version": "1.5.2",
       "from": "body-parser@>=1.5.0 <1.6.0",
