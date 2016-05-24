@@ -14,6 +14,7 @@ module.exports = function (app) {
   app.use('/api/waitingUsers', require('./api/waitingUser'));
   app.use('/api/posts', require('./api/post'));
   app.use('/api/player', require('./api/player'));
+  app.use('/api/policy', require('./api/policy'));
   app.use('/api/cgu', require('./api/cgu'));
   app.use('/api/legals', require('./api/legals'));
   app.use('/api/cdnselector', require('./api/cdnselector'));
