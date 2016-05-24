@@ -8,8 +8,10 @@ var cache = function (req, res, next) { res.cache(); next(); };
 var noCache = function (req, res, next) { res.noCache(); next(); };
 var isDynamic = function (req, res, next) { res.isDynamic(); next(); };
 
-var backendProxy = function (req, res) {
-  backend.proxy(req, res, { token: req.userAccessToken });
+var backendProxy = function (options) {
+  return function (req, res) {
+    backend.proxy(req, res, { token: req.userAccessToken, timeout: options && options.timeout || null });
+  };
 };
 
 // all user routes require the afro token.
@@ -25,23 +27,23 @@ var userTokenRequired = function (req, res, next) {
 /*
  * API
  */
-router.use('/api/assets', cache, backendProxy);
-router.use('/api/billings', noCache, backendProxy);
-router.use('/api/categorys', cache, backendProxy);
-router.use('/api/cdnselector', noCache, backendProxy);
-router.use('/api/episodes/search', isDynamic, backendProxy);
-router.use('/api/episodes', cache, backendProxy);
-router.use('/api/exchanges', noCache, backendProxy);
-router.use('/api/movies/search', isDynamic, backendProxy);
-router.use('/api/movies', cache, backendProxy);
-router.use('/api/player', cache, backendProxy);
-router.use('/api/posts', cache, backendProxy);
-router.use('/api/seasons/search', isDynamic, backendProxy);
-router.use('/api/seasons', cache, backendProxy);
-router.use('/api/subscriptions', noCache, backendProxy);
-router.use('/api/users', noCache, userTokenRequired, backendProxy);
-router.use('/api/videos', noCache, backendProxy);
-router.use('/api/waitingUsers', noCache, backendProxy);
+router.use('/api/assets', cache, backendProxy());
+router.use('/api/billings', noCache, backendProxy({timeout:25000}));
+router.use('/api/categorys', cache, backendProxy());
+router.use('/api/cdnselector', noCache, backendProxy());
+router.use('/api/episodes/search', isDynamic, backendProxy());
+router.use('/api/episodes', cache, backendProxy());
+router.use('/api/exchanges', noCache, backendProxy({timeout:25000}));
+router.use('/api/movies/search', isDynamic, backendProxy());
+router.use('/api/movies', cache, backendProxy());
+router.use('/api/player', cache, backendProxy());
+router.use('/api/posts', cache, backendProxy());
+router.use('/api/seasons/search', isDynamic, backendProxy());
+router.use('/api/seasons', cache, backendProxy());
+router.use('/api/subscriptions', noCache, backendProxy({timeout:25000}));
+router.use('/api/users', noCache, userTokenRequired, backendProxy());
+router.use('/api/videos', noCache, backendProxy());
+router.use('/api/waitingUsers', noCache, backendProxy());
 
 /*
  * AUTH
@@ -49,8 +51,8 @@ router.use('/api/waitingUsers', noCache, backendProxy);
 var authController = require('./auth/auth.controller.js');
 var authValidator = require('./auth/auth.validator.js');
 
-router.use('/auth/geo', noCache, backendProxy);
-router.use('/auth/facebook', noCache, backendProxy);
+router.use('/auth/geo', noCache, backendProxy());
+router.use('/auth/facebook', noCache, backendProxy());
 
 // dumping signup/signin/resetPassword inputs.
 var dumpPostData = require('./middlewares/middleware-dumppostdata');
@@ -62,7 +64,7 @@ router.post('/auth/reset', dumpPostData(), noCache, authValidator.validateResetP
 /*
  * RIGHT
  */
-router.use('/right', noCache, backendProxy);
+router.use('/right', noCache, backendProxy());
 
 /*
  * OTHER
