@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "dependencies": {
     "afrostream-node-client-backend": {
-      "version": "1.0.1",
-      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v1.0.1",
-      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#1e0deccf3383d59e0a18df0ba90e6ec8f587bd73",
+      "version": "1.1.2",
+      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v1.1.2",
+      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#6832dad8b22150b8e1179d542064aa84ec41012d",
       "dependencies": {
         "afrostream-node-config": {
           "version": "2.2.0",

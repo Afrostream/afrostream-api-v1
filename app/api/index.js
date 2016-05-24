@@ -9,7 +9,9 @@ var cache = function (req, res, next) { res.cache(); next(); };
 var noCache = function (req, res, next) { res.noCache(); next(); };
 var isDynamic = function (req, res, next) { res.isDynamic(); next(); };
 
-var backendProxy = backend.proxy.bind(backend);
+var backendProxy = function (req, res) {
+  backend.proxy(req, res, { silent: false, token: req.userAccessToken });
+};
 
 // all user routes require the afro token.
 var userTokenRequired = function (req, res, next) {
