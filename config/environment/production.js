@@ -12,11 +12,6 @@ module.exports = {
   port: process.env.OPENSHIFT_NODEJS_PORT ||
   process.env.PORT ||
   8080,
-
-  recurly: {
-    subdomain: process.env.RECURLY_SUB_DOMAIN,
-    apiKey: process.env.RECURLY_API_KEY
-  },
   afrostream: {
     apiSecret: process.env.AFROSTREAM_API_SECRET,
     apiKey: process.env.AFROSTREAM_API_KEY

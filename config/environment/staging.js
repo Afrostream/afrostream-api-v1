@@ -3,10 +3,6 @@
 // Development specific configuration
 // ==================================
 module.exports = {
-  recurly: {
-    subdomain: 'johnarch',
-    apiKey: '67dbb29f0dbe4e219bc247a3b5387652'
-  },
   allowOrigin: {
     url: process.env.ALLOW_URL
   },
