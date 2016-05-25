@@ -27,8 +27,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "echo 'requiring node v4.2.4' && . ~/.nvm/nvm.sh && nvm use 4.2.4 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js",
-    "test": ". ~/.nvm/nvm.sh && nvm use 4.2.4 && node_modules/.bin/mocha -b test/integration/"
+    "dev": "echo 'requiring node v4.4.5' && . ~/.nvm/nvm.sh && nvm use 4.4.5 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js",
+    "test": ". ~/.nvm/nvm.sh && nvm use 4.4.5 && node_modules/.bin/mocha -b test/integration/"
   },
   "private": true
 }
