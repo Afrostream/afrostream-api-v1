@@ -25,25 +25,26 @@ var userTokenRequired = function (req, res, next) {
 };
 
 /*
- * API
+ * API no cache
  */
-router.use('/api/assets', cache, backendProxy());
 router.use('/api/billings', noCache, backendProxy({timeout:25000}));
-router.use('/api/categorys', cache, backendProxy());
 router.use('/api/cdnselector', noCache, backendProxy());
-router.use('/api/episodes/search', isDynamic, backendProxy());
-router.use('/api/episodes', cache, backendProxy());
 router.use('/api/exchanges', noCache, backendProxy({timeout:25000}));
-router.use('/api/movies/search', isDynamic, backendProxy());
-router.use('/api/movies', cache, backendProxy());
-router.use('/api/player', cache, backendProxy());
-router.use('/api/posts', cache, backendProxy());
-router.use('/api/seasons/search', isDynamic, backendProxy());
-router.use('/api/seasons', cache, backendProxy());
 router.use('/api/subscriptions', noCache, backendProxy({timeout:25000}));
 router.use('/api/users', noCache, userTokenRequired, backendProxy());
 router.use('/api/videos', noCache, backendProxy());
 router.use('/api/waitingUsers', noCache, backendProxy());
+
+/*
+ * API dynamic
+ */
+router.use('/api/episodes/search', isDynamic, backendProxy());
+router.use('/api/movies/search', isDynamic, backendProxy());
+
+/*
+ * API cache (default)
+ */
+router.use('/api', cache, backendProxy());
 
 /*
  * AUTH
