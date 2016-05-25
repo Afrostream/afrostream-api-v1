@@ -70,16 +70,6 @@ var signin = function (req, res) {
   _signin(req)
     .then(
       function success(oauth2Response) {
-        /*
-         // FIXME: cookie auth.
-         res.cookie('auth', {
-         access_token: oauth2Response.access_token,
-         expires_at: new Date(Date.now() + 1000 * oauth2Response.expires_in).toISOString()
-         }, {
-         domain:'.afrostream.tv',
-         signed: true
-         });
-         */
         console.log('auth: signin: ok: ' + req.body.email);
         res.json({
           accessToken: oauth2Response.access_token,
@@ -101,16 +91,6 @@ var refresh = function (req, res) {
   _refresh(req)
     .then(
       function success(oauth2Response) {
-        /*
-         // FIXME: cookie auth.
-         res.cookie('auth', {
-         access_token: oauth2Response.access_token,
-         expires_at: new Date(Date.now() + 1000 * oauth2Response.expires_in).toISOString()
-         }, {
-         domain:'.afrostream.tv',
-         signed: true
-         });
-         */
         console.log('auth: signin: ok: ' + req.body.email);
         res.json({
           accessToken: oauth2Response.access_token,
