@@ -13,12 +13,6 @@ module.exports = {
   process.env.PORT ||
   8080,
 
-
-  auth0: {
-    domain: process.env.AUTH0_DOMAIN,
-    clientId: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_SECRET
-  },
   recurly: {
     subdomain: process.env.RECURLY_SUB_DOMAIN,
     apiKey: process.env.RECURLY_API_KEY
