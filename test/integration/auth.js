@@ -14,7 +14,7 @@ describe('POST /auth/signup', function () {
   before(function (done) {
     require('request')({
       method: 'GET',
-      uri: 'http://'+config.backend.authority+'/alive',
+      uri: config['afrostream-back-end'].baseUrl+'/alive',
       json: true
     }, function (err, response, body) {
       if (err || !body || !body.alive) {
@@ -113,7 +113,7 @@ describe('POST /auth/signin', function() {
   before(function (done) {
     require('request')({
       method: 'GET',
-      uri: 'http://'+config.backend.authority+'/alive',
+      uri: config['afrostream-back-end'].baseUrl+'/alive',
       json: true
     }, function (err, response, body) {
       if (err || !body || !body.alive) {
