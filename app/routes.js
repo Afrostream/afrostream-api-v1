@@ -68,12 +68,6 @@ router.post('/auth/reset', dumpPostData(), noCache, authValidator.validateResetP
 router.use('/right', noCache, backendProxy());
 
 /*
- * OTHER
- */
-router.use('/alive', require('./controller.js').alive);
-router.use('/headers', require('./controller.js').headers);
-
-/*
  * 404
  */
 router.use(function (req, res) {

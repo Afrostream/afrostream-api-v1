@@ -4,22 +4,15 @@
   "version": "1.0.0",
   "description": "Universal Afrostream Front Api",
   "dependencies": {
+    "afrostream-node-app": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-app.git#v2.3.0",
     "afrostream-node-client-backend": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v1.1.2",
     "afrostream-node-config": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-config.git#v2.2.0",
-    "async": "^1.4.2",
     "better-assert": "^1.0.2",
-    "body-parser": "~1.5.0",
-    "compression": "~1.0.1",
     "errorhandler": "~1.0.0",
     "express": "^4.13.3",
     "express-cluster": "0.0.4",
     "express-validation": "^0.4.5",
-    "ip": "^1.1.0",
-    "jade": "~1.2.0",
     "joi": "^7.1.0",
-    "lodash": "~2.4.1",
-    "method-override": "~1.0.0",
-    "morgan": "^1.6.1",
     "q": "^1.4.1",
     "request": "^2.61.0"
   },
@@ -30,7 +23,7 @@
     "supertest": "^1.1.0"
   },
   "engines": {
-    "node": "4.2.4"
+    "node": "4.4.5"
   },
   "scripts": {
     "start": "node server.js",

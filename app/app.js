@@ -1,38 +1,24 @@
 'use strict';
 
-var app = require('express')();
-var express = require('express');
-var path = require('path');
-
 var config = require('../config');
 
-var env = app.get('env');
-app.set('startDate', new Date());
-app.set('x-powered-by', false);
-app.set('etag', false);
-app.use(require('compression')());
-app.use(require('body-parser').text({type: 'text/xml'}));
-app.use(require('body-parser').urlencoded({extended: false}));
-app.use(require('body-parser').json());
-app.use(require('method-override')());
-app.use(require('./middlewares/middleware-dumppostdata')());
-app.use(require('./middlewares/middleware-allowcrossdomain')({
-  origin:config.allowOrigin.url,
-  headers:'Access-Token'
-}));
-app.use(require('./middlewares/middleware-client-ip')());
+var middlewareDumpPostdata = require('./middlewares/middleware-dumppostdata');
+var middlewareAuth = require('./middlewares/middleware-auth.js');
 
-app.use(require('morgan')('combined'));
+// pre-configured express app
+var AfrostreamNodeApp = require('afrostream-node-app');
+var app = AfrostreamNodeApp.create();
+app.use(middlewareDumpPostdata());
+app.use(middlewareAuth());
+if ('development' === config.env || 'test' === config.env) {
+  var middlewareLiveReload = require('connect-livereload');
+  var middlewareErrorHandler = require('errorhandler');
 
-app.use(require('./middlewares/middleware-cachehandler')());
-
-if ('development' === env || 'test' === env) {
-  app.use(require('connect-livereload')());
-  app.use(require('errorhandler')()); // Error handler - has to be last
+  app.use(middlewareLiveReload());
+  app.use(middlewareErrorHandler());
 }
 
-app.use(require('./middlewares/middleware-auth.js')());
-
-app.use(require('./routes.js'));
+var routes = require('./routes.js');
+app.use(routes);
 
 module.exports = app;
