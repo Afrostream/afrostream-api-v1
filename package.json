@@ -21,8 +21,7 @@
     "method-override": "~1.0.0",
     "morgan": "^1.6.1",
     "q": "^1.4.1",
-    "request": "^2.61.0",
-    "serve-favicon": "~2.0.1"
+    "request": "^2.61.0"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3",

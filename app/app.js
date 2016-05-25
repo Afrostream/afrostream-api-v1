@@ -10,8 +10,6 @@ var env = app.get('env');
 app.set('startDate', new Date());
 app.set('x-powered-by', false);
 app.set('etag', false);
-app.set('views', path.join(config.root, 'app', 'views'));
-app.set('view engine', 'jade');
 app.use(require('compression')());
 app.use(require('body-parser').text({type: 'text/xml'}));
 app.use(require('body-parser').urlencoded({extended: false}));
@@ -24,8 +22,6 @@ app.use(require('./middlewares/middleware-allowcrossdomain')({
 }));
 app.use(require('./middlewares/middleware-client-ip')());
 
-app.use(express.static(path.join(config.root, 'static')));
-app.use(require('serve-favicon')(path.join(config.root, 'static', 'favicon.ico')));
 app.use(require('morgan')('combined'));
 
 app.use(require('./middlewares/middleware-cachehandler')());

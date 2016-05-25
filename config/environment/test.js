@@ -4,7 +4,6 @@
 // ==================================
 module.exports = {
   port: process.env.PORT || 3002,
-  root: path.normalize(__dirname + '/../..'),
   allowOrigin: {
     url: 'http://localhost:3000'
   },
