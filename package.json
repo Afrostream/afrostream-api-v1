@@ -5,7 +5,9 @@
   "description": "Universal Afrostream Front Api",
   "dependencies": {
     "afrostream-node-client-backend": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v1.1.2",
+    "afrostream-node-config": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-config.git#v2.2.0",
     "async": "^1.4.2",
+    "better-assert": "^1.0.2",
     "body-parser": "~1.5.0",
     "compression": "~1.0.1",
     "errorhandler": "~1.0.0",
@@ -20,8 +22,7 @@
     "morgan": "^1.6.1",
     "q": "^1.4.1",
     "request": "^2.61.0",
-    "serve-favicon": "~2.0.1",
-    "better-assert": "^1.0.2"
+    "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3",

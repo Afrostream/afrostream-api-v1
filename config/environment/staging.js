@@ -3,6 +3,7 @@
 // Development specific configuration
 // ==================================
 module.exports = {
+  root: path.normalize(__dirname + '/../..'),
   allowOrigin: {
     url: process.env.ALLOW_URL
   },

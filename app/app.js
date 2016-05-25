@@ -16,7 +16,6 @@ app.use(require('compression')());
 app.use(require('body-parser').text({type: 'text/xml'}));
 app.use(require('body-parser').urlencoded({extended: false}));
 app.use(require('body-parser').json());
-app.use(require('cookie-parser')(config.cookie.secret));
 app.use(require('method-override')());
 app.use(require('./middlewares/middleware-dumppostdata')());
 app.use(require('./middlewares/middleware-allowcrossdomain')({
