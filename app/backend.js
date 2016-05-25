@@ -5,8 +5,8 @@ var config = require('../config');
 var Client = require('afrostream-node-client-backend');
 
 var client = new Client({
-  apiKey: config.afrostream.apiKey,
-  apiSecret: config.afrostream.apiSecret
+  apiKey: config.backendApiKey,
+  apiSecret: config.backendApiSecret
 });
 
 module.exports = client;

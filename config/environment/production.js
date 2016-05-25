@@ -1,8 +1,6 @@
 'use strict';
 
 module.exports = {
-  afrostream: {
-    apiSecret: process.env.AFROSTREAM_API_SECRET,
-    apiKey: process.env.AFROSTREAM_API_KEY
-  }
+  backendApiKey: process.env.AFROSTREAM_API_KEY,
+  backendApiSecret: process.env.AFROSTREAM_API_SECRET
 };
