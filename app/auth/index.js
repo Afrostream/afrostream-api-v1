@@ -15,6 +15,7 @@ router.use(function (req, res, next) {
 
 router.use('/geo', require('./geo'));
 router.use('/facebook', require('./facebook'));
+router.use('/bouygues', require('./bouygues'));
 
 // dumping signup/signin/resetPassword inputs.
 router.use(dumpPostData());
