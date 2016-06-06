@@ -11,8 +11,8 @@ var _signin = function (req) {
       grant_type: 'password',
       username: req.body.email,
       password: req.body.password,
-      client_id: config.afrostream.apiKey,
-      client_secret: config.afrostream.apiSecret
+      client_id: config.backendApiKey,
+      client_secret: config.backendApiSecret
     }
   });
 };
@@ -23,8 +23,8 @@ var _refresh = function (req) {
     body: {
       grant_type: 'refresh_token',
       refresh_token: req.body.refresh_token,
-      client_id: config.afrostream.apiKey,
-      client_secret: config.afrostream.apiSecret
+      client_id: config.backendApiKey,
+      client_secret: config.backendApiSecret
     }
   });
 };
