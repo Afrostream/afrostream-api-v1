@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var backend = require('./backend.js');
+var backend = require('../backend.js');
 
 var cache = function (req, res, next) { res.cache(); next(); };
 var noCache = function (req, res, next) { res.noCache(); next(); };

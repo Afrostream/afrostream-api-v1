@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('../config');
+var config = require('./config');
 
 var Client = require('afrostream-node-client-backend');
 

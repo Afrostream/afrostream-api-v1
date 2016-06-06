@@ -1,6 +1,6 @@
 'use strict';
 
-var backend = require('../backend');
+var backend = require('../../backend');
 
 var config = require('../../config');
 
