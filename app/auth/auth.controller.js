@@ -43,9 +43,12 @@ var signup = function (req, res) {
       function (oauth2Response) {
         console.log('auth: signup: -> signin: ' + req.body.email);
         res.json({
-          accessToken: oauth2Response.access_token,
-          refreshToken: oauth2Response.refresh_token,
-          expiresIn: oauth2Response.expires_in
+          accessToken: oauth2Response.access_token, // deprecated
+          access_token: oauth2Response.access_token,
+          refreshToken: oauth2Response.refresh_token, // deprecated
+          refresh_token: oauth2Response.refresh_token,
+          expiresIn: oauth2Response.expires_in, // deprecated
+          expires_in: oauth2Response.expires_in
         });
       },
       function (err) {
@@ -72,9 +75,12 @@ var signin = function (req, res) {
       function success(oauth2Response) {
         console.log('auth: signin: ok: ' + req.body.email);
         res.json({
-          accessToken: oauth2Response.access_token,
-          refreshToken: oauth2Response.refresh_token,
-          expiresIn: oauth2Response.expires_in
+          accessToken: oauth2Response.access_token, // deprecated
+          access_token: oauth2Response.access_token,
+          refreshToken: oauth2Response.refresh_token, // deprecated
+          refresh_token: oauth2Response.refresh_token,
+          expiresIn: oauth2Response.expires_in, // deprecated
+          expires_in: oauth2Response.expires_in
         });
       },
       function error(err) {
@@ -93,9 +99,12 @@ var refresh = function (req, res) {
       function success(oauth2Response) {
         console.log('auth: signin: ok: ' + req.body.email);
         res.json({
-          accessToken: oauth2Response.access_token,
-          refreshToken: oauth2Response.refresh_token,
-          expiresIn: oauth2Response.expires_in
+          accessToken: oauth2Response.access_token, // deprecated
+          access_token: oauth2Response.access_token,
+          refreshToken: oauth2Response.refresh_token, // deprecated
+          refresh_token: oauth2Response.refresh_token,
+          expiresIn: oauth2Response.expires_in, // deprecated
+          expires_in: oauth2Response.expires_in
         });
       },
       function error(err) {
