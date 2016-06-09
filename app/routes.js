@@ -55,6 +55,7 @@ var authValidator = require('./auth/auth.validator.js');
 router.use('/auth/geo', noCache, backendProxy());
 router.use('/auth/facebook', noCache, backendProxy());
 router.use('/auth/bouygues', noCache, backendProxy());
+router.use('/auth/orange', noCache, backendProxy());
 
 // dumping signup/signin/resetPassword inputs.
 var dumpPostData = require('./middlewares/middleware-dumppostdata');
