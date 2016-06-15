@@ -13,7 +13,8 @@ var _signin = function (req) {
       password: req.body.password,
       client_id: config.backendApiKey,
       client_secret: config.backendApiSecret
-    }
+    },
+    req: req
   });
 };
 
@@ -25,7 +26,8 @@ var _refresh = function (req) {
       refresh_token: req.body.refresh_token,
       client_id: config.backendApiKey,
       client_secret: config.backendApiSecret
-    }
+    },
+    req: req
   });
 };
 
@@ -55,7 +57,8 @@ var signup = function (req, res) {
         // ok, let's signup
         backend.post({
             uri: '/api/users',
-            body: req.body
+            body: req.body,
+            req: req
           })
           .then(
             function success() {
@@ -120,7 +123,8 @@ var refresh = function (req, res) {
 var reset = function (req, res) {
   return backend.post({
       uri: '/auth/reset',
-      body: req.body
+      body: req.body,
+      req: req
     })
     .then(
       function success(data) {
