@@ -639,6 +639,11 @@
         }
       }
     },
+    "isexe": {
+      "version": "1.1.2",
+      "from": "isexe@>=1.1.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/isexe/-/isexe-1.1.2.tgz"
+    },
     "joi": {
       "version": "7.3.0",
       "from": "joi@>=7.1.0 <8.0.0",
@@ -672,6 +677,16 @@
           "resolved": "https://registry.npmjs.org/moment/-/moment-2.13.0.tgz"
         }
       }
+    },
+    "os-tmpdir": {
+      "version": "1.0.1",
+      "from": "os-tmpdir@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/os-tmpdir/-/os-tmpdir-1.0.1.tgz"
+    },
+    "pem": {
+      "version": "1.8.3",
+      "from": "pem@latest",
+      "resolved": "https://registry.npmjs.org/pem/-/pem-1.8.3.tgz"
     },
     "q": {
       "version": "1.4.1",
@@ -1053,6 +1068,11 @@
           "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.4.3.tgz"
         }
       }
+    },
+    "which": {
+      "version": "1.2.10",
+      "from": "which@>=1.2.4 <2.0.0",
+      "resolved": "https://registry.npmjs.org/which/-/which-1.2.10.tgz"
     }
   }
 }
