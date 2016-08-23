@@ -70,6 +70,14 @@ router.post('/auth/reset', dumpPostData(), noCache, authValidator.validateResetP
 router.use('/right', noCache, backendProxy());
 
 /*
+ * introspection
+ */
+router.get('/headers', function (req, res) {
+  res.noCache();
+  res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
+});
+
+/*
  * 404
  */
 router.use(function (req, res) {
