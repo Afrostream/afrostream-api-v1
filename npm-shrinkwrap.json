@@ -318,14 +318,14 @@
       }
     },
     "afrostream-node-client-backend": {
-      "version": "2.1.4",
-      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v2.1.4",
-      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#887dd77f62f1e6c993fe015117d2f675f010f186",
+      "version": "2.1.5",
+      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v2.1.5",
+      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#4708e4b151fb2ca2095741f8d0c40e6d21db48a6",
       "dependencies": {
         "afrostream-node-request": {
-          "version": "2.2.0",
-          "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#v2.2.0",
-          "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#dd15c614ba3f2d090477069de5fbd49625dcc46a",
+          "version": "2.2.1",
+          "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#v2.2.1",
+          "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#0e609f82a3f992400260b0b272f058bafcddbfbb",
           "dependencies": {
             "lodash": {
               "version": "4.15.0",
