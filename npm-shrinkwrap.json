@@ -318,14 +318,14 @@
       }
     },
     "afrostream-node-client-backend": {
-      "version": "2.1.5",
-      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v2.1.5",
-      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#4708e4b151fb2ca2095741f8d0c40e6d21db48a6",
+      "version": "2.1.6",
+      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v2.1.6",
+      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#443f3a2b8eb9d8a1ef7ec5023fb4201c295c013d",
       "dependencies": {
         "afrostream-node-request": {
-          "version": "2.2.1",
-          "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#v2.2.1",
-          "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#0e609f82a3f992400260b0b272f058bafcddbfbb",
+          "version": "2.2.2",
+          "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#v2.2.2",
+          "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-request.git#4fec0472fababe2bbbe325f4e7e9d888dcbd76ab",
           "dependencies": {
             "lodash": {
               "version": "4.15.0",
@@ -878,7 +878,7 @@
         },
         "methods": {
           "version": "1.1.2",
-          "from": "methods@>=1.0.0 <2.0.0",
+          "from": "methods@>=1.1.2 <1.2.0",
           "resolved": "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz"
         },
         "on-finished": {
@@ -1391,9 +1391,9 @@
               }
             },
             "sshpk": {
-              "version": "1.10.0",
+              "version": "1.10.1",
               "from": "sshpk@>=1.7.0 <2.0.0",
-              "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.10.0.tgz",
+              "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.10.1.tgz",
               "dependencies": {
                 "asn1": {
                   "version": "0.2.3",
@@ -1421,9 +1421,9 @@
                   "resolved": "https://registry.npmjs.org/jsbn/-/jsbn-0.1.0.tgz"
                 },
                 "tweetnacl": {
-                  "version": "0.13.3",
-                  "from": "tweetnacl@>=0.13.0 <0.14.0",
-                  "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.13.3.tgz"
+                  "version": "0.14.3",
+                  "from": "tweetnacl@>=0.14.0 <0.15.0",
+                  "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.3.tgz"
                 },
                 "jodid25519": {
                   "version": "1.0.2",
@@ -1438,14 +1438,7 @@
                 "bcrypt-pbkdf": {
                   "version": "1.0.0",
                   "from": "bcrypt-pbkdf@>=1.0.0 <2.0.0",
-                  "resolved": "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.0.tgz",
-                  "dependencies": {
-                    "tweetnacl": {
-                      "version": "0.14.3",
-                      "from": "tweetnacl@>=0.14.3 <0.15.0",
-                      "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.3.tgz"
-                    }
-                  }
+                  "resolved": "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.0.tgz"
                 }
               }
             }
