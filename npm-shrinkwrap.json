@@ -318,9 +318,9 @@
       }
     },
     "afrostream-node-client-backend": {
-      "version": "2.2.1",
-      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v2.2.1",
-      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#1653e29837e422ee7263a794d3d3530ac4c295ad",
+      "version": "2.3.0",
+      "from": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v2.3.0",
+      "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#61fbb44c5737530bd73ee3096ffa7f92a69eee4a",
       "dependencies": {
         "afrostream-node-config": {
           "version": "2.2.0",
@@ -745,9 +745,9 @@
           }
         },
         "lodash": {
-          "version": "4.16.3",
+          "version": "4.16.4",
           "from": "lodash@>=4.12.0 <5.0.0",
-          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.3.tgz"
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.4.tgz"
         }
       }
     },
@@ -757,9 +757,9 @@
       "resolved": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-config.git#575639b5be99a9b912af5d447164642a23ed149e",
       "dependencies": {
         "lodash": {
-          "version": "4.16.3",
+          "version": "4.16.4",
           "from": "lodash@>=4.12.0 <5.0.0",
-          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.3.tgz"
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.4.tgz"
         }
       }
     },
