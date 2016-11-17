@@ -34,6 +34,7 @@ router.use('/api/subscriptions', noCache, backendProxy({timeout:25000}));
 router.use('/api/users', noCache, userTokenRequired, backendProxy());
 router.use('/api/videos', noCache, backendProxy());
 router.use('/api/waitingUsers', noCache, backendProxy());
+router.use('/api/logs', noCache, backendProxy());
 
 /*
  * API dynamic
