@@ -6,16 +6,15 @@
   "dependencies": {
     "afrostream-node-app": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-app.git#v2.4.0",
     "afrostream-node-client-backend": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-client-backend.git#v3.1.0",
-    "afrostream-node-config": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-config.git#v2.2.0",
+    "afrostream-node-config": "git+https://afrostream-tech:d51e355769ddd0fd212084c35fb99f71ab4146b2@github.com/Afrostream/afrostream-node-config.git#v3.1.1",
     "better-assert": "^1.0.2",
-    "errorhandler": "~1.0.0",
     "express": "^4.14.0",
     "express-cluster": "0.0.4",
-    "express-validation": "^0.4.5",
-    "joi": "^7.1.0",
-    "pem": "^1.8.3",
+    "express-validation": "^1.0.1",
+    "joi": "^9.1.1",
+    "pem": "^1.9.0",
     "q": "^1.4.1",
-    "request": "^2.61.0"
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3",
@@ -24,12 +23,12 @@
     "supertest": "^1.1.0"
   },
   "engines": {
-    "node": "4.4.5"
+    "node": "6.9.1"
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "echo 'requiring node v4.4.5' && . ~/.nvm/nvm.sh && nvm use 4.4.5 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js",
-    "test": ". ~/.nvm/nvm.sh && nvm use 4.4.5 && node_modules/.bin/mocha -b test/integration/"
+    "dev": "echo 'requiring node v6.9.1' && . ~/.nvm/nvm.sh && nvm use 6.9.1 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js",
+    "test": ". ~/.nvm/nvm.sh && nvm use 6.9.1 && node_modules/.bin/mocha -b test/integration/"
   },
   "private": true
 }

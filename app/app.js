@@ -10,13 +10,6 @@ var AfrostreamNodeApp = require('afrostream-node-app');
 var app = AfrostreamNodeApp.create();
 app.use(middlewareDumpPostdata());
 app.use(middlewareAuth());
-if ('development' === config.env || 'test' === config.env) {
-  var middlewareLiveReload = require('connect-livereload');
-  var middlewareErrorHandler = require('errorhandler');
-
-  app.use(middlewareLiveReload());
-  app.use(middlewareErrorHandler());
-}
 
 var routes = require('./routes.js');
 app.use(routes);
