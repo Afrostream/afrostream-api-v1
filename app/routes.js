@@ -58,6 +58,7 @@ router.use('/auth/facebook', noCache, backendProxy());
 router.use('/auth/bouygues', noCache, backendProxy());
 router.use('/auth/orange', noCache, backendProxy());
 router.use('/auth/netsize', noCache, backendProxy());
+router.use('/auth/wecashup', noCache, backendProxy());
 
 // dumping signup/signin/resetPassword inputs.
 var dumpPostData = require('./middlewares/middleware-dumppostdata');
