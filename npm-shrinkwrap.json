@@ -13,9 +13,9 @@
       "resolved": "https://registry.npmjs.org/accepts/-/accepts-1.3.3.tgz"
     },
     "afrostream-node-app": {
-      "version": "2.4.1",
-      "from": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-app.git#v2.4.1",
-      "resolved": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-app.git#5a4f1a199e702e8a2507c0afb580aa35b40b2f48"
+      "version": "2.5.0",
+      "from": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-app.git#v2.5.0",
+      "resolved": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-app.git#ee4e388bfa308f7b67927fc0f916f74ccc2a98ea"
     },
     "afrostream-node-client-backend": {
       "version": "3.3.0",
