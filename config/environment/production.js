@@ -5,6 +5,6 @@ module.exports = {
   backendApiSecret: process.env.AFROSTREAM_API_SECRET,
 
   cors: {
-    'Access-Control-Allow-Origin': 'www.afrostream.tv'
+    'Access-Control-Allow-Origin': 'https://www.afrostream.tv'
   }
 };

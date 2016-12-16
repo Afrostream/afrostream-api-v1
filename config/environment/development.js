@@ -6,6 +6,6 @@ module.exports = {
   backendApiSecret: '3dc3cae6-9c79-487a-9e0f-712be857dcee',
 
   cors: {
-    'Access-Control-Allow-Origin': 'www.afrostream.dev'
+    'Access-Control-Allow-Origin': 'http://www.afrostream.dev'
   }
 };

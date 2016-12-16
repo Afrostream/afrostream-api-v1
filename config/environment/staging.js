@@ -5,6 +5,6 @@ module.exports = {
   backendApiKey: process.env.AFROSTREAM_API_KEY,
 
   cors: {
-    'Access-Control-Allow-Origin': 'staging.afrostream.tv'
+    'Access-Control-Allow-Origin': 'https://staging.afrostream.tv'
   }
 };
