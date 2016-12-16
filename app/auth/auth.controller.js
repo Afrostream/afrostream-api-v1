@@ -4,6 +4,13 @@ var backend = require('../../backend');
 
 var config = require('../../config');
 
+var fwdHeaderCookie = (oauth2Response, res) => {
+  const cookies = oauth2Response.headers['set-cookie'];
+  if (cookies) {
+    res.set('set-cookie', cookies);
+  }
+};
+
 var _signin = function (req) {
   return backend.post({
     uri: '/auth/oauth2/token',
@@ -15,7 +22,7 @@ var _signin = function (req) {
       client_secret: config.backendApiSecret
     },
     context: { req: req }
-  });
+  }, { returnResponse: true });
 };
 
 var _refresh = function (req) {
@@ -28,7 +35,7 @@ var _refresh = function (req) {
       client_secret: config.backendApiSecret
     },
     context: { req: req }
-  });
+  }, { returnResponse: true });
 };
 
 var signup = function (req, res) {
@@ -36,21 +43,26 @@ var signup = function (req, res) {
   _signin(req)
     .then(
       function (oauth2Response) {
-        if (!oauth2Response.access_token) {
+        const [response, body] = oauth2Response;
+
+        if (!body.access_token) {
           throw new Error("no access_token");
         }
         return oauth2Response;
       })
     .then(
       function (oauth2Response) {
+        const [response, body] = oauth2Response;
+
         console.log('auth: signup: -> signin: ' + req.body.email);
+        fwdHeaderCookie(response, res);
         res.json({
-          accessToken: oauth2Response.access_token, // deprecated
-          access_token: oauth2Response.access_token,
-          refreshToken: oauth2Response.refresh_token, // deprecated
-          refresh_token: oauth2Response.refresh_token,
-          expiresIn: oauth2Response.expires_in, // deprecated
-          expires_in: oauth2Response.expires_in
+          accessToken: body.access_token, // deprecated
+          access_token: body.access_token,
+          refreshToken: body.refresh_token, // deprecated
+          refresh_token: body.refresh_token,
+          expiresIn: body.expires_in, // deprecated
+          expires_in: body.expires_in
         });
       },
       function (err) {
@@ -76,14 +88,17 @@ var signin = function (req, res) {
   _signin(req)
     .then(
       function success(oauth2Response) {
+        const [response, body] = oauth2Response;
+
         console.log('auth: signin: ok: ' + req.body.email);
+        fwdHeaderCookie(response, res);
         res.json({
-          accessToken: oauth2Response.access_token, // deprecated
-          access_token: oauth2Response.access_token,
-          refreshToken: oauth2Response.refresh_token, // deprecated
-          refresh_token: oauth2Response.refresh_token,
-          expiresIn: oauth2Response.expires_in, // deprecated
-          expires_in: oauth2Response.expires_in
+          accessToken: body.access_token, // deprecated
+          access_token: body.access_token,
+          refreshToken: body.refresh_token, // deprecated
+          refresh_token: body.refresh_token,
+          expiresIn: body.expires_in, // deprecated
+          expires_in: body.expires_in
         });
       },
       function error(err) {
@@ -100,14 +115,17 @@ var refresh = function (req, res) {
   _refresh(req)
     .then(
       function success(oauth2Response) {
+        const [response, body] = oauth2Response;
+
         console.log('auth: signin: ok: ' + req.body.email);
+        fwdHeaderCookie(response, res);
         res.json({
-          accessToken: oauth2Response.access_token, // deprecated
-          access_token: oauth2Response.access_token,
-          refreshToken: oauth2Response.refresh_token, // deprecated
-          refresh_token: oauth2Response.refresh_token,
-          expiresIn: oauth2Response.expires_in, // deprecated
-          expires_in: oauth2Response.expires_in
+          accessToken: body.access_token, // deprecated
+          access_token: body.access_token,
+          refreshToken: body.refresh_token, // deprecated
+          refresh_token: body.refresh_token,
+          expiresIn: body.expires_in, // deprecated
+          expires_in: body.expires_in
         });
       },
       function error(err) {
@@ -140,7 +158,6 @@ var reset = function (req, res) {
         res.status(err.statusCode || 500).json({error: err.message, message: err.message});
       });
 };
-
 
 module.exports.refresh = refresh;
 module.exports.signin = signin;
