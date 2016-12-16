@@ -7,7 +7,6 @@ var config = require('../../config');
 var fwdHeaderCookie = (oauth2Response, res) => {
   const cookies = oauth2Response.headers['set-cookie'];
   if (cookies) {
-    res.set('Access-Control-Allow-Credentials', 'true');
     res.set('set-cookie', cookies);
   }
 };

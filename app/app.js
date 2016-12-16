@@ -15,6 +15,10 @@ var app = AfrostreamNodeApp.create({disableCORS:true});
 
 // CORS
 app.use(middlewareAllowCrossdomain({url: config.cors['Access-Control-Allow-Origin']}));
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 app.use(middlewareAllowPreflight());
 
 app.use(middlewareDumpPostdata());
