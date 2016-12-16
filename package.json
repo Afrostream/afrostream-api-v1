@@ -28,7 +28,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "echo 'requiring node v6.9.1' && . ~/.nvm/nvm.sh && nvm use 6.9.1 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js",
-    "test": ". ~/.nvm/nvm.sh && nvm use 6.9.1 && node_modules/.bin/mocha -b test/integration/"
+    "test": ". ~/.nvm/nvm.sh && nvm use 6.9.1 && node_modules/.bin/mocha -b test/integration/",
+    "dev9000": "export AFROSTREAM_BACK_END_BASEURL=http://localhost:9000 && npm run dev"
   },
   "private": true
 }
