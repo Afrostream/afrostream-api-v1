@@ -87,6 +87,10 @@ router.get('/test/cache', function (req, res) {
     console.log('NO CACHE');
     res.noCache();
   }
+  if (req.query.cache) {
+    console.log('CACHE');
+    res.cache();
+  }
   res.json({nbHitsTests:nbHitsTests,d:new Date(),headers:req.headers,qs:req.query});
 });
 
