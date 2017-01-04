@@ -80,6 +80,16 @@ router.get('/headers', function (req, res) {
   res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
 });
 
+var nbHitsTests = 0;
+router.get('/test/cache', function (req, res) {
+  nbHitsTests++;
+  if (req.query.noCache) {
+    console.log('NO CACHE');
+    res.noCache();
+  }
+  res.json({nbHitsTests:nbHitsTests,d:new Date(),headers:req.headers,qs:req.query});
+});
+
 /*
  * 404
  */
