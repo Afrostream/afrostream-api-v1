@@ -10,7 +10,7 @@ const isDynamic = function (req, res, next) { res.isDynamic(); next(); };
 
 const backendProxy = function (options) {
   return function (req, res) {
-    const backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+    const backend = getClientBackend(req);
     backend.proxy(req, res, { token: req.userAccessToken, timeout: options && options.timeout || null });
   };
 };

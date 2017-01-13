@@ -5,7 +5,7 @@ const getClientBackend = require('../../backend').getClient;
 const config = require('../../config');
 
 const _signin = function (req) {
-  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+  let backend = getClientBackend(req);
 
   return backend.post({
     uri: '/auth/oauth2/token',
@@ -21,7 +21,7 @@ const _signin = function (req) {
 };
 
 const _refresh = function (req) {
-  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+  let backend = getClientBackend(req);
 
   return backend.post({
     uri: '/auth/oauth2/token',
@@ -36,7 +36,7 @@ const _refresh = function (req) {
 };
 
 const signup = function (req, res) {
-  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+  let backend = getClientBackend(req);
 
   // maybe it's a signin ?
   _signin(req)
@@ -127,7 +127,7 @@ const refresh = function (req, res) {
 };
 
 const reset = function (req, res) {
-  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+  let backend = getClientBackend(req);
 
   return backend.post({
       uri: '/auth/reset',
