@@ -1,21 +1,22 @@
 'use strict';
 
-var express = require('express');
-var router = express.Router();
-var backend = require('../backend.js');
+const express = require('express');
+const router = express.Router();
+const getClientBackend = require('../backend.js').getClient;
 
-var cache = function (req, res, next) { res.cache(); next(); };
-var noCache = function (req, res, next) { res.noCache(); next(); };
-var isDynamic = function (req, res, next) { res.isDynamic(); next(); };
+const cache = function (req, res, next) { res.cache(); next(); };
+const noCache = function (req, res, next) { res.noCache(); next(); };
+const isDynamic = function (req, res, next) { res.isDynamic(); next(); };
 
-var backendProxy = function (options) {
+const backendProxy = function (options) {
   return function (req, res) {
+    const backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
     backend.proxy(req, res, { token: req.userAccessToken, timeout: options && options.timeout || null });
   };
 };
 
 // all user routes require the afro token.
-var userTokenRequired = function (req, res, next) {
+const userTokenRequired = function (req, res, next) {
   if (!req.userAccessToken) {
     console.error('Unauthorized: missing Access-Token on '+req.url);
     res.status(401).send('Unauthorized');

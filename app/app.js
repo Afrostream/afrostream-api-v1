@@ -10,8 +10,8 @@ const middlewareFeature = require('afrostream-node-feature').middleware;
 const AfrostreamNodeApp = require('afrostream-node-app');
 const app = AfrostreamNodeApp.create();
 app.use(middlewareDumpPostdata());
-app.use(middlewareAuth());
 app.use(middlewareFeature({features:config.features}));
+app.use(middlewareAuth());
 
 const routes = require('./routes.js');
 app.use(routes);

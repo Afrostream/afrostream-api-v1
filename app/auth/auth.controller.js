@@ -1,10 +1,12 @@
 'use strict';
 
-var backend = require('../../backend');
+const getClientBackend = require('../../backend').getClient;
 
-var config = require('../../config');
+const config = require('../../config');
 
-var _signin = function (req) {
+const _signin = function (req) {
+  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+
   return backend.post({
     uri: '/auth/oauth2/token',
     body: {
@@ -18,7 +20,9 @@ var _signin = function (req) {
   });
 };
 
-var _refresh = function (req) {
+const _refresh = function (req) {
+  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+
   return backend.post({
     uri: '/auth/oauth2/token',
     body: {
@@ -31,7 +35,9 @@ var _refresh = function (req) {
   });
 };
 
-var signup = function (req, res) {
+const signup = function (req, res) {
+  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+
   // maybe it's a signin ?
   _signin(req)
     .then(
@@ -72,7 +78,7 @@ var signup = function (req, res) {
       });
 };
 
-var signin = function (req, res) {
+const signin = function (req, res) {
   _signin(req)
     .then(
       function success(oauth2Response) {
@@ -96,7 +102,7 @@ var signin = function (req, res) {
       });
 };
 
-var refresh = function (req, res) {
+const refresh = function (req, res) {
   _refresh(req)
     .then(
       function success(oauth2Response) {
@@ -120,7 +126,9 @@ var refresh = function (req, res) {
       });
 };
 
-var reset = function (req, res) {
+const reset = function (req, res) {
+  let backend = getClientBackend(req.features.getVariant('afrostream-api-v1.backend-base-url'));
+
   return backend.post({
       uri: '/auth/reset',
       body: req.body,

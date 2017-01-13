@@ -1,12 +1,18 @@
 'use strict';
 
-var config = require('./config');
+const Client = require('afrostream-node-client-backend');
 
-var Client = require('afrostream-node-client-backend');
+const config = require('./config');
 
-var client = new Client({
-  apiKey: config.backendApiKey,
-  apiSecret: config.backendApiSecret
-});
+const clients = new Map();
 
-module.exports = client;
+module.exports.getClient = function create(baseUrl) {
+  if (!clients.has(baseUrl)) {
+    clients.set(baseUrl, new Client({
+      apiKey: config.backendApiKey,
+      apiSecret: config.backendApiSecret,
+      baseUrl: baseUrl
+    }))
+  }
+  return clients.get(baseUrl);
+};
