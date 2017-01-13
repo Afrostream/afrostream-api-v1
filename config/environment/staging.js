@@ -39,7 +39,7 @@ module.exports = {
     foo: 'on',
     bar: 'bar',
     nope: 'off',
-    rampedUp: { variant: 'on', rampedUp: 0.33}
+    rampedUp: { variant: 'on', rampedUp: 0.33},
     ipList: { variant: 'on', ipList: [ /82\.228\.194\.\d+/ ]}
   }
 };
