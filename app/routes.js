@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const getClientBackend = require('../backend.js').getClient;
 
+const config = require('../config');
+
 const cache = function (req, res, next) { res.cache(); next(); };
 const noCache = function (req, res, next) { res.noCache(); next(); };
 const isDynamic = function (req, res, next) { res.isDynamic(); next(); };
@@ -79,6 +81,14 @@ router.use('/right', noCache, backendProxy());
 router.get('/headers', function (req, res) {
   res.noCache();
   res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
+});
+
+/*
+ * list of features
+ */
+router.get('/features', function (req, res) {
+  res.noCache(config);
+  res.json(config.features || {});
 });
 
 /*
