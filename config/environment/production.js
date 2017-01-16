@@ -5,6 +5,5 @@ module.exports = {
   backendApiSecret: process.env.AFROSTREAM_API_SECRET,
 
   features: {
-    "afrostream-api-v1.backend-base-url": "off"
   }
 };

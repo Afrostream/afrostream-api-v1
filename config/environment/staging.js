@@ -6,9 +6,10 @@ module.exports = {
 
   /*
    * enabling PR use of backend:
-   * ex: http://api-staging.afrostream.tv/api/w00t?afrostream-api-v1.backend-base-url=https%3A//afrostream-backend-pr-389.herokuapp.com
+   * ex: http://api-staging.afrostream.tv/api/w00t?api-v1.backend-base-url=https%3A//afrostream-backend-pr-389.herokuapp.com
    */
   features: {
-    "afrostream-api-v1.backend-base-url": "off"
+    "api-v1.backend-pr": "off",      // lowest priority
+    "api-v1.backend-base-url": "off" // highest priority
   }
 };

@@ -6,6 +6,6 @@ module.exports = {
   backendApiSecret: '3dc3cae6-9c79-487a-9e0f-712be857dcee',
 
   features: {
-    "afrostream-api-v1.backend-base-url": "off"
+    "backend-pr": "off"
   }
 };
