@@ -1,21 +1,24 @@
 'use strict';
 
-var express = require('express');
-var router = express.Router();
-var backend = require('../backend.js');
+const express = require('express');
+const router = express.Router();
+const getClientBackend = require('../backend.js').getClient;
 
-var cache = function (req, res, next) { res.cache(); next(); };
-var noCache = function (req, res, next) { res.noCache(); next(); };
-var isDynamic = function (req, res, next) { res.isDynamic(); next(); };
+const config = require('../config');
 
-var backendProxy = function (options) {
+const cache = function (req, res, next) { res.cache(); next(); };
+const noCache = function (req, res, next) { res.noCache(); next(); };
+const isDynamic = function (req, res, next) { res.isDynamic(); next(); };
+
+const backendProxy = function (options) {
   return function (req, res) {
+    const backend = getClientBackend(req);
     backend.proxy(req, res, { token: req.userAccessToken, timeout: options && options.timeout || null });
   };
 };
 
 // all user routes require the afro token.
-var userTokenRequired = function (req, res, next) {
+const userTokenRequired = function (req, res, next) {
   if (!req.userAccessToken) {
     console.error('Unauthorized: missing Access-Token on '+req.url);
     res.status(401).send('Unauthorized');
@@ -59,7 +62,7 @@ router.use('/auth/twitter', noCache, backendProxy());
 router.use('/auth/bouygues', noCache, backendProxy());
 router.use('/auth/orange', noCache, backendProxy());
 router.use('/auth/netsize', noCache, backendProxy());
-router.use('/auth/wecashup', noCache, backendProxy());
+router.use('/auth/wecashup', noCache, backendProxy({timeout:25000}));
 
 // dumping signup/signin/resetPassword inputs.
 var dumpPostData = require('./middlewares/middleware-dumppostdata');
@@ -79,6 +82,14 @@ router.use('/right', noCache, backendProxy());
 router.get('/headers', function (req, res) {
   res.noCache();
   res.send('<pre>' + JSON.stringify(req.headers) + '</pre>');
+});
+
+/*
+ * list of features
+ */
+router.get('/features', function (req, res) {
+  res.noCache(config);
+  res.json(config.features || {});
 });
 
 /*
