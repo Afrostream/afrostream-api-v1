@@ -35,6 +35,7 @@ router.use('/api/cdnselector', noCache, backendProxy());
 router.use('/api/exchanges', noCache, backendProxy({timeout:25000}));
 router.use('/api/subscriptions', noCache, backendProxy({timeout:25000}));
 router.use('/api/users', noCache, userTokenRequired, backendProxy());
+router.use('/api/life/users', noCache, backendProxy());
 router.use('/api/videos', noCache, backendProxy());
 router.use('/api/waitingUsers', noCache, backendProxy());
 router.use('/api/logs', noCache, backendProxy());
