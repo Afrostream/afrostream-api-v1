@@ -132,6 +132,7 @@ const reset = function (req, res) {
   return backend.post({
       uri: '/auth/reset',
       body: req.body,
+      qs: req.query,
       context: { req: req }
     })
     .then(
