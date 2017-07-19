@@ -1,9 +1,8 @@
-'use strict';
-
 module.exports = {
   backendApiKey: process.env.AFROSTREAM_API_KEY,
   backendApiSecret: process.env.AFROSTREAM_API_SECRET,
 
-  features: {
-  }
+  livereload: process.env.LIVERELOAD || false,
+
+  features: { }
 };
