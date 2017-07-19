@@ -9,6 +9,7 @@
     "afrostream-node-config": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-config.git#v3.1.1",
     "afrostream-node-feature": "git+https://afrostream-tech:39378b0626f1b2d4c733eeb5c5be73908b3c8c53@github.com/Afrostream/afrostream-node-feature.git#v1.0.0",
     "better-assert": "^1.0.2",
+    "chokidar": "^1.7.0",
     "express": "^4.14.0",
     "express-cluster": "0.0.4",
     "express-validation": "^1.0.1",
@@ -28,9 +29,10 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "echo 'requiring node v6.9.1' && . ~/.nvm/nvm.sh && nvm use 6.9.1 && echo 'Now launching `node_modules/.bin/nodemon app/index.js`' && node_modules/.bin/nodemon app/index.js",
-    "test": ". ~/.nvm/nvm.sh && nvm use 6.9.1 && node_modules/.bin/mocha -b test/integration/",
-    "dev9000": "export AFROSTREAM_BACK_END_BASEURL=http://localhost:9000 && npm run dev"
+    "docker-build": "docker build -t afrostream/afrostream-api-v1 .",
+    "docker-run": "docker run -i -t -p 3002:3002 --init afrostream/afrostream-api-v1:latest",
+    "dev": "npm run docker-run",
+    "test": "node_modules/.bin/mocha -b test/integration/"
   },
   "private": true
 }
