@@ -1,11 +1,6 @@
-'use strict';
+const config = require('../config');
 
-// Set default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
-var config = require('../config');
-
-var app = require('./app.js');
+const app = require('./app.js');
 
 if (process.env.NODE_ENV === 'development') {
   var pem = require('pem');
@@ -20,4 +15,5 @@ if (process.env.NODE_ENV === 'development') {
 app.listen(config.port, config.ip, function () {
   console.log('Express HTTP server listening on %d, in %s mode', config.port, app.get('env'));
 });
+
 module.exports = app;

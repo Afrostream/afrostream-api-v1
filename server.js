@@ -1,10 +1,8 @@
-'use strict';
+const cluster = require('express-cluster');
+const clusterConf = {count: process.env.WEB_CONCURRENCY || 1, verbose: true};
 
-var cluster = require('express-cluster');
+cluster(worker => {
+  console.log('[INFO]: worker '+worker.id+' is up');
 
-var clusterConf = {count: process.env.WEB_CONCURRENCY || 1, verbose: true};
-
-cluster(function (worker) {
-  console.log('worker '+worker.id+' is up');
-  return require('./app/index.js');
+  require('./worker.js');
 }, clusterConf);
