@@ -30,7 +30,7 @@
     "start": "node server.js",
     "docker-build": "docker build -t afrostream/afrostream-api-v1 .",
     "docker-run": "docker run -i -t -p 3002:3002 --init afrostream/afrostream-api-v1:latest",
-    "dev": "npm run docker-run",
+    "dev": "node_modules/.bin/nodemon server.js",
     "test": "node_modules/.bin/mocha -b test/integration/"
   },
   "private": true
