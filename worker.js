@@ -8,9 +8,5 @@ global.rootRequire = name => require(global.__basedir + '/' + (name[0] === '/' ?
 // dev & staging: live reload.
 const config = require('./config');
 
-if (config.livereload) {
-  require('./livereload');
-}
-
 // launching the app
 require('./app/index.js');
